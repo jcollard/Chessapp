@@ -20,7 +20,7 @@ public static class Utils
         }
         catch
         {
-            Console.WriteLine($"\nSeCursorPosition({left},{top})\n");
+            Console.WriteLine($"\nSetCursorPosition({left},{top})\n");
         }
     }
 
