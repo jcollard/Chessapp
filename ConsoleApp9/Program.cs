@@ -27,7 +27,8 @@
                 {
                     if (changes.BoardLayout[i, j] == select)
                     {
-                        array[0] = i; array[1] = j;
+                        array[0] = i;
+                        array[1] = j;
                     }
                 }
             }
@@ -61,6 +62,28 @@
                 }
             }
 
+        }
+
+        static void kingmoves(int[] selectindex)
+        {
+            foreach (string i in BoardLayout)
+            {
+                int[] arr = indextile(i);
+                if (kinglogic(selectindex, arr))
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = "XX";
+                }
+                else
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+                }
+            }
+
+            Utils.TryClear();
+            movecheck.Print();
+            Thread.Sleep(DELAY);
+            Utils.TryClear();
+            changes.Print();
         }
 
         static bool kinglogic(int[] selectindex, int[] tileindex)
@@ -159,6 +182,28 @@
             }
         }
 
+        static void pawnmoves(int[] selectindex)
+        {
+            foreach (string i in BoardLayout)
+            {
+                int[] arr = indextile(i);
+                if (pawnlogic(selectindex, arr))
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = "XX";
+                }
+                else
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+                }
+            }
+
+            Utils.TryClear();
+            movecheck.Print();
+            Thread.Sleep(DELAY);
+            Utils.TryClear();
+            changes.Print();
+        }
+
         static bool knightlogic(int[] selectindex, int[] tileindex)
         {
             int selecti = selectindex[0];
@@ -191,6 +236,28 @@
             }
 
             return true;
+        }
+
+        static void bishopmoves(int[] selectindex)
+        {
+            foreach (string i in BoardLayout)
+            {
+                int[] arr = indextile(i);
+                if (bishoplogic(selectindex, arr))
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = "XX";
+                }
+                else
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+                }
+            }
+
+            Utils.TryClear();
+            movecheck.Print();
+            Thread.Sleep(DELAY);
+            Utils.TryClear();
+            changes.Print();
         }
 
         static bool bishoplogic(int[] selectindex, int[] tileindex)
@@ -243,6 +310,28 @@
                 }
             }
             return true;
+        }
+
+        static void rookmoves(int[] selectindex)
+        {
+            foreach (string i in BoardLayout)
+            {
+                int[] arr = indextile(i);
+                if (rooklogic(selectindex, arr))
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = "XX";
+                }
+                else
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+                }
+            }
+
+            Utils.TryClear();
+            movecheck.Print();
+            Thread.Sleep(DELAY);
+            Utils.TryClear();
+            changes.Print();
         }
 
         static bool rooklogic(int[] selectindex, int[] tileindex)
@@ -317,6 +406,50 @@
                 }
             }
             return true;
+        }
+
+        static void queenmoves(int[] selectindex)
+        {
+            foreach (string i in BoardLayout)
+            {
+                int[] arr = indextile(i);
+                if (queenlogic(selectindex, arr))
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = "XX";
+                }
+                else
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+                }
+            }
+
+            Utils.TryClear();
+            movecheck.Print();
+            Thread.Sleep(DELAY);
+            Utils.TryClear();
+            changes.Print();
+        }
+
+        static void knightmoves(int[] selectindex)
+        {
+            foreach (string i in BoardLayout)
+            {
+                int[] arr = indextile(i);
+                if (knightlogic(selectindex, arr))
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = "XX";
+                }
+                else
+                {
+                    movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+                }
+            }
+
+            Utils.TryClear();
+            movecheck.Print();
+            Thread.Sleep(DELAY);
+            Utils.TryClear();
+            changes.Print();
         }
 
         static bool queenlogic(int[] selectindex, int[] tileindex)
@@ -452,6 +585,49 @@
             return false;
         }
 
+        /// <summary>
+        /// Prompts the user to select a piece to move. Returns the selected piece and the row / col of that piece.
+        /// </summary>
+        /// <param name="pieceselect("></param>
+        /// <returns></returns>
+        static (string, int[] address) PieceSelect()
+        {
+            while (true)
+            {
+
+                Utils.TryClear();
+                changes.Print();
+                Console.WriteLine("select piece to move");
+                string select = Utils.ReadLine();
+                int[] address = indexselect(select);
+                Utils.SetCursorPosition(0, Console.CursorTop - 1);
+                ClearCurrentConsoleLine();
+                if (changes.turn % 2 == 0 && select.ToLower() == select)
+                {
+                    Console.WriteLine("It's Green's turn, Select piece again. Green uses capital letters");
+                }
+                else if (changes.turn % 2 != 0 && select.ToUpper() == select)
+                {
+                    Console.WriteLine("It's Blue's turn, Select piece again. Blue uses Lowercase letters");
+                }
+                else if (!changes.pieces.Contains(select))
+                {
+                    Console.WriteLine("Piece does not exist");
+                }
+
+                else if (changes.deadpieces.Contains(select))
+                {
+                    Console.WriteLine("Piece does not exist on the board");
+                }
+                else
+                {
+                    return (select, address);
+                }
+            }
+        }
+
+
+
         static void Main(string[] args)
         {
             int turn = 4;
@@ -471,183 +647,11 @@
                 string select = "";
                 int[] address = indexselect(select);
                 string tile;
-                void pieceselect()
-                {
-                    while (true)
-                    {
-
-                        Utils.TryClear();
-                        changes.Print();
-
-                        Console.WriteLine("select piece to move");
-
-                        select = Utils.ReadLine();
-                        address = indexselect(select);
-                        Utils.SetCursorPosition(0, Console.CursorTop - 1);
-                        ClearCurrentConsoleLine();
-                        if (changes.turn % 2 == 0 && select.ToLower() == select) { Console.WriteLine("It's Green's turn, Select piece again. Green uses capital letters"); }
-                        else if (changes.turn % 2 != 0 && select.ToUpper() == select) { Console.WriteLine("It's Blue's turn, Select piece again. Blue uses Lowercase letters"); }
-
-                        else if (!changes.pieces.Contains(select)) { Console.WriteLine("Piece does not exist"); }
-
-                        else if (changes.deadpieces.Contains(select)) { Console.WriteLine("Piece does not exist on the board"); }
-                        else
-                        {
-
-                            break;
-                        }
-
-                    }
-                }
-
-                pieceselect();
-
+                (select, address) = PieceSelect();
                 tileselect();
-                void pawnmoves(int[] selectindex)
-                {
-
-
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-                        if (pawnlogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
 
 
 
-
-
-                    }
-
-                    Utils.TryClear();
-                    movecheck.Print();
-                    Thread.Sleep(DELAY);
-
-
-                    Utils.TryClear();
-                    changes.Print();
-
-
-
-                }
-                void queenmoves(int[] selectindex)
-                {
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-                        if (queenlogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-
-
-
-
-
-                    }
-
-                    Utils.TryClear();
-                    movecheck.Print();
-                    Thread.Sleep(DELAY);
-
-
-                    Utils.TryClear();
-                    changes.Print();
-
-
-                }
-                void knightmoves(int[] selectindex)
-                {
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-                        if (knightlogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-
-
-
-
-
-                    }
-
-                    Utils.TryClear();
-                    movecheck.Print();
-                    Thread.Sleep(DELAY);
-
-
-                    Utils.TryClear();
-                    changes.Print();
-
-
-                }
-                void rookmoves(int[] selectindex)
-                {
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-                        if (rooklogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-
-
-
-
-
-                    }
-
-                    Utils.TryClear();
-                    movecheck.Print();
-                    Thread.Sleep(DELAY);
-
-
-                    Utils.TryClear();
-                    changes.Print();
-
-
-                }
-                void bishopmoves(int[] selectindex)
-                {
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-                        if (bishoplogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-
-
-
-
-
-                    }
-
-                    Utils.TryClear();
-                    movecheck.Print();
-                    Thread.Sleep(DELAY);
-
-
-                    Utils.TryClear();
-                    changes.Print();
-
-                }
-                void kingmoves(int[] selectindex)
-                {
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-                        if (kinglogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-
-
-
-
-
-                    }
-
-                    Utils.TryClear();
-                    movecheck.Print();
-                    Thread.Sleep(DELAY);
-
-
-                    Utils.TryClear();
-                    changes.Print();
-
-                }
                 void tileselect()
                 {
                     while (true)
@@ -696,7 +700,7 @@
                         {
                             Utils.TryClear();
                             changes.Print();
-                            pieceselect();
+                            (select, address) = PieceSelect();
                         }
                         int[] refadd = indextile(tile);
 
