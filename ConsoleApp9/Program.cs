@@ -2,15 +2,16 @@
 {
     public class Program
     {
+        private static int DELAY = 0;
         static void Main(string[] args)
         {
 
              static void ClearCurrentConsoleLine()
             {
                 int currentLineCursor = Console.CursorTop;
-                Console.SetCursorPosition(0, Console.CursorTop);
+                Utils.SetCursorPosition(0, Console.CursorTop);
                 Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, currentLineCursor);
+                Utils.SetCursorPosition(0, currentLineCursor);
             }
 
             PrintBoard changes = new PrintBoard();
@@ -375,7 +376,7 @@
             {
                 if (changes.deadpieces.Contains("K1")|| changes.deadpieces.Contains("k1"))
                 {
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
                     break;
                 }
@@ -391,14 +392,14 @@
                     while (true)
                     {
 
-                        Console.Clear();
+                        Utils.TryClear();
                         changes.Print();
 
                         Console.WriteLine("select piece to move");
 
-                        select = Console.ReadLine();
+                        select = Utils.ReadLine();
                         address = indexselect(select);
-                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                        Utils.SetCursorPosition(0, Console.CursorTop - 1);
                         ClearCurrentConsoleLine();
                         if (changes.turn % 2 == 0 && select.ToLower() == select) { Console.WriteLine("It's Green's turn, Select piece again. Green uses capital letters"); }
                         else if (changes.turn % 2 != 0 && select.ToUpper() == select) { Console.WriteLine("It's Blue's turn, Select piece again. Blue uses Lowercase letters"); }
@@ -433,12 +434,12 @@
 
                     }
 
-                    Console.Clear();
+                    Utils.TryClear();
                     movecheck.Print();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(DELAY);
 
                   
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
 
 
@@ -458,12 +459,12 @@
 
                     }
 
-                    Console.Clear();
+                    Utils.TryClear();
                     movecheck.Print();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(DELAY);
 
 
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
 
 
@@ -482,12 +483,12 @@
 
                     }
 
-                    Console.Clear();
+                    Utils.TryClear();
                     movecheck.Print();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(DELAY);
 
 
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
 
 
@@ -506,12 +507,12 @@
 
                     }
 
-                    Console.Clear();
+                    Utils.TryClear();
                     movecheck.Print();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(DELAY);
 
 
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
 
 
@@ -530,12 +531,12 @@
 
                     }
 
-                    Console.Clear();
+                    Utils.TryClear();
                     movecheck.Print();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(DELAY);
 
 
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
 
                 }
@@ -553,12 +554,12 @@
 
                     }
 
-                    Console.Clear();
+                    Utils.TryClear();
                     movecheck.Print();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(DELAY);
 
 
-                    Console.Clear();
+                    Utils.TryClear();
                     changes.Print();
 
                 }
@@ -597,18 +598,18 @@
 
                         }
 
-                        Console.Clear();
+                        Utils.TryClear();
                         changes.Print();
 
                         Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
-                        tile = Console.ReadLine();
+                        tile = Utils.ReadLine();
                         tile = tile.ToUpper();
 
 
                         if(tile == "BACK")
                         {
-                            Console.Clear();
+                            Utils.TryClear();
                             changes.Print();
                             pieceselect(); }
                         int[] refadd = indextile(tile);
@@ -622,7 +623,7 @@
                             {
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                                 Console.ResetColor();
-                                Console.Clear();
+                                Utils.TryClear();
                                 changes.Print();
 
                             }
@@ -633,7 +634,7 @@
                             if (!queenlogic(address, refadd))
                             {
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
-                                Console.Clear();
+                                Utils.TryClear();
                                 changes.Print();
 
                                 Console.ResetColor();
@@ -647,7 +648,7 @@
                             {
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                                 Console.ResetColor();
-                                Console.Clear();
+                                Utils.TryClear();
                                 changes.Print();
 
                             }
@@ -660,7 +661,7 @@
                             if (!knightlogic(address, refadd))
                             {
 
-                                Console.Clear();
+                                Utils.TryClear();
                                 changes.Print();
                                 Console.WriteLine("Invalid Move");
 
@@ -672,7 +673,7 @@
                             if (!rooklogic(address, refadd))
                             {
 
-                                Console.Clear();
+                                Utils.TryClear();
                                 changes.Print();
                                 Console.WriteLine("Invalid Move");
 
@@ -684,7 +685,7 @@
                             if (!bishoplogic(address, refadd))
                             {
 
-                                Console.Clear();
+                                Utils.TryClear();
                                 changes.Print();
 
                                 Console.WriteLine("Invalid Move");
@@ -699,7 +700,7 @@
 
 
 
-                Console.Clear();
+                Utils.TryClear();
                 changes.Print();
 
 
@@ -725,7 +726,7 @@
 
                 if (changes.deadpieces.Contains(select)) { changes.deadpieces.Remove(select); } //needed this to fix some bug i forgot why
                 changes.turn++;
-                Console.Clear();
+                Utils.TryClear();
                 changes.Print();
                
 
