@@ -3,392 +3,476 @@
     public class Program
     {
         private static int DELAY = 0;
-        static void Main(string[] args)
+        private static PrintBoard changes = new PrintBoard();
+        private static PrintBoard movecheck = new PrintBoard();
+        private static string[,] BoardLayout = new string[8, 8];
+        private static List<string> AddressList = new List<string>();
+        private static string[] Rows = { "1", "2", "3", "4", "5", "6", "7", "8" };
+        private static string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
+
+        static void ClearCurrentConsoleLine()
         {
+            int currentLineCursor = Console.CursorTop;
+            Utils.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Utils.SetCursorPosition(0, currentLineCursor);
+        }
 
-             static void ClearCurrentConsoleLine()
+        static int[] indexselect(string select)
+        {
+            int[] array = new int[2];
+            for (int i = 0; i <= 7; i++)
             {
-                int currentLineCursor = Console.CursorTop;
-                Utils.SetCursorPosition(0, Console.CursorTop);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Utils.SetCursorPosition(0, currentLineCursor);
-            }
-
-            PrintBoard changes = new PrintBoard();
-            PrintBoard movecheck = new PrintBoard();
-
-
-            int turn = 4;
-
-            string[,] BoardLayout = new string[8, 8];
-            movecheck.initialize();
-            string[] Rows = { "1", "2", "3", "4", "5", "6", "7", "8" };
-            string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
-            List<string> AddressList = new List<string>();
-
-            int[] arr = new int[2];
-            //indexes for comparison and logic 
-      
-            int[] indexselect(string select)
-            {
-                int[] array = new int[2];
-                for (int i = 0; i <= 7; i++)
+                for (int j = 0; j <= 7; j++)
                 {
-
-                    for (int j = 0; j <= 7; j++)
+                    if (changes.BoardLayout[i, j] == select)
                     {
-
-
-                        if (changes.BoardLayout[i, j] == select) { array[0] = i; array[1] = j; }
-
-                    }
-
-                }
-                return array;
-            }
-            int[] indextile(string tile)
-            {
-                int[] array = new int[2];
-                for (int i = 0; i <= 7; i++)
-                {
-
-                    for (int j = 0; j <= 7; j++)
-                    {
-
-
-                        if (BoardLayout[i, j] == tile) { array[0] = i; array[1] = j; }
-
-                    }
-
-                }
-                return array;
-            }
-
-            changes.initialize(); //starting board
-            changes.Print();
-            void fillboardaddresses()
-            {
-                for (int i = 0; i <= 7; i++)
-                {
-                    for (int j = 0; j <= 7; j++)
-                    {
-                        BoardLayout[i, j] = Columns[j] + Rows[i];
-                        AddressList.Add(BoardLayout[i, j]);
+                        array[0] = i; array[1] = j;
                     }
                 }
+            }
+            return array;
+        }
 
-            } //fill tile addresses
-            fillboardaddresses();
-           
-
-            bool kinglogic(int[] selectindex, int[] tileindex)
+        static int[] indextile(string tile)
+        {
+            int[] array = new int[2];
+            for (int i = 0; i <= 7; i++)
             {
-                int selecti = selectindex[0];
-                int tilei = tileindex[0];
+                for (int j = 0; j <= 7; j++)
+                {
+                    if (BoardLayout[i, j] == tile)
+                    {
+                        array[0] = i; array[1] = j;
+                    }
+                }
+            }
+            return array;
+        }
 
-                int selectj = selectindex[1];
-                int tilej = tileindex[1];
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-              
-                if(Math.Abs(selecti-tilei)!=1 && Math.Abs(selectj-tilej)!=1) { return false; }
-                else if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selecti - tilei) != 0) { return false; }
-                else if (Math.Abs(selectj - tilej) != 0 && Math.Abs(selectj - tilej) != 1) { return false; }
-                else return true;
-
-
-
-
-
-
-
-
-
-
+        static void fillboardaddresses()
+        {
+            for (int i = 0; i <= 7; i++)
+            {
+                for (int j = 0; j <= 7; j++)
+                {
+                    BoardLayout[i, j] = Columns[j] + Rows[i];
+                    AddressList.Add(BoardLayout[i, j]);
+                }
             }
 
+        }
 
-            bool pawnlogic(int[] selectindex, int[] tileindex)
+        static bool kinglogic(int[] selectindex, int[] tileindex)
+        {
+            int selecti = selectindex[0];
+            int tilei = tileindex[0];
+
+            int selectj = selectindex[1];
+            int tilej = tileindex[1];
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
             {
-                int selecti = selectindex[0];
-                int tilei = tileindex[0];
+                return false;
+            }
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
 
-                int selectj = selectindex[1];
-                int tilej = tileindex[1];
+            if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selectj - tilej) != 1)
+            {
+                return false;
+            }
+            else if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selecti - tilei) != 0)
+            {
+                return false;
+            }
+            else if (Math.Abs(selectj - tilej) != 0 && Math.Abs(selectj - tilej) != 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
-              char player = changes.BoardLayout[selecti, selectj][0];
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
+        static bool pawnlogic(int[] selectindex, int[] tileindex)
+        {
+            int selecti = selectindex[0];
+            int tilei = tileindex[0];
 
-                if (char.ToUpper(player) == player)
+            int selectj = selectindex[1];
+            int tilej = tileindex[1];
+
+            char player = changes.BoardLayout[selecti, selectj][0];
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+
+            if (char.ToUpper(player) == player)
+            {
+                if (selecti - tilei == 2 && selecti == 6 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei + 1, tilej].Contains(' '))
                 {
-                    if (selecti - tilei == 2 && selecti == 6 && selectj-tilej== 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei + 1, tilej].Contains(' '))
-                    {
-                        return true;
-                    }
-                     if (selecti - tilei == 1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
-                     if (selecti - tilei == 1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
-                    else return false;
-
+                    return true;
+                }
+                if (selecti - tilei == 1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' '))
+                {
+                    return true;
+                }
+                if (selecti - tilei == 1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej]))
+                {
+                    return true;
                 }
                 else
                 {
-                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei -1, tilej].Contains(' '))
-                    {
-                        return true;
-                    }
-                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains('X'))
-                    {
-                        return true;
-                    }
-                    if (selecti - tilei == -1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
-                     if (selecti - tilei == -1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
-                    else return false;
+                    return false;
+                }
+            }
+            else
+            {
+                if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains(' '))
+                {
+                    return true;
+                }
+                if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains('X'))
+                {
+                    return true;
+                }
+                if (selecti - tilei == -1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' '))
+                {
+                    return true;
+                }
+                if (selecti - tilei == -1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej]))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        static bool knightlogic(int[] selectindex, int[] tileindex)
+        {
+            int selecti = selectindex[0];
+            int tilei = tileindex[0];
+            int selectj = selectindex[1];
+            int tilej = tileindex[1];
+            char player = changes.BoardLayout[selecti, selectj][0];
+
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+
+            if (Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))
+            {
+                return false;
+            }
+
+            if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selectj - tilej) != 1)
+            {
+                return false;
+            }
+            if (Math.Abs(selectj - tilej) != 2 && Math.Abs(selecti - tilei) != 2)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        static bool bishoplogic(int[] selectindex, int[] tileindex)
+        {
+            int selecti = selectindex[0];
+            int tilei = tileindex[0];
+            int selectj = selectindex[1];
+            int tilej = tileindex[1];
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+            if (!(Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej)))
+            {
+                return false;
+            }
+
+            for (int i = selecti, j = selectj; j > 0 || j < 7 || i > 0 || i < 7;)
+            {
+                if (i == tilei && j == tilej)
+                {
+                    break;
                 }
 
+                if (selecti > tilei)
+                {
+                    i--;
+                }
+                else
+                {
+                    i++;
+                }
 
+                if (selectj > tilej)
+                {
+                    j--;
+                }
+                else
+                {
+                    j++;
+                }
+
+                if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, j] != changes.BoardLayout[tilei, tilej])
+                {
+                    return false;
+                }
             }
-            bool knightlogic(int[] selectindex, int[] tileindex)
+            return true;
+        }
+
+        static bool rooklogic(int[] selectindex, int[] tileindex)
+        {
+            int selecti = selectindex[0];
+            int tilei = tileindex[0];
+            int selectj = selectindex[1];
+            int tilej = tileindex[1];
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
             {
-                int selecti = selectindex[0];
-                int tilei = tileindex[0];
+                return false;
+            }
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
 
-                int selectj = selectindex[1];
-                int tilej = tileindex[1];
+            int diff = Math.Abs(selecti - tilei) - Math.Abs(selectj - tilej);
+            if (Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej))
+            {
+                return false;
+            }
+            if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej))
+            {
+                return false;
+            }
+            if (Math.Abs(selecti - tilei) != 0)
+            {
 
-                char player = changes.BoardLayout[selecti, selectj][0];
+                for (int i = selecti, j = selectj; i > 0 || i < 7;)
+                {
+                    if (i == tilei)
+                    {
+                        break;
+                    }
+                    if (selecti > tilei)
+                    {
+                        i--;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                    if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, tilej] != changes.BoardLayout[tilei, tilej])
+                    {
+                        return false;
+                    }
+                }
+            }
+            if (Math.Abs(selectj - tilej) != 0)
+            {
+                for (int i = selecti, j = selectj; j > 0 || j < 7;)
+                {
+                    if (j == tilej)
+                    {
+                        break;
+                    }
 
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei,tilej].ToUpper()&&  changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper()&&!changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
+                    if (selectj > tilej)
+                    {
+                        j--;
+                    }
+                    else
+                    {
+                        j++;
+                    }
 
-                if (Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej)) 
+                    if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[tilei, j] != changes.BoardLayout[tilei, tilej])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        static bool queenlogic(int[] selectindex, int[] tileindex)
+        {
+            int selecti = selectindex[0];
+            int tilei = tileindex[0];
+            int selectj = selectindex[1];
+            int tilej = tileindex[1];
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+            if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
+            {
+                return false;
+            }
+            int diff = Math.Abs(selecti - tilei) - Math.Abs(selectj - tilej);
+
+            if (!(Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej)) && Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej))
+            {
+                return false;
+            }
+
+
+            if (Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))
+            {
+
+                for (int i = selecti, j = selectj; j > 0 || j < 7 || i > 0 || i < 7;)
+                {
+                    if (i == tilei && j == tilej)
+                    {
+                        break;
+                    }
+                    if (selecti > tilei)
+                    {
+                        i--;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                    if (selectj > tilej)
+                    {
+                        j--;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+
+                    if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, j] != changes.BoardLayout[tilei, tilej])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else if (Math.Abs(diff) == Math.Abs(selecti - tilei) || Math.Abs(diff) == Math.Abs(selectj - tilej))
+            {
+                if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej))
                 {
                     return false;
                 }
 
-                if(Math.Abs(selecti - tilei)!=1 && Math.Abs(selectj - tilej) != 1) { return false; }
-                if (Math.Abs(selectj - tilej) != 2 && Math.Abs(selecti - tilei) != 2) { return false; }
-
-                return true;
-
-
-            }
-            bool bishoplogic(int[] selectindex, int[] tileindex)
-            {
-
-
-
-                int selecti = selectindex[0];
-                int tilei = tileindex[0];
-
-                int selectj = selectindex[1];
-                int tilej = tileindex[1];
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (!(Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))) { return false; }
-             
-
-               
-                    for (int i = selecti, j = selectj; j>0 ||j<7||i>0||i<7;)
-                    {
-                        if (i == tilei && j == tilej) { break; }
-
-                        if (selecti > tilei) { i--; }
-                        else { i++; }
-                        if (selectj > tilej) { j--; }
-                        else { j++; }
-
-                        if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, j] != changes.BoardLayout[tilei, tilej]) { return false; }
-
-
-                    }
-                
-
-
-                 return true;
-                
-
-
-            }
-            bool rooklogic(int[] selectindex, int[] tileindex)
-        
-            {
-
-                int selecti = selectindex[0];
-                int tilei = tileindex[0];
-
-                int selectj = selectindex[1];
-                int tilej = tileindex[1];
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-
-
-                int diff = Math.Abs(selecti - tilei) - Math.Abs(selectj - tilej);
-
-
-                if (Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej)) { return false; }
-                if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej)) { return false; }
-
-
-                if (Math.Abs(selecti - tilei)!=0) {
+                if (Math.Abs(selecti - tilei) != 0)
+                {
 
                     for (int i = selecti, j = selectj; i > 0 || i < 7;)
                     {
-                        if (i == tilei) { break; }
+                        if (i == tilei)
+                        {
+                            break;
+                        }
 
-                        if (selecti > tilei) { i--; }
-                        else { i++; }
-                        
-
-                        if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, tilej] != changes.BoardLayout[tilei, tilej]) { return false; }
-
-
+                        if (selecti > tilei)
+                        {
+                            i--;
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                        if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, tilej] != changes.BoardLayout[tilei, tilej])
+                        {
+                            return false;
+                        }
                     }
-
-
                 }
                 if (Math.Abs(selectj - tilej) != 0)
                 {
-
                     for (int i = selecti, j = selectj; j > 0 || j < 7;)
                     {
-                        if (j == tilej) { break; }
+                        if (j == tilej)
+                        {
+                            break;
+                        }
 
-                        if (selectj > tilej) { j--; }
-                        else { j++; }
+                        if (selectj > tilej)
+                        {
+                            j--;
+                        }
+                        else
+                        {
+                            j++;
+                        }
 
-
-                        if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[tilei, j] != changes.BoardLayout[tilei, tilej]) { return false; }
-
-
+                        if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[tilei, j] != changes.BoardLayout[tilei, tilej])
+                        {
+                            return false;
+                        }
                     }
-
-
                 }
-
-
-
-
-
-
                 return true;
-
-
-
             }
-            bool queenlogic(int[] selectindex, int[] tileindex)
+            else
             {
-                int selecti = selectindex[0];
-                int tilei = tileindex[0];
-
-                int selectj = selectindex[1];
-                int tilej = tileindex[1];
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-                if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
-
-                int diff = Math.Abs(selecti - tilei) - Math.Abs(selectj - tilej);
-
-                if (!(Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))&& Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej)) { return false; }
-
-
-                if (Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))
-                {
-
-                    for (int i = selecti, j = selectj; j > 0 || j < 7 || i > 0 || i < 7;)
-                    {
-                        if (i == tilei && j == tilej) { break; }
-
-                        if (selecti > tilei) { i--; }
-                        else { i++; }
-                        if (selectj > tilej) { j--; }
-                        else { j++; }
-
-                        if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, j] != changes.BoardLayout[tilei, tilej]) { return false; }
-
-
-                    }
-
-
-
-                    return true;
-
-
-
-                }
-                else if (Math.Abs(diff) == Math.Abs(selecti - tilei) || Math.Abs(diff) == Math.Abs(selectj - tilej))
-                {
-
-
-                    if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej)) { return false; }
-
-
-                    if (Math.Abs(selecti - tilei) != 0)
-                    {
-
-                        for (int i = selecti, j = selectj; i > 0 || i < 7;)
-                        {
-                            if (i == tilei) { break; }
-
-                            if (selecti > tilei) { i--; }
-                            else { i++; }
-
-
-                            if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, tilej] != changes.BoardLayout[tilei, tilej]) { return false; }
-
-
-                        }
-
-
-                    }
-                    if (Math.Abs(selectj - tilej) != 0)
-                    {
-
-                        for (int i = selecti, j = selectj; j > 0 || j < 7;)
-                        {
-                            if (j == tilej) { break; }
-
-                            if (selectj > tilej) { j--; }
-                            else { j++; }
-
-
-                            if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[tilei, j] != changes.BoardLayout[tilei, tilej]) { return false; }
-
-
-                        }
-
-
-                    }
-
-
-
-
-
-
-                    return true;
-                }
-                else return false;
-
-
+                return false;
             }
+        }
 
-
-            while (true)
+        /// <summary>
+        /// Checks if the game has ended and returns true if it has.
+        /// </summary>
+        /// <returns></returns>
+        private static bool IsGameOver()
+        {
+            if (changes.deadpieces.Contains("K1") || changes.deadpieces.Contains("k1"))
             {
-                if (changes.deadpieces.Contains("K1")|| changes.deadpieces.Contains("k1"))
-                {
-                    Utils.TryClear();
-                    changes.Print();
-                    break;
-                }
+                Utils.TryClear();
+                changes.Print();
+                return true;
+            }
+            return false;
+        }
+
+        static void Main(string[] args)
+        {
+            int turn = 4;
+            movecheck.initialize();
+
+            int[] arr = new int[2];
+
+            //indexes for comparison and logic 
+            changes.initialize(); //starting board
+            changes.Print();
+            //fill tile addresses
+            fillboardaddresses();
+
+            while (!IsGameOver())
+            {
                 Console.WriteLine();
-
-                string select="";
-
+                string select = "";
                 int[] address = indexselect(select);
-
-
                 string tile;
-                void pieceselect() {
+                void pieceselect()
+                {
                     while (true)
                     {
 
@@ -409,14 +493,15 @@
                         else if (changes.deadpieces.Contains(select)) { Console.WriteLine("Piece does not exist on the board"); }
                         else
                         {
-                            
-                            break; }
+
+                            break;
+                        }
 
                     }
                 }
-                
+
                 pieceselect();
-               
+
                 tileselect();
                 void pawnmoves(int[] selectindex)
                 {
@@ -425,7 +510,7 @@
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (pawnlogic(selectindex, arr) ) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (pawnlogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
                         else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
 
 
@@ -438,7 +523,7 @@
                     movecheck.Print();
                     Thread.Sleep(DELAY);
 
-                  
+
                     Utils.TryClear();
                     changes.Print();
 
@@ -607,11 +692,12 @@
                         tile = tile.ToUpper();
 
 
-                        if(tile == "BACK")
+                        if (tile == "BACK")
                         {
                             Utils.TryClear();
                             changes.Print();
-                            pieceselect(); }
+                            pieceselect();
+                        }
                         int[] refadd = indextile(tile);
 
 
@@ -654,7 +740,8 @@
                             }
                             else
                             {
-                                break; }
+                                break;
+                            }
                         }
                         else if (select.Contains('n') || select.Contains('N'))
                         {
@@ -709,13 +796,13 @@
 
 
                 for (int i = 0; i <= 7; i++)
+                {
+
+                    for (int j = 0; j <= 7; j++)
                     {
 
-                        for (int j = 0; j <= 7; j++)
-                        {
 
-
-                         if (tile == BoardLayout[i, j]) { if (changes.BoardLayout[i, j] != "  ") { changes.deadpieces.Add(changes.BoardLayout[i, j]); } changes.BoardLayout[i, j] = select; }
+                        if (tile == BoardLayout[i, j]) { if (changes.BoardLayout[i, j] != "  ") { changes.deadpieces.Add(changes.BoardLayout[i, j]); } changes.BoardLayout[i, j] = select; }
                         else if (select == changes.BoardLayout[i, j]) { changes.BoardLayout[i, j] = "  "; }
 
                     }
@@ -728,7 +815,7 @@
                 changes.turn++;
                 Utils.TryClear();
                 changes.Print();
-               
+
 
 
 
