@@ -33,12 +33,12 @@ public class GameState
         pieces["R2"] = new RookPiece("R2", PieceColor.Green, (7, 7));
     }
 
-    public IPiece? GetPiece(string symbol)
+    public IPiece GetPiece(string symbol)
     {
         if (pieces.TryGetValue(symbol, out IPiece? value))
         {
             return value;
         }
-        return null;
+        throw new ArgumentException($"The symbol {symbol} is not a valid piece on this board.");
     }
 }

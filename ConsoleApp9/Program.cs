@@ -1,7 +1,7 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 0;
+    public const int DELAY = 1000;
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
@@ -63,7 +63,7 @@ public class Program
         }
 
     }
-    
+
     /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
@@ -120,29 +120,39 @@ public class Program
         }
     }
 
-    static string tileselect(ref string select, ref int[] address)
+    private static string GetTile()
+    {
+        string tile = Utils.ReadLine();
+        tile = tile.ToUpper();
+
+        if (tile == "BACK")
+        {
+            return "BACK";
+        }
+
+        // Check that the selected tile is valid
+        if (!AddressList.Contains(tile))
+        {
+            Console.WriteLine("Please input correct tile address (Example: A5)");
+            return GetTile();
+        }
+
+        return tile;
+    }
+
+    static string TileSelect(ref string select, ref int[] address)
     {
         while (true)
         {
-            IPiece? piece = gameState.GetPiece(select);
-            if (piece == null)
-            {
-                
-            }
-            else
-            {
-                piece.GetMoves((address[0], address[1]));
-            }
+            IPiece piece = gameState.GetPiece(select);
+            piece.GetMoves((address[0], address[1]));
 
             Utils.TryClear();
             changes.Print();
 
             Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
-            string tile = Utils.ReadLine();
-            tile = tile.ToUpper();
-
-
+            string tile = GetTile();
             if (tile == "BACK")
             {
                 Utils.TryClear();
@@ -151,25 +161,17 @@ public class Program
             }
             int[] refadd = indextile(tile);
 
+            // If the piece logic is invalid, display Invalid Move.
+            if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1])))
+            {
+                Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
+                Console.ResetColor();
+                Utils.TryClear();
+                changes.Print();
+                continue;
+            }
 
-            if (!AddressList.Contains(tile))
-            {
-                Console.WriteLine("Please input correct tile address (Example: A5)");
-            }
-            else if (piece != null)
-            {
-                if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1])))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
-                    Console.ResetColor();
-                    Utils.TryClear();
-                    changes.Print();
-                }
-                else
-                {
-                    return tile;
-                }
-            }
+            return tile;
         }
     }
 
@@ -202,8 +204,6 @@ public class Program
         }
     }
 
-
-
     static void Main(string[] args)
     {
         movecheck.initialize();
@@ -217,7 +217,7 @@ public class Program
             int[] address = indexselect(select);
 
             (select, address) = PieceSelect();
-            string tile = tileselect(ref select, ref address);
+            string tile = TileSelect(ref select, ref address);
 
             Utils.TryClear();
             changes.Print();
