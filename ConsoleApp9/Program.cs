@@ -1,7 +1,7 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 1000;
+    public const int DELAY = 0;
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
@@ -64,79 +64,6 @@ public class Program
 
     }
 
-    static void bishopmoves(int[] selectindex)
-    {
-        foreach (string i in BoardLayout)
-        {
-            int[] arr = indextile(i);
-            if (bishoplogic(selectindex, arr))
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = "XX";
-            }
-            else
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-            }
-        }
-
-        Utils.TryClear();
-        movecheck.Print();
-        Thread.Sleep(DELAY);
-        Utils.TryClear();
-        changes.Print();
-    }
-
-    static bool bishoplogic(int[] selectindex, int[] tileindex)
-    {
-        int selecti = selectindex[0];
-        int tilei = tileindex[0];
-        int selectj = selectindex[1];
-        int tilej = tileindex[1];
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        if (!(Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej)))
-        {
-            return false;
-        }
-
-        for (int i = selecti, j = selectj; j > 0 || j < 7 || i > 0 || i < 7;)
-        {
-            if (i == tilei && j == tilej)
-            {
-                break;
-            }
-
-            if (selecti > tilei)
-            {
-                i--;
-            }
-            else
-            {
-                i++;
-            }
-
-            if (selectj > tilej)
-            {
-                j--;
-            }
-            else
-            {
-                j++;
-            }
-
-            if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, j] != changes.BoardLayout[tilei, tilej])
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 
     static void rookmoves(int[] selectindex)
     {
@@ -442,11 +369,6 @@ public class Program
                     queenmoves(address);
 
                 }
-                if (select.Contains('B') || select.Contains('b'))
-                {
-                    bishopmoves(address);
-
-                }
                 if (select.Contains('r') || select.Contains('R'))
                 {
                     rookmoves(address);
@@ -513,19 +435,6 @@ public class Program
 
                     Utils.TryClear();
                     changes.Print();
-                    Console.WriteLine("Invalid Move");
-
-                }
-                else { return tile; }
-            }
-            else if (select.Contains('B') || select.Contains('b'))
-            {
-                if (!bishoplogic(address, refadd))
-                {
-
-                    Utils.TryClear();
-                    changes.Print();
-
                     Console.WriteLine("Invalid Move");
 
                 }
