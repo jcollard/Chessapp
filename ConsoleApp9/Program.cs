@@ -64,62 +64,6 @@ public class Program
 
     }
 
-    static void kingmoves(int[] selectindex)
-    {
-        foreach (string i in BoardLayout)
-        {
-            int[] arr = indextile(i);
-            if (kinglogic(selectindex, arr))
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = "XX";
-            }
-            else
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-            }
-        }
-
-        Utils.TryClear();
-        movecheck.Print();
-        Thread.Sleep(DELAY);
-        Utils.TryClear();
-        changes.Print();
-    }
-
-    static bool kinglogic(int[] selectindex, int[] tileindex)
-    {
-        int selecti = selectindex[0];
-        int tilei = tileindex[0];
-
-        int selectj = selectindex[1];
-        int tilej = tileindex[1];
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-
-        if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selectj - tilej) != 1)
-        {
-            return false;
-        }
-        else if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selecti - tilei) != 0)
-        {
-            return false;
-        }
-        else if (Math.Abs(selectj - tilej) != 0 && Math.Abs(selectj - tilej) != 1)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
     static bool knightlogic(int[] selectindex, int[] tileindex)
     {
         int selecti = selectindex[0];
@@ -569,11 +513,6 @@ public class Program
                     rookmoves(address);
 
                 }
-                if (select.Contains('K') || select.Contains('k'))
-                {
-                    kingmoves(address);
-
-                }
             }
             else
             {
@@ -615,19 +554,6 @@ public class Program
                 {
                     return tile;
                 }
-            }
-
-            else if (select.Contains('k') || select.Contains('K'))
-            {
-                if (!kinglogic(address, refadd))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
-                    Console.ResetColor();
-                    Utils.TryClear();
-                    changes.Print();
-
-                }
-                else { return tile; }
             }
             else if (select.Contains('q') || select.Contains('Q'))
             {
