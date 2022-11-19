@@ -1,7 +1,7 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 0;
+    public const int DELAY = 1000;
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
@@ -65,101 +65,6 @@ public class Program
     }
 
 
-    static void rookmoves(int[] selectindex)
-    {
-        foreach (string i in BoardLayout)
-        {
-            int[] arr = indextile(i);
-            if (rooklogic(selectindex, arr))
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = "XX";
-            }
-            else
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-            }
-        }
-
-        Utils.TryClear();
-        movecheck.Print();
-        Thread.Sleep(DELAY);
-        Utils.TryClear();
-        changes.Print();
-    }
-
-    static bool rooklogic(int[] selectindex, int[] tileindex)
-    {
-        int selecti = selectindex[0];
-        int tilei = tileindex[0];
-        int selectj = selectindex[1];
-        int tilej = tileindex[1];
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-
-        int diff = Math.Abs(selecti - tilei) - Math.Abs(selectj - tilej);
-        if (Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej))
-        {
-            return false;
-        }
-        if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej))
-        {
-            return false;
-        }
-        if (Math.Abs(selecti - tilei) != 0)
-        {
-
-            for (int i = selecti, j = selectj; i > 0 || i < 7;)
-            {
-                if (i == tilei)
-                {
-                    break;
-                }
-                if (selecti > tilei)
-                {
-                    i--;
-                }
-                else
-                {
-                    i++;
-                }
-                if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, tilej] != changes.BoardLayout[tilei, tilej])
-                {
-                    return false;
-                }
-            }
-        }
-        if (Math.Abs(selectj - tilej) != 0)
-        {
-            for (int i = selecti, j = selectj; j > 0 || j < 7;)
-            {
-                if (j == tilej)
-                {
-                    break;
-                }
-
-                if (selectj > tilej)
-                {
-                    j--;
-                }
-                else
-                {
-                    j++;
-                }
-
-                if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[tilei, j] != changes.BoardLayout[tilei, tilej])
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
     static void queenmoves(int[] selectindex)
     {
@@ -369,11 +274,6 @@ public class Program
                     queenmoves(address);
 
                 }
-                if (select.Contains('r') || select.Contains('R'))
-                {
-                    rookmoves(address);
-
-                }
             }
             else
             {
@@ -425,18 +325,6 @@ public class Program
                     changes.Print();
 
                     Console.ResetColor();
-                }
-                else { return tile; }
-            }
-            else if (select.Contains('R') || select.Contains('r'))
-            {
-                if (!rooklogic(address, refadd))
-                {
-
-                    Utils.TryClear();
-                    changes.Print();
-                    Console.WriteLine("Invalid Move");
-
                 }
                 else { return tile; }
             }

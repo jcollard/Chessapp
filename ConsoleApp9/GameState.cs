@@ -24,6 +24,11 @@ public class GameState
         pieces["B1"] = new BishopPiece("B1", PieceColor.Green, (7, 2));
         pieces["b2"] = new BishopPiece("b2", PieceColor.Blue, (0, 5));
         pieces["B2"] = new BishopPiece("B2", PieceColor.Green, (7, 5));
+
+        pieces["r1"] = new RookPiece("r1", PieceColor.Blue, (0, 0));
+        pieces["R1"] = new RookPiece("R1", PieceColor.Green, (7, 0));
+        pieces["r2"] = new RookPiece("r2", PieceColor.Blue, (0, 7));
+        pieces["R2"] = new RookPiece("R2", PieceColor.Green, (7, 7));
     }
 
     public IPiece? GetPiece(string symbol)
