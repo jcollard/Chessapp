@@ -43,12 +43,22 @@ public abstract class AbstractPiece : IPiece
         Program.changes.Print();
         return moves;
     }
-    protected bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
-    protected bool IsEnemyPiece((int row, int col) target, GameState gameState)
+
+    public bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
+    {
+        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
+        {
+            return false;
+        }
+        return SubLogic(start, target, gameState);
+    }
+    
+    private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
+    private bool IsEnemyPiece((int row, int col) target, GameState gameState)
     {
         string targetSymbol = Program.changes.BoardLayout[target.row, target.col];
         return gameState.TryGetPiece(targetSymbol, out IPiece? other) && this.IsEnemyPiece(other);
     }
-    
-    public abstract bool Logic((int row, int col) startPos, (int row, int col) targetPos, GameState gameState);
+
+    protected abstract bool SubLogic((int row, int col) startPos, (int row, int col) targetPos, GameState gameState);
 }

@@ -4,13 +4,8 @@ public class QueenPiece : AbstractPiece
 {
     public QueenPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    public override bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
+    protected override bool SubLogic((int row, int col) start, (int row, int col) target, GameState gameState)
     {
-        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
-        {
-            return false;
-        }
-        
         int diff = Math.Abs(start.row - target.row) - Math.Abs(start.col - target.col);
 
         if (!(Math.Abs(start.row - target.row) == Math.Abs(start.col - target.col)) && Math.Abs(diff) != Math.Abs(start.row - target.row) && Math.Abs(diff) != Math.Abs(start.col - target.col))

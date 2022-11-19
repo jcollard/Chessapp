@@ -4,13 +4,8 @@ public class BishopPiece : AbstractPiece
 {
     public BishopPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    public override bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
+    protected override bool SubLogic((int row, int col) start, (int row, int col) target, GameState gameState)
     {
-        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
-        {
-            return false;
-        }
-        
         if (!(Math.Abs(start.row - target.row) == Math.Abs(start.col - target.col)))
         {
             return false;

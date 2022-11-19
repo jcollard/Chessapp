@@ -1,19 +1,13 @@
 namespace Chess;
 public class PawnPiece : AbstractPiece
 {
-    
+
     public PawnPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    public override bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
+    protected override bool SubLogic((int row, int col) start, (int row, int col) target, GameState gameState)
     {
-
-        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
-        {
-            return false;
-        }
-        
         char player = Program.changes.BoardLayout[start.row, start.col][0];
-        
+
 
         if (char.ToUpper(player) == player)
         {
