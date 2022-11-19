@@ -14,6 +14,8 @@ public class GameState
         }
         pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3));
         pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4));
+        pieces["q1"] = new QueenPiece("q1", PieceColor.Blue, (0, 4));
+        pieces["Q1"] = new QueenPiece("Q1", PieceColor.Green, (7, 3));
 
         pieces["n1"] = new KnightPiece("n1", PieceColor.Blue, (0, 1));
         pieces["N1"] = new KnightPiece("N1", PieceColor.Green, (7, 1));

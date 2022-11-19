@@ -1,7 +1,7 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 1000;
+    public const int DELAY = 0;
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
@@ -63,149 +63,7 @@ public class Program
         }
 
     }
-
-
-
-    static void queenmoves(int[] selectindex)
-    {
-        foreach (string i in BoardLayout)
-        {
-            int[] arr = indextile(i);
-            if (queenlogic(selectindex, arr))
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = "XX";
-            }
-            else
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-            }
-        }
-
-        Utils.TryClear();
-        movecheck.Print();
-        Thread.Sleep(DELAY);
-        Utils.TryClear();
-        changes.Print();
-    }
-
-    static bool queenlogic(int[] selectindex, int[] tileindex)
-    {
-        int selecti = selectindex[0];
-        int tilei = tileindex[0];
-        int selectj = selectindex[1];
-        int tilej = tileindex[1];
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        int diff = Math.Abs(selecti - tilei) - Math.Abs(selectj - tilej);
-
-        if (!(Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej)) && Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej))
-        {
-            return false;
-        }
-
-
-        if (Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))
-        {
-
-            for (int i = selecti, j = selectj; j > 0 || j < 7 || i > 0 || i < 7;)
-            {
-                if (i == tilei && j == tilej)
-                {
-                    break;
-                }
-                if (selecti > tilei)
-                {
-                    i--;
-                }
-                else
-                {
-                    i++;
-                }
-                if (selectj > tilej)
-                {
-                    j--;
-                }
-                else
-                {
-                    j++;
-                }
-
-                if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, j] != changes.BoardLayout[tilei, tilej])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        else if (Math.Abs(diff) == Math.Abs(selecti - tilei) || Math.Abs(diff) == Math.Abs(selectj - tilej))
-        {
-            if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej))
-            {
-                return false;
-            }
-
-            if (Math.Abs(selecti - tilei) != 0)
-            {
-
-                for (int i = selecti, j = selectj; i > 0 || i < 7;)
-                {
-                    if (i == tilei)
-                    {
-                        break;
-                    }
-
-                    if (selecti > tilei)
-                    {
-                        i--;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                    if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[i, tilej] != changes.BoardLayout[tilei, tilej])
-                    {
-                        return false;
-                    }
-                }
-            }
-            if (Math.Abs(selectj - tilej) != 0)
-            {
-                for (int i = selecti, j = selectj; j > 0 || j < 7;)
-                {
-                    if (j == tilej)
-                    {
-                        break;
-                    }
-
-                    if (selectj > tilej)
-                    {
-                        j--;
-                    }
-                    else
-                    {
-                        j++;
-                    }
-
-                    if (changes.pieces.Contains(changes.BoardLayout[i, j]) && changes.BoardLayout[tilei, j] != changes.BoardLayout[tilei, tilej])
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
+    
     /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
@@ -269,11 +127,7 @@ public class Program
             IPiece? piece = gameState.GetPiece(select);
             if (piece == null)
             {
-                if (select.Contains('q') || select.Contains('Q'))
-                {
-                    queenmoves(address);
-
-                }
+                
             }
             else
             {
@@ -316,19 +170,6 @@ public class Program
                     return tile;
                 }
             }
-            else if (select.Contains('q') || select.Contains('Q'))
-            {
-                if (!queenlogic(address, refadd))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
-                    Utils.TryClear();
-                    changes.Print();
-
-                    Console.ResetColor();
-                }
-                else { return tile; }
-            }
-
         }
     }
 
