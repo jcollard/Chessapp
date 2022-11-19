@@ -1,7 +1,7 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 1000;
+    public const int DELAY = 0;
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
@@ -145,8 +145,7 @@ public class Program
         while (true)
         {
             IPiece piece = gameState.GetPiece(select);
-            piece.GetMoves((address[0], address[1]));
-
+            piece.GetMoves((address[0], address[1]), gameState);
             Utils.TryClear();
             changes.Print();
 
@@ -162,7 +161,7 @@ public class Program
             int[] refadd = indextile(tile);
 
             // If the piece logic is invalid, display Invalid Move.
-            if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1])))
+            if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1]), gameState))
             {
                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                 Console.ResetColor();

@@ -4,16 +4,14 @@ public class RookPiece : AbstractPiece
 {
     public RookPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    public override bool Logic((int row, int col) start, (int row, int col) target)
+    public override bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
     {
-        if (Program.changes.BoardLayout[target.row, target.col] == Program.changes.BoardLayout[target.row, target.col].ToUpper() && Program.changes.BoardLayout[start.row, start.col] == Program.changes.BoardLayout[start.row, start.col].ToUpper() && !Program.changes.BoardLayout[target.row, target.col].Contains(' '))
+        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
         {
             return false;
         }
-        if (Program.changes.BoardLayout[target.row, target.col] == Program.changes.BoardLayout[target.row, target.col].ToLower() && Program.changes.BoardLayout[start.row, start.col] == Program.changes.BoardLayout[start.row, start.col].ToLower() && !Program.changes.BoardLayout[target.row, target.col].Contains(' '))
-        {
-            return false;
-        }
+
+        string targetSymbol = Program.changes.BoardLayout[target.row, target.col];
 
         int diff = Math.Abs(start.row - target.row) - Math.Abs(start.col - target.col);
         if (Math.Abs(diff) != Math.Abs(start.row - target.row) && Math.Abs(diff) != Math.Abs(start.col - target.col))
@@ -41,7 +39,7 @@ public class RookPiece : AbstractPiece
                 {
                     i++;
                 }
-                if (Program.changes.pieces.Contains(Program.changes.BoardLayout[i, j]) && Program.changes.BoardLayout[i, target.col] != Program.changes.BoardLayout[target.row, target.col])
+                if (Program.changes.pieces.Contains(Program.changes.BoardLayout[i, j]) && Program.changes.BoardLayout[i, target.col] != targetSymbol)
                 {
                     return false;
                 }
@@ -65,7 +63,7 @@ public class RookPiece : AbstractPiece
                     j++;
                 }
 
-                if (Program.changes.pieces.Contains(Program.changes.BoardLayout[i, j]) && Program.changes.BoardLayout[target.row, j] != Program.changes.BoardLayout[target.row, target.col])
+                if (Program.changes.pieces.Contains(Program.changes.BoardLayout[i, j]) && Program.changes.BoardLayout[target.row, j] != targetSymbol)
                 {
                     return false;
                 }

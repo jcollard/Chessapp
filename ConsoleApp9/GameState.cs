@@ -33,6 +33,21 @@ public class GameState
         pieces["R2"] = new RookPiece("R2", PieceColor.Green, (7, 7));
     }
 
+    public static bool IsEmpty((int row, int col) pos)
+    {
+        string targetSymbol = Program.changes.BoardLayout[pos.row, pos.col];
+        return targetSymbol.Contains(' ');
+    }
+
+    public bool TryGetPiece(string symbol, out IPiece piece)
+    {
+        if (pieces.TryGetValue(symbol, out piece!))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public IPiece GetPiece(string symbol)
     {
         if (pieces.TryGetValue(symbol, out IPiece? value))

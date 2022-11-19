@@ -18,14 +18,14 @@ public abstract class AbstractPiece : IPiece
         this._position = position;
     }
 
-    public List<(int, int)> GetMoves((int row, int col) pos)
+    public List<(int, int)> GetMoves((int row, int col) pos, GameState gameState)
     {
         List<(int, int)> moves = new ();
         foreach (string i in Program.BoardLayout)
         {
             int[] arr = Program.indextile(i);
             (int row, int col) target = (arr[0], arr[1]);
-            if (this.Logic(pos, target))
+            if (this.Logic(pos, target, gameState))
             {
                 Program.movecheck.BoardLayout[target.row, target.col] = "XX";
                 moves.Add(target);
@@ -43,6 +43,12 @@ public abstract class AbstractPiece : IPiece
         Program.changes.Print();
         return moves;
     }
+    protected bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
+    protected bool IsEnemyPiece((int row, int col) target, GameState gameState)
+    {
+        string targetSymbol = Program.changes.BoardLayout[target.row, target.col];
+        return gameState.TryGetPiece(targetSymbol, out IPiece? other) && this.IsEnemyPiece(other);
+    }
     
-    public abstract bool Logic((int row, int col) startPos, (int row, int col) targetPos);
+    public abstract bool Logic((int row, int col) startPos, (int row, int col) targetPos, GameState gameState);
 }

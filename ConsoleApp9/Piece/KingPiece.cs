@@ -5,13 +5,9 @@ public class KingPiece : AbstractPiece
 
     public KingPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    public override bool Logic((int row, int col) start, (int row, int col) target)
+    public override bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
     {
-        if (Program.changes.BoardLayout[target.row, target.col] == Program.changes.BoardLayout[target.row, target.col].ToUpper() && Program.changes.BoardLayout[start.row, start.col] == Program.changes.BoardLayout[start.row, start.col].ToUpper() && !Program.changes.BoardLayout[target.row, target.col].Contains(' '))
-        {
-            return false;
-        }
-        if (Program.changes.BoardLayout[target.row, target.col] == Program.changes.BoardLayout[target.row, target.col].ToLower() && Program.changes.BoardLayout[start.row, start.col] == Program.changes.BoardLayout[start.row, start.col].ToLower() && !Program.changes.BoardLayout[target.row, target.col].Contains(' '))
+        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
         {
             return false;
         }
