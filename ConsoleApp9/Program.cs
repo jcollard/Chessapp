@@ -1,7 +1,7 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 0;
+    public const int DELAY = 1000;
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
@@ -62,40 +62,6 @@ public class Program
             }
         }
 
-    }
-
-    static bool knightlogic(int[] selectindex, int[] tileindex)
-    {
-        int selecti = selectindex[0];
-        int tilei = tileindex[0];
-        int selectj = selectindex[1];
-        int tilej = tileindex[1];
-        char player = changes.BoardLayout[selecti, selectj][0];
-
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-        if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' '))
-        {
-            return false;
-        }
-
-        if (Math.Abs(selecti - tilei) == Math.Abs(selectj - tilej))
-        {
-            return false;
-        }
-
-        if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selectj - tilej) != 1)
-        {
-            return false;
-        }
-        if (Math.Abs(selectj - tilej) != 2 && Math.Abs(selecti - tilei) != 2)
-        {
-            return false;
-        }
-
-        return true;
     }
 
     static void bishopmoves(int[] selectindex)
@@ -274,28 +240,6 @@ public class Program
         {
             int[] arr = indextile(i);
             if (queenlogic(selectindex, arr))
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = "XX";
-            }
-            else
-            {
-                movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
-            }
-        }
-
-        Utils.TryClear();
-        movecheck.Print();
-        Thread.Sleep(DELAY);
-        Utils.TryClear();
-        changes.Print();
-    }
-
-    static void knightmoves(int[] selectindex)
-    {
-        foreach (string i in BoardLayout)
-        {
-            int[] arr = indextile(i);
-            if (knightlogic(selectindex, arr))
             {
                 movecheck.BoardLayout[arr[0], arr[1]] = "XX";
             }
@@ -498,11 +442,6 @@ public class Program
                     queenmoves(address);
 
                 }
-                if (select.Contains('n') || select.Contains('N'))
-                {
-                    knightmoves(address);
-
-                }
                 if (select.Contains('B') || select.Contains('b'))
                 {
                     bishopmoves(address);
@@ -564,18 +503,6 @@ public class Program
                     changes.Print();
 
                     Console.ResetColor();
-                }
-                else { return tile; }
-            }
-            else if (select.Contains('n') || select.Contains('N'))
-            {
-                if (!knightlogic(address, refadd))
-                {
-
-                    Utils.TryClear();
-                    changes.Print();
-                    Console.WriteLine("Invalid Move");
-
                 }
                 else { return tile; }
             }

@@ -14,6 +14,11 @@ public class GameState
         }
         pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3));
         pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4));
+
+        pieces["n1"] = new KnightPiece("n1", PieceColor.Blue, (0, 1));
+        pieces["N1"] = new KnightPiece("N1", PieceColor.Blue, (7, 1));
+        pieces["n2"] = new KnightPiece("n2", PieceColor.Blue, (0, 6));
+        pieces["N2"] = new KnightPiece("N2", PieceColor.Blue, (7, 6));
     }
 
     public IPiece? GetPiece(string symbol)
