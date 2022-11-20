@@ -7,7 +7,9 @@ public class GameState
     private readonly List<(IPiece, (int, int))> moves = new();
     private readonly IPiece blueKing, greenKing;
 
-
+    /// <summary>
+    /// Constructs a GameState in a traditional chess layout.
+    /// </summary>
     public GameState()
     {
         for (int i = 1; i <= 8; i++)
@@ -115,6 +117,13 @@ public class GameState
     /// </summary>
     public bool IsGameOver() => blueKing.IsCaptured || greenKing.IsCaptured;
 
+    
+
+    /// <summary>
+    /// Returns the color of the active player
+    /// </summary>
+    public PieceColor GetActivePlayer() => moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
+
     /// <summary>
     /// Prints the underlying board to the screen.
     /// </summary>
@@ -135,6 +144,10 @@ public class GameState
         DisplayPlayerTurn();
     }
 
+    /// <summary>
+    /// Given a list of positions, displays them as possible moves
+    /// on the screen.
+    /// </summary>
     internal void DisplayPossibleMoves(List<(int, int)> moves)
     {
         (int left, int top) = Console.GetCursorPosition();
@@ -148,6 +161,9 @@ public class GameState
         Console.SetCursorPosition(left, top);
     }
 
+    /// <summary>
+    /// Displays the bottom row of columns under the board.
+    /// </summary>
     private static void DisplayColumns()
     {
         string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
@@ -159,12 +175,18 @@ public class GameState
         Console.ResetColor();
     }
 
+    /// <summary>
+    /// Displays the legend at the top of the screen.
+    /// </summary>
     private static void DisplayLegend()
     {
         Console.WriteLine("Legend: Use capital letters if you're green, lowercase if you're blue");
         Console.WriteLine("R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen");
     }
 
+    /// <summary>
+    /// Displays a list of captured pieces.
+    /// </summary>
     private void DisplayCapturedPieces()
     {
         Console.WriteLine("-------------------------------------------------------------------------");
@@ -175,13 +197,8 @@ public class GameState
     }
 
     /// <summary>
-    /// Returns the color of the active player
+    /// Displays which player's turn it is.
     /// </summary>
-    public PieceColor GetActivePlayer()
-    {
-        return moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
-    }
-
     private void DisplayPlayerTurn()
     {
         PieceColor player = GetActivePlayer();
@@ -190,6 +207,9 @@ public class GameState
         Console.ResetColor();
     }
 
+    /// <summary>
+    /// Given a row and column, displays that cell on the screen.
+    /// </summary>
     private void DisplayCell(int row, int col)
     {
         string symbol = "  ";
@@ -203,6 +223,9 @@ public class GameState
         Console.ResetColor();
     }
 
+    /// <summary>
+    /// Given a row, displays that row on the screen
+    /// </summary>
     private void DisplayRow(int row)
     {
         for (int col = 0; col < 8; col++)

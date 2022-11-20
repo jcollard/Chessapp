@@ -79,7 +79,7 @@ public class Program
     /// Prompts the user to enter a tile position. 
     /// Returns true
     /// </summary>
-    private static bool GetTile(out (int row, int col) pos)
+    private static bool TryGetTile(out (int row, int col) pos)
     {
         pos = (-1, -1);
         Console.WriteLine("Pick a tile to move to or type 'BACK' to pick another piece");
@@ -96,22 +96,29 @@ public class Program
         if (pos.row == -1 || pos.col == -1)
         {
             Console.WriteLine("Please input correct tile address (Example: A5)");
-            return GetTile(out pos);
+            return TryGetTile(out pos);
         }
 
         return true;
     }
 
+    /// <summary>
+    /// Given a piece, prompts the user to select a tile to move to or to type
+    /// "BACK". If the user types back, this method return false. Otherwise,
+    /// it returns true and the target parameter is set to the users choice.
+    /// </summary>
     private static bool TryTileSelect(IPiece piece, out (int row, int col) target)
     {
         while (true)
         {
-            piece.GetMoves();
+            List<(int, int)> moves = piece.GetMoves();
+            gameState.DisplayPossibleMoves(moves);
+            Thread.Sleep(Program.DELAY);
             Utils.TryClear();
             gameState.PrintBoard();
 
             Console.WriteLine($"Selected Piece: {piece.Symbol}");
-            if (!GetTile(out target))
+            if (!TryGetTile(out target))
             {
                 return false;
             }
@@ -127,6 +134,12 @@ public class Program
         }
     }
 
+    /// <summary>
+    /// Given a two character string of a position on the board, return
+    /// its associated row, col values.
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <returns></returns>
     private static (int, int) BoardPosToIndex(string tile)
     {
         if (tile.Length != 2)

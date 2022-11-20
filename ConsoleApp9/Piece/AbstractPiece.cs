@@ -12,7 +12,6 @@ public abstract class AbstractPiece : IPiece
     public PieceColor Color => _color;
     private (int, int) _position;
     public (int row, int col) Position => _position;
-
     protected readonly GameState _gameState;
 
     public AbstractPiece(string symbol, PieceColor color, (int, int) position, GameState gameState)
@@ -24,6 +23,7 @@ public abstract class AbstractPiece : IPiece
         this._gameState.SetPiece(position, this);
     }
 
+    /// <inheritdoc/>
     public bool Move((int row, int col) target)
     {
         if (this.Logic(target))
@@ -43,6 +43,7 @@ public abstract class AbstractPiece : IPiece
         return false;
     }
 
+    /// <inheritdoc/>
     public List<(int, int)> GetMoves()
     {
         List<(int, int)> moves = new ();
@@ -56,14 +57,10 @@ public abstract class AbstractPiece : IPiece
                 }
             }
         }
-
-        this._gameState.DisplayPossibleMoves(moves);
-        Thread.Sleep(Program.DELAY);
-        Utils.TryClear();
-        this._gameState.PrintBoard();
         return moves;
     }
 
+    /// <inheritdoc/>
     public bool Logic((int row, int col) target)
     {
         // Pieces cannot move onto themselves
@@ -79,7 +76,13 @@ public abstract class AbstractPiece : IPiece
         return SubLogic(target);
     }
     
+    /// <inheritdoc/>
     private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
 
+    /// <summary>
+    /// Given a target position, checks the piece specific logic for moving this 
+    /// piece to that position on the board. If the piece can move there,
+    /// returns true and otherwise returns false.
+    /// </summary>
     protected abstract bool SubLogic((int row, int col) targetPos);
 }
