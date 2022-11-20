@@ -6,50 +6,32 @@ public class PawnPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) start, (int row, int col) target)
     {
-        char player = Program.changes.BoardLayout[start.row, start.col][0];
+        int rowInc = this.Color == PieceColor.Blue ? 1 : -1;
+        int targetRow = start.row + rowInc;
+        int firstTurnTargetRow = start.row + 2*rowInc;
+        int[] targetCols = {start.col - 1, start.col + 1};
+        bool isAttack = start.col - target.col != 0;
 
+        // Always, pawn may move forward 1 if space is empty
+        if (target.row == targetRow && !isAttack && this._gameState.IsEmpty(target))
+        {
+            return true;
+        }
 
-        if (char.ToUpper(player) == player)
+        // On first turn, pawn may move forward 2 spaces if empty
+        if (!this.HasMoved && target.row == firstTurnTargetRow && !isAttack && this._gameState.IsEmpty(target) && this._gameState.IsPathClear(start, target))
         {
-            if (start.row - target.row == 2 && start.row == 6 && start.col - target.col == 0 && Program.changes.BoardLayout[target.row, target.col].Contains(' ') && Program.changes.BoardLayout[target.row + 1, target.col].Contains(' '))
-            {
-                return true;
-            }
-            if (start.row - target.row == 1 && target.col == start.col && Program.changes.BoardLayout[target.row, target.col].Contains(' '))
-            {
-                return true;
-            }
-            if (start.row - target.row == 1 && Math.Abs(start.col - target.col) == 1 && Program.changes.pieces.Contains(Program.changes.BoardLayout[target.row, target.col]))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
-        else
+
+        // Can move diagonal 1 if an enemy is in that space
+        if (target.row == targetRow && targetCols.Contains(target.col) && !this._gameState.IsEmpty(target))
         {
-            if (start.row - target.row == -2 && start.row == 1 && start.col - target.col == 0 && Program.changes.BoardLayout[target.row, target.col].Contains(' ') && Program.changes.BoardLayout[target.row - 1, target.col].Contains(' '))
-            {
-                return true;
-            }
-            if (start.row - target.row == -2 && start.row == 1 && start.col - target.col == 0 && Program.changes.BoardLayout[target.row, target.col].Contains(' ') && Program.changes.BoardLayout[target.row - 1, target.col].Contains('X'))
-            {
-                return true;
-            }
-            if (start.row - target.row == -1 && target.col == start.col && Program.changes.BoardLayout[target.row, target.col].Contains(' '))
-            {
-                return true;
-            }
-            if (start.row - target.row == -1 && Math.Abs(start.col - target.col) == 1 && Program.changes.pieces.Contains(Program.changes.BoardLayout[target.row, target.col]))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
+
+        // TODO: En passant move
+
+        return false;
     }
 }

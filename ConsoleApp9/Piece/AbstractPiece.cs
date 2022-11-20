@@ -4,12 +4,12 @@ public abstract class AbstractPiece : IPiece
 {
 
     public bool IsCaptured { get; set; } = false;
+    private bool _hasMoved = false;
+    public bool HasMoved => _hasMoved;
     private readonly string _symbol;
     public string Symbol => _symbol;
-
     private readonly PieceColor _color;
     public PieceColor Color => _color;
-
     private (int, int) _position;
     public (int row, int col) Position => _position;
 
@@ -39,6 +39,7 @@ public abstract class AbstractPiece : IPiece
             this._gameState.SetPiece(target, this);
             this._position = target;
             Program.changes.BoardLayout[target.row, target.col] = this.Symbol;
+            _hasMoved = true;
             return true;
         }
         return false;

@@ -25,6 +25,8 @@ public interface IPiece
 
     public bool IsCaptured { get; set; }
 
+    public bool HasMoved { get; }
+
     public bool Move((int row, int col) target);
 
     /// <summary>
