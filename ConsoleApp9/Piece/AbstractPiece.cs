@@ -75,7 +75,7 @@ public abstract class AbstractPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this._gameState.IsEmpty(target) && !this.IsEnemyPiece(target))
+        if(!this._gameState.IsEmpty(target) && !this.IsEnemyPiece(this._gameState.GetPiece(target)!))
         {
             return false;
         }
@@ -83,11 +83,6 @@ public abstract class AbstractPiece : IPiece
     }
     
     private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
-    private bool IsEnemyPiece((int row, int col) target)
-    {
-        string targetSymbol = Program.changes.BoardLayout[target.row, target.col];
-        return this._gameState.TryGetPiece(targetSymbol, out IPiece? other) && this.IsEnemyPiece(other);
-    }
 
     protected abstract bool SubLogic((int row, int col) startPos, (int row, int col) targetPos);
 }
