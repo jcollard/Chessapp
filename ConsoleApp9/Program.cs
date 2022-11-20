@@ -74,7 +74,7 @@ public class Program
         return tile;
     }
 
-    static string TileSelect(string select, (int, int) pos)
+    static bool TryTileSelect(string select, (int, int) pos, out string tile)
     {
         while (true)
         {
@@ -85,11 +85,11 @@ public class Program
 
             Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
-            string tile = GetTile();
+            tile = GetTile();
             
             if (tile == "BACK")
             {
-                return tile;
+                return false;
             }
 
             (int row, int col) target = BoardPosToIndex(tile);
@@ -110,7 +110,7 @@ public class Program
                 continue;
             }
 
-            return tile;
+            return true;
         }
     }
 
@@ -132,8 +132,7 @@ public class Program
             
 
             (string select, (int, int) startPos) = PieceSelect();
-            string tile = TileSelect(select, startPos);
-            if (tile == "BACK")
+            if(!TryTileSelect(select, startPos, out string tile))
             {
                 continue;
             }
