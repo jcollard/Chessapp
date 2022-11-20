@@ -26,7 +26,7 @@ public abstract class AbstractPiece : IPiece
 
     public bool Move((int row, int col) target)
     {
-        if (this.Logic(this.Position, target, this._gameState))
+        if (this.Logic(this.Position, target))
         {
             IPiece? other = this._gameState.GetPiece(target);
             if (other != null)
@@ -44,14 +44,14 @@ public abstract class AbstractPiece : IPiece
         return false;
     }
 
-    public List<(int, int)> GetMoves((int row, int col) pos, GameState gameState)
+    public List<(int, int)> GetMoves((int row, int col) pos)
     {
         List<(int, int)> moves = new ();
         foreach (string i in Program.BoardLayout)
         {
             int[] arr = Program.indextile(i);
             (int row, int col) target = (arr[0], arr[1]);
-            if (this.Logic(pos, target, gameState))
+            if (this.Logic(pos, target))
             {
                 Program.movecheck.BoardLayout[target.row, target.col] = "XX";
                 moves.Add(target);
@@ -70,21 +70,21 @@ public abstract class AbstractPiece : IPiece
         return moves;
     }
 
-    public bool Logic((int row, int col) start, (int row, int col) target, GameState gameState)
+    public bool Logic((int row, int col) start, (int row, int col) target)
     {
-        if(!GameState.IsEmpty(target) && !this.IsEnemyPiece(target, gameState))
+        if(!this._gameState.IsEmpty(target) && !this.IsEnemyPiece(target))
         {
             return false;
         }
-        return SubLogic(start, target, gameState);
+        return SubLogic(start, target);
     }
     
     private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
-    private bool IsEnemyPiece((int row, int col) target, GameState gameState)
+    private bool IsEnemyPiece((int row, int col) target)
     {
         string targetSymbol = Program.changes.BoardLayout[target.row, target.col];
-        return gameState.TryGetPiece(targetSymbol, out IPiece? other) && this.IsEnemyPiece(other);
+        return this._gameState.TryGetPiece(targetSymbol, out IPiece? other) && this.IsEnemyPiece(other);
     }
 
-    protected abstract bool SubLogic((int row, int col) startPos, (int row, int col) targetPos, GameState gameState);
+    protected abstract bool SubLogic((int row, int col) startPos, (int row, int col) targetPos);
 }

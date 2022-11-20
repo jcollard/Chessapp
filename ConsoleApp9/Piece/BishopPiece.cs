@@ -4,7 +4,7 @@ public class BishopPiece : AbstractPiece
 {
     public BishopPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
 
-    protected override bool SubLogic((int row, int col) start, (int row, int col) target, GameState gameState)
+    protected override bool SubLogic((int row, int col) start, (int row, int col) target)
     {
         if (!(Math.Abs(start.row - target.row) == Math.Abs(start.col - target.col)))
         {

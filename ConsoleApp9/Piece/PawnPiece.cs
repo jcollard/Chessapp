@@ -4,7 +4,7 @@ public class PawnPiece : AbstractPiece
 
     public PawnPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
 
-    protected override bool SubLogic((int row, int col) start, (int row, int col) target, GameState gameState)
+    protected override bool SubLogic((int row, int col) start, (int row, int col) target)
     {
         char player = Program.changes.BoardLayout[start.row, start.col][0];
 

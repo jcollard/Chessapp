@@ -145,7 +145,7 @@ public class Program
         while (true)
         {
             IPiece piece = gameState.GetPiece(select);
-            piece.GetMoves((address[0], address[1]), gameState);
+            piece.GetMoves((address[0], address[1]));
             Utils.TryClear();
             changes.Print();
 
@@ -161,7 +161,7 @@ public class Program
             int[] refadd = indextile(tile);
 
             // If the piece logic is invalid, display Invalid Move.
-            if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1]), gameState))
+            if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1])))
             {
                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                 Console.ResetColor();

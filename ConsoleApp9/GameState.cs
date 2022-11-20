@@ -38,6 +38,10 @@ public class GameState
     internal void SetPiece((int row, int col) pos, IPiece piece) => board[pos.row, pos.col] = piece;
     internal void ClearPiece((int row, int col) pos) => board[pos.row, pos.col] = null;
 
+    /// <summary>
+    /// Attempts to move the piece at pos to target. If a piece was moved,
+    /// returns true otherwise returns false.
+    /// </summary>
     public bool MovePiece((int row, int col) pos, (int, int) target)
     {
         if (board[pos.row, pos.col] == null)
@@ -49,13 +53,19 @@ public class GameState
         return result;
     }
 
+    /// <summary>
+    /// Returns the piece at the specified position or null if no piece is at that
+    /// position.
+    /// </summary>
     public IPiece? GetPiece((int row, int col) pos) => board[pos.row, pos.col];
 
-    public static bool IsEmpty((int row, int col) pos)
-    {
-        string targetSymbol = Program.changes.BoardLayout[pos.row, pos.col];
-        return targetSymbol.Contains(' ');
-    }
+    /// <summary>
+    /// Returns true if there is no piece at the specified position and false otherwise.
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public bool IsEmpty((int row, int col) pos) => board[pos.row, pos.col] == null;
 
     /// <summary>
     /// Given a symbol name for a piece, checks if that piece
