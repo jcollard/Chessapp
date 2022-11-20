@@ -2,14 +2,6 @@ namespace Chess;
 
 public class GameState
 {
-
-    public readonly static string BOARD_TEMPLATE;
-
-    static GameState()
-    {
-        BOARD_TEMPLATE = File.ReadAllText("board_template.txt");
-    }
-
     private readonly Dictionary<string, IPiece> pieces = new();
     private readonly IPiece?[,] board = new IPiece?[8, 8];
     private readonly List<(IPiece, (int, int))> moves = new();
@@ -150,7 +142,7 @@ public class GameState
         DisplayPlayerTurn();
     }
 
-    private void DisplayLegend()
+    private static void DisplayLegend()
     {
         Console.WriteLine("Legend: Use capital letters if you're green, lowercase if you're blue");
         Console.WriteLine("R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen");
@@ -165,7 +157,10 @@ public class GameState
         Console.WriteLine("-------------------------------------------------------------------------");
     }
 
-    private PieceColor GetActivePlayer()
+    /// <summary>
+    /// Returns the color of the active player
+    /// </summary>
+    public PieceColor GetActivePlayer()
     {
         return moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
     }

@@ -17,24 +17,6 @@ public class Program
         Console.Write(new string(' ', Console.WindowWidth));
         Utils.SetCursorPosition(0, currentLineCursor);
     }
-
-    static int[] indexselect(string select)
-    {
-        int[] array = new int[2];
-        for (int i = 0; i <= 7; i++)
-        {
-            for (int j = 0; j <= 7; j++)
-            {
-                if (changes.BoardLayout[i, j] == select)
-                {
-                    array[0] = i;
-                    array[1] = j;
-                }
-            }
-        }
-        return array;
-    }
-
     public static int[] indextile(string tile)
     {
         int[] array = new int[2];
@@ -79,12 +61,18 @@ public class Program
         return false;
     }
 
+    private static void DisplayError(string message)
+    {
+        Console.WriteLine(message);
+        Thread.Sleep(DELAY);
+    }
+
     /// <summary>
     /// Prompts the user to select a piece to move. Returns the selected piece and the row / col of that piece.
     /// </summary>
     /// <param name="pieceselect("></param>
     /// <returns></returns>
-    static (string, int[] address) PieceSelect()
+    static (string, (int, int)) PieceSelect()
     {
         while (true)
         {
@@ -93,30 +81,29 @@ public class Program
             gameState.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            int[] address = indexselect(select);
-            Utils.SetCursorPosition(0, Console.CursorTop - 1);
-            ClearCurrentConsoleLine();
-            if (changes.turn % 2 == 0 && select.ToLower() == select)
+            bool isValidPiece = gameState.TryGetPiece(select, out IPiece piece); 
+
+            if (!isValidPiece)
             {
-                Console.WriteLine("It's Green's turn, Select piece again. Green uses capital letters");
-            }
-            else if (changes.turn % 2 != 0 && select.ToUpper() == select)
-            {
-                Console.WriteLine("It's Blue's turn, Select piece again. Blue uses Lowercase letters");
-            }
-            else if (!changes.pieces.Contains(select))
-            {
-                Console.WriteLine("Piece does not exist");
+                DisplayError("Piece does not exist.");
+                continue;
             }
 
-            else if (changes.deadpieces.Contains(select))
+            PieceColor player = gameState.GetActivePlayer();
+            if (player != piece.Color)
             {
-                Console.WriteLine("Piece does not exist on the board");
+                string casing = player == PieceColor.Blue ? "lowercase" : "capital";
+                DisplayError($"It's {player}'s turn, Select piece again. {player} uses {casing} letters."); 
+                continue;
             }
-            else
+
+            if (piece.IsCaptured)
             {
-                return (select, address);
+                DisplayError("That piece has already been captured.");
+                continue;
             }
+
+            return (select, piece.Position);
         }
     }
 
@@ -156,7 +143,7 @@ public class Program
             {
                 Utils.TryClear();
                 gameState.PrintBoard();
-                (select, address) = PieceSelect();
+                (select, (address[0], address[1])) = PieceSelect();
             }
             int[] refadd = indextile(tile);
 
@@ -191,10 +178,10 @@ public class Program
         {
             Console.WriteLine();
             string select = "";
-            int[] address = indexselect(select);
+            int[] address = {0, 0};
             
 
-            (select, address) = PieceSelect();
+            (select, (address[0], address[1])) = PieceSelect();
             string tile = TileSelect(ref select, ref address);
             
 
