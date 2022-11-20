@@ -72,6 +72,12 @@ public abstract class AbstractPiece : IPiece
 
     public bool Logic((int row, int col) start, (int row, int col) target)
     {
+        // Pieces cannot move onto themselves
+        if (start == target)
+        {
+            return false;
+        }
+        // Cannot capture pieces of the same color
         if(!this._gameState.IsEmpty(target) && !this.IsEnemyPiece(target))
         {
             return false;
