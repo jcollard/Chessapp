@@ -67,21 +67,6 @@ public class GameState
         return true;
     }
 
-    /// <summary>
-    /// Attempts to move the piece at pos to target. If a piece was moved,
-    /// returns true otherwise returns false.
-    /// </summary>
-    public bool MovePiece((int row, int col) pos, (int, int) target)
-    {
-        if (board[pos.row, pos.col] == null)
-        {
-            return false;
-        }
-        IPiece piece = board[pos.row, pos.col]!;
-        bool result = piece.Move(target);
-        return result;
-    }
-
     internal void AddMove(IPiece piece, (int, int) target) => this.moves.Add((piece, target));
 
     /// <summary>

@@ -18,7 +18,7 @@ public class Program
     /// </summary>
     /// <param name="pieceselect("></param>
     /// <returns></returns>
-    private static (string, (int, int)) PieceSelect()
+    private static IPiece PieceSelect()
     {
         while (true)
         {
@@ -49,7 +49,7 @@ public class Program
                 continue;
             }
 
-            return (select, piece.Position);
+            return piece;
         }
     }
 
@@ -131,8 +131,8 @@ public class Program
             Console.WriteLine();
             
 
-            (string select, (int, int) startPos) = PieceSelect();
-            if(!TryTileSelect(select, startPos, out string tile))
+            IPiece piece = PieceSelect();
+            if(!TryTileSelect(piece.Symbol, piece.Position, out string tile))
             {
                 continue;
             }
@@ -140,7 +140,7 @@ public class Program
             Utils.TryClear();
             gameState.PrintBoard();
             (int, int) targetPos = BoardPosToIndex(tile);
-            gameState.MovePiece(startPos, targetPos);
+            piece.Move(targetPos);
 
             Utils.TryClear();
             gameState.PrintBoard();
