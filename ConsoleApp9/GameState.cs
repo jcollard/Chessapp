@@ -137,6 +137,7 @@ public class GameState
         {
             DisplayRow(row);
         }
+        DisplayColumns();
         Console.WriteLine();
 
         DisplayCapturedPieces();
@@ -154,6 +155,17 @@ public class GameState
         }
         Console.ResetColor();
         Console.SetCursorPosition(left, top);
+    }
+
+    private static void DisplayColumns()
+    {
+        string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        foreach (string letter in Columns)
+        {
+            Console.Write("   {0}    ", letter);   
+        }
+        Console.ResetColor();
     }
 
     private static void DisplayLegend()
