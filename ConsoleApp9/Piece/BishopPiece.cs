@@ -6,40 +6,25 @@ public class BishopPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) start, (int row, int col) target)
     {
+        // Can only move diagonally
         if (!(Math.Abs(start.row - target.row) == Math.Abs(start.col - target.col)))
         {
             return false;
         }
 
-        for (int i = start.row, j = start.col; j > 0 || j < 7 || i > 0 || i < 7;)
+        // Bishop cannot move THROUGH a piece
+        int rowInc = start.row > target.row ? -1 : 1;
+        int colInc = start.col > target.col ? -1 : 1;
+        int row = start.row + rowInc;
+        int col = start.col + colInc;
+        while (row != target.row || col != target.col)
         {
-            if (i == target.row && j == target.col)
-            {
-                break;
-            }
-
-            if (start.row > target.row)
-            {
-                i--;
-            }
-            else
-            {
-                i++;
-            }
-
-            if (start.col > target.col)
-            {
-                j--;
-            }
-            else
-            {
-                j++;
-            }
-
-            if (Program.changes.pieces.Contains(Program.changes.BoardLayout[i, j]) && Program.changes.BoardLayout[i, j] != Program.changes.BoardLayout[target.row, target.col])
+            if (!this._gameState.IsEmpty((row, col)))
             {
                 return false;
             }
+            row += rowInc;
+            col += colInc;
         }
         return true;
     }
