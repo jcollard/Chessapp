@@ -32,13 +32,10 @@ public abstract class AbstractPiece : IPiece
             if (other != null)
             {
                 other.IsCaptured = true;
-                Program.changes.deadpieces.Add(other.Symbol);
             }
-            Program.changes.BoardLayout[this.Position.row, this.Position.col] = "  ";
             this._gameState.ClearPiece(this.Position);
             this._gameState.SetPiece(target, this);
             this._position = target;
-            Program.changes.BoardLayout[target.row, target.col] = this.Symbol;
             _hasMoved = true;
             this._gameState.AddMove(this, target);
             return true;
