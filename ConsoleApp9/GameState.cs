@@ -2,17 +2,17 @@ namespace Chess;
 
 public class GameState
 {
-    
-    private readonly Dictionary<string, IPiece> pieces = new ();
-    private readonly IPiece?[,] board = new IPiece?[8,8];
+
+    private readonly Dictionary<string, IPiece> pieces = new();
+    private readonly IPiece?[,] board = new IPiece?[8, 8];
 
 
     public GameState()
     {
         for (int i = 1; i <= 8; i++)
         {
-            pieces["p" + i] = new PawnPiece("p" + i, PieceColor.Blue, (1, i-1), this);
-            pieces["P" + i] = new PawnPiece("P" + i, PieceColor.Green, (6, i-1), this);
+            pieces["p" + i] = new PawnPiece("p" + i, PieceColor.Blue, (1, i - 1), this);
+            pieces["P" + i] = new PawnPiece("P" + i, PieceColor.Green, (6, i - 1), this);
         }
         pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3), this);
         pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4), this);
@@ -39,6 +39,34 @@ public class GameState
     internal void ClearPiece((int row, int col) pos) => board[pos.row, pos.col] = null;
 
     /// <summary>
+    /// Given a starting and target position that are orthogonal or diagonal to each
+    /// other, returns true if no pieces are found between them and false otherwise.
+    /// </summary>
+    public bool IsPathClear((int row, int col) start, (int row, int col) target)
+    {
+        if (!Utils.IsDiagonal(start, target) && !Utils.IsOrthogonal(start, target))
+        {
+            return false;
+        }
+        int rowInc = Utils.GetIncrement(start.row, target.row);
+        int colInc = Utils.GetIncrement(start.col, target.col);
+
+        int row = start.row + rowInc;
+        int col = start.col + colInc;
+
+        while (row != target.row || col != target.col)
+        {
+            if (!this.IsEmpty((row, col)))
+            {
+                return false;
+            }
+            row += rowInc;
+            col += colInc;
+        }
+        return true;
+    }
+
+    /// <summary>
     /// Attempts to move the piece at pos to target. If a piece was moved,
     /// returns true otherwise returns false.
     /// </summary>
@@ -49,7 +77,7 @@ public class GameState
             return false;
         }
         IPiece piece = board[pos.row, pos.col]!;
-        bool result = piece.Move(target);     
+        bool result = piece.Move(target);
         return result;
     }
 
