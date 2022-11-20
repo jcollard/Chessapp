@@ -7,21 +7,8 @@ public class KingPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) start, (int row, int col) target)
     {
-        if (Math.Abs(start.row - target.row) != 1 && Math.Abs(start.col - target.col) != 1)
-        {
-            return false;
-        }
-        else if (Math.Abs(start.row - target.row) != 1 && Math.Abs(start.row - target.row) != 0)
-        {
-            return false;
-        }
-        else if (Math.Abs(start.col - target.col) != 0 && Math.Abs(start.col - target.col) != 1)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        int rowDist = Math.Abs(start.row - target.row);
+        int colDist = Math.Abs(start.col - target.col);
+        return rowDist <= 1 && colDist <= 1;
     }
 }
