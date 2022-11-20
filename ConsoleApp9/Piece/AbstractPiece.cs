@@ -26,7 +26,7 @@ public abstract class AbstractPiece : IPiece
 
     public bool Move((int row, int col) target)
     {
-        if (this.Logic(this.Position, target))
+        if (this.Logic(target))
         {
             IPiece? other = this._gameState.GetPiece(target);
             if (other != null)
@@ -43,14 +43,14 @@ public abstract class AbstractPiece : IPiece
         return false;
     }
 
-    public List<(int, int)> GetMoves((int row, int col) pos)
+    public List<(int, int)> GetMoves()
     {
         List<(int, int)> moves = new ();
         for (int row = 0; row < 8; row++)
         {
             for (int col = 0; col < 8; col++)
             {
-                if (this.Logic(this.Position, (row, col)))
+                if (this.Logic((row, col)))
                 {
                     moves.Add((row, col));
                 }
@@ -64,10 +64,10 @@ public abstract class AbstractPiece : IPiece
         return moves;
     }
 
-    public bool Logic((int row, int col) start, (int row, int col) target)
+    public bool Logic((int row, int col) target)
     {
         // Pieces cannot move onto themselves
-        if (start == target)
+        if (this.Position == target)
         {
             return false;
         }
@@ -76,10 +76,10 @@ public abstract class AbstractPiece : IPiece
         {
             return false;
         }
-        return SubLogic(start, target);
+        return SubLogic(target);
     }
     
     private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
 
-    protected abstract bool SubLogic((int row, int col) startPos, (int row, int col) targetPos);
+    protected abstract bool SubLogic((int row, int col) targetPos);
 }

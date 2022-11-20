@@ -74,16 +74,15 @@ public class Program
         return tile;
     }
 
-    static bool TryTileSelect(string select, (int, int) pos, out string tile)
+    static bool TryTileSelect(IPiece piece, out string tile)
     {
         while (true)
         {
-            IPiece piece = gameState.GetPiece(select);
-            piece.GetMoves(pos);
+            piece.GetMoves();
             Utils.TryClear();
             gameState.PrintBoard();
 
-            Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
+            Console.WriteLine($"Selected Piece: {piece.Symbol} \nPick a tile to move to or type 'BACK' to pick another piece");
 
             tile = GetTile();
             
@@ -100,7 +99,7 @@ public class Program
             }
 
             // If the piece logic is invalid, display Invalid Move.
-            if (!piece.Logic(pos, target))
+            if (!piece.Logic(target))
             {
                 Console.ForegroundColor = ConsoleColor.Red; 
                 Console.WriteLine("Invalid Move");
@@ -132,7 +131,7 @@ public class Program
             
 
             IPiece piece = PieceSelect();
-            if(!TryTileSelect(piece.Symbol, piece.Position, out string tile))
+            if(!TryTileSelect(piece, out string tile))
             {
                 continue;
             }
