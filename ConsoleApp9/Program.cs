@@ -7,8 +7,6 @@ public class Program
 
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
-    public readonly static PrintBoard movecheck = new PrintBoard();
-    public readonly static string[,] BoardLayout = new string[8, 8];
 
     static void ClearCurrentConsoleLine()
     {
@@ -16,33 +14,6 @@ public class Program
         Utils.SetCursorPosition(0, Console.CursorTop);
         Console.Write(new string(' ', Console.WindowWidth));
         Utils.SetCursorPosition(0, currentLineCursor);
-    }
-    public static int[] indextile(string tile)
-    {
-        int[] array = new int[2];
-        for (int i = 0; i <= 7; i++)
-        {
-            for (int j = 0; j <= 7; j++)
-            {
-                if (BoardLayout[i, j] == tile)
-                {
-                    array[0] = i; array[1] = j;
-                }
-            }
-        }
-        return array;
-    }
-
-    static void fillboardaddresses()
-    {
-        for (int i = 0; i <= 7; i++)
-        {
-            for (int j = 0; j <= 7; j++)
-            {
-                BoardLayout[i, j] = $"{Columns[j]}{Rows[i]}";
-            }
-        }
-
     }
 
     /// <summary>
@@ -139,18 +110,26 @@ public class Program
             Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
             string tile = GetTile();
+            
             if (tile == "BACK")
             {
                 Utils.TryClear();
                 gameState.PrintBoard();
                 (select, (address[0], address[1])) = PieceSelect();
             }
-            int[] refadd = indextile(tile);
+
+            (int row, int col) target = BoardPosToIndex(tile);
+            if (target.row == -1 || target.col == -1)
+            {
+                DisplayError("Invalid Move");
+                continue;
+            }
 
             // If the piece logic is invalid, display Invalid Move.
-            if (!piece.Logic((address[0], address[1]), (refadd[0], refadd[1])))
+            if (!piece.Logic((address[0], address[1]), target))
             {
-                Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
+                Console.ForegroundColor = ConsoleColor.Red; 
+                Console.WriteLine("Invalid Move");
                 Console.ResetColor();
                 Utils.TryClear();
                 gameState.PrintBoard();
@@ -174,10 +153,8 @@ public class Program
 
     static void Main(string[] args)
     {
-        movecheck.initialize();
         changes.initialize();
         gameState.PrintBoard();
-        fillboardaddresses();
         while (!IsGameOver())
         {
             Console.WriteLine();
