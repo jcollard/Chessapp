@@ -2,13 +2,13 @@
 public class Program
 {
     public const int DELAY = 0;
+    private const string Rows = "12345678";
+    private const string Columns = "ABCDEFGH";
+
     private readonly static GameState gameState = new GameState();
     public readonly static PrintBoard changes = new PrintBoard();
     public readonly static PrintBoard movecheck = new PrintBoard();
     public readonly static string[,] BoardLayout = new string[8, 8];
-    public readonly static List<string> AddressList = new List<string>();
-    public readonly static string[] Rows = { "1", "2", "3", "4", "5", "6", "7", "8" };
-    public readonly static string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
 
     static void ClearCurrentConsoleLine()
     {
@@ -39,8 +39,7 @@ public class Program
         {
             for (int j = 0; j <= 7; j++)
             {
-                BoardLayout[i, j] = Columns[j] + Rows[i];
-                AddressList.Add(BoardLayout[i, j]);
+                BoardLayout[i, j] = $"{Columns[j]}{Rows[i]}";
             }
         }
 
@@ -117,8 +116,9 @@ public class Program
             return "BACK";
         }
 
+        (int row, int col) = BoardPosToIndex(tile);
         // Check that the selected tile is valid
-        if (!AddressList.Contains(tile))
+        if (row == -1 || col == -1)
         {
             Console.WriteLine("Please input correct tile address (Example: A5)");
             return GetTile();
@@ -163,6 +163,10 @@ public class Program
 
     private static (int, int) BoardPosToIndex(string tile)
     {
+        if (tile.Length != 2)
+        {
+            return (-1, -1);
+        }
         string columns = "ABCDEFGH";
         string rows = "12345678";
         return (rows.IndexOf(tile[1]), columns.IndexOf(tile[0]));

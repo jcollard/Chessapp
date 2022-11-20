@@ -142,6 +142,19 @@ public class GameState
         DisplayPlayerTurn();
     }
 
+    internal void DisplayPossibleMoves(List<(int, int)> moves)
+    {
+        (int left, int top) = Console.GetCursorPosition();
+        Console.ForegroundColor = ConsoleColor.Red;
+        foreach ((int row, int col) in moves)
+        {
+            Console.SetCursorPosition(col*8, (row*2)+3);
+            Console.Write("|  XX  |");
+        }
+        Console.ResetColor();
+        Console.SetCursorPosition(left, top);
+    }
+
     private static void DisplayLegend()
     {
         Console.WriteLine("Legend: Use capital letters if you're green, lowercase if you're blue");

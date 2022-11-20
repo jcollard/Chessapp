@@ -49,23 +49,18 @@ public abstract class AbstractPiece : IPiece
     public List<(int, int)> GetMoves((int row, int col) pos)
     {
         List<(int, int)> moves = new ();
-        foreach (string i in Program.BoardLayout)
+        for (int row = 0; row < 8; row++)
         {
-            int[] arr = Program.indextile(i);
-            (int row, int col) target = (arr[0], arr[1]);
-            if (this.Logic(pos, target))
+            for (int col = 0; col < 8; col++)
             {
-                Program.movecheck.BoardLayout[target.row, target.col] = "XX";
-                moves.Add(target);
-            }
-            else
-            {
-                Program.movecheck.BoardLayout[target.row, target.col] = Program.changes.BoardLayout[target.row, target.col];
+                if (this.Logic(this.Position, (row, col)))
+                {
+                    moves.Add((row, col));
+                }
             }
         }
 
-        Utils.TryClear();
-        Program.movecheck.Print();
+        this._gameState.DisplayPossibleMoves(moves);
         Thread.Sleep(Program.DELAY);
         Utils.TryClear();
         this._gameState.PrintBoard();
