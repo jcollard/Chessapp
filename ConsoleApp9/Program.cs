@@ -6,7 +6,6 @@ public class Program
     private const string Columns = "ABCDEFGH";
 
     private readonly static GameState gameState = new GameState();
-    public readonly static PrintBoard changes = new PrintBoard();
 
     static void ClearCurrentConsoleLine()
     {
@@ -138,7 +137,6 @@ public class Program
 
     static void Main(string[] args)
     {
-        changes.initialize();
         gameState.PrintBoard();
         while (!gameState.IsGameOver())
         {
@@ -150,23 +148,12 @@ public class Program
             (select, (address[0], address[1])) = PieceSelect();
             string tile = TileSelect(ref select, ref address);
             
-
             Utils.TryClear();
             gameState.PrintBoard();
             (int, int) startPos = (address[0], address[1]);
             (int, int) targetPos = BoardPosToIndex(tile);
             gameState.MovePiece(startPos, targetPos);
-            // gameState.MovePiece(startPos, targetPos);
 
-            // TODO(jcollard): Potentially should remove this if? Not sure this
-            // ever actually happens
-            //needed this to fix some bug i forgot why
-            if (changes.deadpieces.Contains(select))
-            {
-                changes.deadpieces.Remove(select);
-            }
-
-            changes.turn++;
             Utils.TryClear();
             gameState.PrintBoard();
         }
