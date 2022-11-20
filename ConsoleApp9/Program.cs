@@ -92,20 +92,9 @@ public class Program
             }
 
             (int row, int col) target = BoardPosToIndex(tile);
-            if (target.row == -1 || target.col == -1)
+            if (target.row == -1 || target.col == -1 || !piece.Logic(target))
             {
                 DisplayError("Invalid Move");
-                continue;
-            }
-
-            // If the piece logic is invalid, display Invalid Move.
-            if (!piece.Logic(target))
-            {
-                Console.ForegroundColor = ConsoleColor.Red; 
-                Console.WriteLine("Invalid Move");
-                Console.ResetColor();
-                Utils.TryClear();
-                gameState.PrintBoard();
                 continue;
             }
 
