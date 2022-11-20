@@ -5,6 +5,8 @@ public class GameState
     private readonly Dictionary<string, IPiece> pieces = new();
     private readonly IPiece?[,] board = new IPiece?[8, 8];
     private readonly List<(IPiece, (int, int))> moves = new();
+    private readonly IPiece blueKing, greenKing;
+
 
     public GameState()
     {
@@ -13,8 +15,8 @@ public class GameState
             pieces["p" + i] = new PawnPiece("p" + i, PieceColor.Blue, (1, i - 1), this);
             pieces["P" + i] = new PawnPiece("P" + i, PieceColor.Green, (6, i - 1), this);
         }
-        pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3), this);
-        pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4), this);
+        blueKing = pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3), this);
+        greenKing = pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4), this);
         pieces["q1"] = new QueenPiece("q1", PieceColor.Blue, (0, 4), this);
         pieces["Q1"] = new QueenPiece("Q1", PieceColor.Green, (7, 3), this);
 
@@ -121,6 +123,20 @@ public class GameState
             return value;
         }
         throw new ArgumentException($"The symbol {symbol} is not a valid piece on this board.");
+    }
+
+    /// <summary>
+    /// Checks if the game has ended and returns true if it has.
+    /// </summary>
+    public bool IsGameOver()
+    {
+        if (blueKing.IsCaptured || greenKing.IsCaptured)
+        {
+            Utils.TryClear();
+            this.PrintBoard();
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

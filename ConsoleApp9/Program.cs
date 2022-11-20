@@ -16,21 +16,6 @@ public class Program
         Utils.SetCursorPosition(0, currentLineCursor);
     }
 
-    /// <summary>
-    /// Checks if the game has ended and returns true if it has.
-    /// </summary>
-    /// <returns></returns>
-    private static bool IsGameOver()
-    {
-        if (changes.deadpieces.Contains("K1") || changes.deadpieces.Contains("k1"))
-        {
-            Utils.TryClear();
-            gameState.PrintBoard();
-            return true;
-        }
-        return false;
-    }
-
     private static void DisplayError(string message)
     {
         Console.WriteLine(message);
@@ -155,7 +140,7 @@ public class Program
     {
         changes.initialize();
         gameState.PrintBoard();
-        while (!IsGameOver())
+        while (!gameState.IsGameOver())
         {
             Console.WriteLine();
             string select = "";
