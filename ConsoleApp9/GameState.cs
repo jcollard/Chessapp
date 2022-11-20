@@ -113,16 +113,7 @@ public class GameState
     /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
-    public bool IsGameOver()
-    {
-        if (blueKing.IsCaptured || greenKing.IsCaptured)
-        {
-            Utils.TryClear();
-            this.PrintBoard();
-            return true;
-        }
-        return false;
-    }
+    public bool IsGameOver() => blueKing.IsCaptured || greenKing.IsCaptured;
 
     /// <summary>
     /// Prints the underlying board to the screen.

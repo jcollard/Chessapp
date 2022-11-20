@@ -4,9 +4,33 @@ public class Program
     public const int DELAY = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-
     private readonly static GameState gameState = new GameState();
 
+    static void Main(string[] args)
+    {
+        while (!gameState.IsGameOver())
+        {
+            Utils.TryClear();
+            gameState.PrintBoard();
+
+            IPiece piece = PieceSelect();
+            if(!TryTileSelect(piece, out string tile))
+            {
+                continue;
+            }
+            
+            (int, int) targetPos = BoardPosToIndex(tile);
+            piece.Move(targetPos);
+        }
+        Utils.TryClear();
+        gameState.PrintBoard();
+        PieceColor winner = gameState.GetActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
+        Console.WriteLine($"{winner} is the winner!");
+    }
+
+    /// <summary>
+    /// Displays an error message to the user.
+    /// </summary>
     private static void DisplayError(string message)
     {
         Console.WriteLine(message);
@@ -16,8 +40,6 @@ public class Program
     /// <summary>
     /// Prompts the user to select a piece to move. Returns the selected piece and the row / col of that piece.
     /// </summary>
-    /// <param name="pieceselect("></param>
-    /// <returns></returns>
     private static IPiece PieceSelect()
     {
         while (true)
@@ -74,7 +96,7 @@ public class Program
         return tile;
     }
 
-    static bool TryTileSelect(IPiece piece, out string tile)
+    private static bool TryTileSelect(IPiece piece, out string tile)
     {
         while (true)
         {
@@ -109,29 +131,5 @@ public class Program
             return (-1, -1);
         }
         return (Rows.IndexOf(tile[1]), Columns.IndexOf(tile[0]));
-    }
-
-    static void Main(string[] args)
-    {
-        gameState.PrintBoard();
-        while (!gameState.IsGameOver())
-        {
-            Console.WriteLine();
-            
-
-            IPiece piece = PieceSelect();
-            if(!TryTileSelect(piece, out string tile))
-            {
-                continue;
-            }
-            
-            Utils.TryClear();
-            gameState.PrintBoard();
-            (int, int) targetPos = BoardPosToIndex(tile);
-            piece.Move(targetPos);
-
-            Utils.TryClear();
-            gameState.PrintBoard();
-        }
     }
 }
