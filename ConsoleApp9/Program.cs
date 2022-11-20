@@ -7,14 +7,6 @@ public class Program
 
     private readonly static GameState gameState = new GameState();
 
-    static void ClearCurrentConsoleLine()
-    {
-        int currentLineCursor = Console.CursorTop;
-        Utils.SetCursorPosition(0, Console.CursorTop);
-        Console.Write(new string(' ', Console.WindowWidth));
-        Utils.SetCursorPosition(0, currentLineCursor);
-    }
-
     private static void DisplayError(string message)
     {
         Console.WriteLine(message);
@@ -26,7 +18,7 @@ public class Program
     /// </summary>
     /// <param name="pieceselect("></param>
     /// <returns></returns>
-    static (string, (int, int)) PieceSelect()
+    private static (string, (int, int)) PieceSelect()
     {
         while (true)
         {
@@ -82,12 +74,12 @@ public class Program
         return tile;
     }
 
-    static string TileSelect(ref string select, ref int[] address)
+    static string TileSelect(string select, (int, int) pos)
     {
         while (true)
         {
             IPiece piece = gameState.GetPiece(select);
-            piece.GetMoves((address[0], address[1]));
+            piece.GetMoves(pos);
             Utils.TryClear();
             gameState.PrintBoard();
 
@@ -97,9 +89,7 @@ public class Program
             
             if (tile == "BACK")
             {
-                Utils.TryClear();
-                gameState.PrintBoard();
-                (select, (address[0], address[1])) = PieceSelect();
+                return tile;
             }
 
             (int row, int col) target = BoardPosToIndex(tile);
@@ -110,7 +100,7 @@ public class Program
             }
 
             // If the piece logic is invalid, display Invalid Move.
-            if (!piece.Logic((address[0], address[1]), target))
+            if (!piece.Logic(pos, target))
             {
                 Console.ForegroundColor = ConsoleColor.Red; 
                 Console.WriteLine("Invalid Move");
@@ -130,9 +120,7 @@ public class Program
         {
             return (-1, -1);
         }
-        string columns = "ABCDEFGH";
-        string rows = "12345678";
-        return (rows.IndexOf(tile[1]), columns.IndexOf(tile[0]));
+        return (Rows.IndexOf(tile[1]), Columns.IndexOf(tile[0]));
     }
 
     static void Main(string[] args)
@@ -141,16 +129,17 @@ public class Program
         while (!gameState.IsGameOver())
         {
             Console.WriteLine();
-            string select = "";
-            int[] address = {0, 0};
             
 
-            (select, (address[0], address[1])) = PieceSelect();
-            string tile = TileSelect(ref select, ref address);
+            (string select, (int, int) startPos) = PieceSelect();
+            string tile = TileSelect(select, startPos);
+            if (tile == "BACK")
+            {
+                continue;
+            }
             
             Utils.TryClear();
             gameState.PrintBoard();
-            (int, int) startPos = (address[0], address[1]);
             (int, int) targetPos = BoardPosToIndex(tile);
             gameState.MovePiece(startPos, targetPos);
 
