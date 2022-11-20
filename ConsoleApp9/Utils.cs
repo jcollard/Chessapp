@@ -20,7 +20,7 @@ public static class Utils
         }
         catch
         {
-            Console.WriteLine($"\nSetCursorPosition({left},{top})\n");
+            // Console.WriteLine($"\nSetCursorPosition({left},{top})\n");
         }
     }
 
@@ -28,6 +28,7 @@ public static class Utils
     {
         string input = Console.ReadLine()!;
         StreamWriter outputFile = File.AppendText("temp_inputs.txt");
+        // Console.WriteLine(input);
         outputFile.WriteLine(input);
         outputFile.Close();
         return input;

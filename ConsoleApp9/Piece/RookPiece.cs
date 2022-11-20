@@ -2,7 +2,7 @@ namespace Chess;
 
 public class RookPiece : AbstractPiece
 {
-    public RookPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
+    public RookPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
 
     protected override bool SubLogic((int row, int col) start, (int row, int col) target, GameState gameState)
     {

@@ -23,8 +23,12 @@ public interface IPiece
     /// </summary>
     public PieceColor Color { get; }
 
+    public bool IsCaptured { get; set; }
+
+    public bool Move((int row, int col) target);
+
     /// <summary>
     /// The position of this IPiece on the board.
     /// </summary>
-    public (int, int) Position { get; }
+    public (int row, int col) Position { get; }
 }

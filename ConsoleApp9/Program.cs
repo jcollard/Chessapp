@@ -174,33 +174,11 @@ public class Program
         }
     }
 
-    /// <summary>
-    /// Updates the board by putting a blank on the selected pieces location
-    /// and placing it in the tile. If a piece was in the tile, it is added to the deadpieces
-    /// list (captured).
-    /// </summary>
-    /// <param name="select"></param>
-    /// <param name="tile"></param>
-    private static void MovePiece(string select, string tile)
+    private static (int, int) BoardPosToIndex(string tile)
     {
-        for (int i = 0; i <= 7; i++)
-        {
-            for (int j = 0; j <= 7; j++)
-            {
-                if (tile == BoardLayout[i, j])
-                {
-                    if (changes.BoardLayout[i, j] != "  ")
-                    {
-                        changes.deadpieces.Add(changes.BoardLayout[i, j]);
-                    }
-                    changes.BoardLayout[i, j] = select;
-                }
-                else if (select == changes.BoardLayout[i, j])
-                {
-                    changes.BoardLayout[i, j] = "  ";
-                }
-            }
-        }
+        string columns = "ABCDEFGH";
+        string rows = "12345678";
+        return (rows.IndexOf(tile[1]), columns.IndexOf(tile[0]));
     }
 
     static void Main(string[] args)
@@ -214,13 +192,18 @@ public class Program
             Console.WriteLine();
             string select = "";
             int[] address = indexselect(select);
+            
 
             (select, address) = PieceSelect();
             string tile = TileSelect(ref select, ref address);
+            
 
             Utils.TryClear();
             changes.Print();
-            MovePiece(select, tile);
+            (int, int) startPos = (address[0], address[1]);
+            (int, int) targetPos = BoardPosToIndex(tile);
+            gameState.MovePiece(startPos, targetPos);
+            // gameState.MovePiece(startPos, targetPos);
 
             // TODO(jcollard): Potentially should remove this if? Not sure this
             // ever actually happens

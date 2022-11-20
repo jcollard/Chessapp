@@ -51,16 +51,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -226,16 +217,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -512,16 +494,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -798,16 +771,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -973,16 +937,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -1148,16 +1103,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -1323,16 +1269,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -1498,16 +1435,7 @@ List of Pieces Captured:
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -1673,16 +1601,7 @@ List of Pieces Captured: p3
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -1848,16 +1767,7 @@ List of Pieces Captured: p3
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -2023,16 +1933,7 @@ List of Pieces Captured: p3
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -2198,16 +2099,7 @@ List of Pieces Captured: p3
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -2373,16 +2265,7 @@ List of Pieces Captured: p3, p4
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -2548,16 +2431,7 @@ List of Pieces Captured: p3, p4
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -2723,16 +2597,7 @@ List of Pieces Captured: p3, p4
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -2898,16 +2763,7 @@ List of Pieces Captured: p3, p4, N1
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -3073,16 +2929,7 @@ List of Pieces Captured: p3, p4, N1
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -3248,16 +3095,7 @@ List of Pieces Captured: p3, p4, N1, P2
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -3423,16 +3261,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -3598,16 +3427,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -3773,16 +3593,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -3948,16 +3759,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -4123,16 +3925,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -4298,16 +4091,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -4473,16 +4257,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -4572,89 +4347,6 @@ CLEAR()
 Legend: Use capital letters if you're green, lowercase if you're blue
 R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
 
-|  XX  ||  XX  ||  XX  ||  XX  ||  q1  ||  b2  ||  n2  ||  r2  |
-1-----------------------------------------------------------------1
-|  r1  ||      ||  k1  ||  XX  ||  XX  ||  p6  ||  p7  ||  p8  |
-2-----------------------------------------------------------------2
-|  p1  ||      ||  XX  ||  p5  ||  XX  ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||  XX  ||  p2  ||      ||  XX  ||      ||      ||      |
-4-----------------------------------------------------------------4
-|  XX  ||  n1  ||      ||      ||  XX  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|  R1  ||      ||      ||  P4  ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||  B1  ||      ||      ||      ||  P6  ||  P7  ||  P8  |
-7-----------------------------------------------------------------7
-|      ||      ||      ||  Q1  ||  K1  ||  B2  ||  N2  ||  R2  |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: 
--------------------------------------------------------------------------
-It's Blue's turn
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
-|      ||      ||      ||      ||  q1  ||  b2  ||  n2  ||  r2  |
-1-----------------------------------------------------------------1
-|  r1  ||      ||  k1  ||      ||      ||  p6  ||  p7  ||  p8  |
-2-----------------------------------------------------------------2
-|  p1  ||      ||      ||  p5  ||      ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||      ||  p2  ||      ||      ||      ||      ||      |
-4-----------------------------------------------------------------4
-|  P1  ||  n1  ||      ||      ||  P5  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|  R1  ||      ||      ||  P4  ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||  B1  ||      ||      ||      ||  P6  ||  P7  ||  P8  |
-7-----------------------------------------------------------------7
-|      ||      ||      ||  Q1  ||  K1  ||  B2  ||  N2  ||  R2  |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: p3, p4, N1, P2, b1, P3
--------------------------------------------------------------------------
-It's Blue's turn
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
-|      ||      ||      ||      ||  q1  ||  b2  ||  n2  ||  r2  |
-1-----------------------------------------------------------------1
-|  r1  ||      ||  k1  ||      ||      ||  p6  ||  p7  ||  p8  |
-2-----------------------------------------------------------------2
-|  p1  ||      ||      ||  p5  ||      ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||      ||  p2  ||      ||      ||      ||      ||      |
-4-----------------------------------------------------------------4
-|  P1  ||  n1  ||      ||      ||  P5  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|  R1  ||      ||      ||  P4  ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||  B1  ||      ||      ||      ||  P6  ||  P7  ||  P8  |
-7-----------------------------------------------------------------7
-|      ||      ||      ||  Q1  ||  K1  ||  B2  ||  N2  ||  R2  |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: p3, p4, N1, P2, b1, P3
--------------------------------------------------------------------------
-It's Blue's turn
-Selected Piece: q1 
-Pick a tile to move to or type 'BACK' to pick another piece
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
 |      ||      ||      ||      ||  q1  ||  b2  ||  n2  ||  r2  |
 1-----------------------------------------------------------------1
 |  r1  ||      ||  k1  ||      ||      ||  p6  ||  p7  ||  p8  |
@@ -4732,16 +4424,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -4907,16 +4590,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -5082,16 +4756,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -5257,16 +4922,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -5432,16 +5088,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -5607,16 +5254,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -5782,16 +5420,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -5957,16 +5586,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -6132,16 +5752,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -6307,16 +5918,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -6482,16 +6084,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -6768,16 +6361,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -6943,16 +6527,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -7118,16 +6693,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-It's Blue's turn, Select piece again. Blue uses Lowercase letters
+                                           It's Blue's turn, Select piece again. Blue uses Lowercase letters
 
 CLEAR()
 
@@ -7156,16 +6722,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-Piece does not exist
+                                           Piece does not exist
 
 CLEAR()
 
@@ -7194,16 +6751,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -7369,16 +6917,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -7544,16 +7083,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -7719,16 +7249,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -7894,16 +7415,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -8069,16 +7581,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -8244,16 +7747,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -8419,16 +7913,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -8594,16 +8079,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -8769,16 +8245,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -8944,16 +8411,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -9119,16 +8577,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -9294,16 +8743,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -9469,16 +8909,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -9644,16 +9075,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -9819,16 +9241,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -9994,16 +9407,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -10169,16 +9573,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -10344,16 +9739,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -10519,16 +9905,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -10694,16 +10071,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -10869,16 +10237,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -11044,16 +10403,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -11219,16 +10569,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -11394,16 +10735,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -11569,16 +10901,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -11744,16 +11067,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -11919,16 +11233,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -12094,16 +11399,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -12241,16 +11537,34 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
+                                           Invalid Move
 
-SetCursorPosition(0,43)
+CLEAR()
 
+Legend: Use capital letters if you're green, lowercase if you're blue
+R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
 
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-Please input correct tile address (Example: A5)
+|      ||      ||      ||      ||      ||      ||      ||      |
+1-----------------------------------------------------------------1
+|  P1  ||      ||      ||      ||      ||      ||      ||      |
+2-----------------------------------------------------------------2
+|      ||  B1  ||      ||  k1  ||      ||      ||      ||      |
+3-----------------------------------------------------------------3
+|      ||      ||      ||      ||      ||      ||      ||      |
+4-----------------------------------------------------------------4
+|      ||      ||      ||      ||  n2  ||      ||      ||      |
+5-----------------------------------------------------------------5
+|  R1  ||      ||      ||      ||      ||  B2  ||      ||      |
+6-----------------------------------------------------------------6
+|      ||      ||      ||      ||  K1  ||      ||      ||      |
+7-----------------------------------------------------------------7
+|      ||      ||  p2  ||      ||      ||      ||      ||      |
+8-----------------------------------------------------------------8
+   A       B       C       D       E       F       G       H    
+-------------------------------------------------------------------------
+List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1
+-------------------------------------------------------------------------
+It's Blue's turn
 
 CLEAR()
 
@@ -12417,16 +11731,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -12592,16 +11897,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -12767,16 +12063,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -12942,16 +12229,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -13117,16 +12395,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -13292,16 +12561,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -13467,16 +12727,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -13642,16 +12893,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -13817,16 +13059,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -13992,16 +13225,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -14167,15 +13391,117 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
+                                           
+CLEAR()
 
-SetCursorPosition(0,43)
+Legend: Use capital letters if you're green, lowercase if you're blue
+R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
 
+|      ||      ||      ||      ||      ||      ||      ||      |
+1-----------------------------------------------------------------1
+|      ||      ||      ||      ||      ||      ||      ||      |
+2-----------------------------------------------------------------2
+|      ||      ||  XX  ||      ||      ||      ||      ||      |
+3-----------------------------------------------------------------3
+|      ||      ||  XX  ||      ||      ||      ||      ||      |
+4-----------------------------------------------------------------4
+|  XX  ||  XX  ||  R1  ||  XX  ||  B2  ||      ||      ||      |
+5-----------------------------------------------------------------5
+|      ||      ||  XX  ||      ||      ||      ||      ||      |
+6-----------------------------------------------------------------6
+|      ||      ||  XX  ||      ||  K1  ||      ||      ||      |
+7-----------------------------------------------------------------7
+|      ||      ||  XX  ||      ||      ||      ||      ||      |
+8-----------------------------------------------------------------8
+   A       B       C       D       E       F       G       H    
+-------------------------------------------------------------------------
+List of Pieces Captured: 
+-------------------------------------------------------------------------
+It's Blue's turn
 
-SetCursorPosition(0,44)
+CLEAR()
 
-                                                            
-SetCursorPosition(0,44)
+Legend: Use capital letters if you're green, lowercase if you're blue
+R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
 
+|      ||      ||      ||      ||      ||      ||      ||      |
+1-----------------------------------------------------------------1
+|      ||      ||      ||      ||      ||      ||      ||      |
+2-----------------------------------------------------------------2
+|      ||      ||  k1  ||      ||      ||      ||      ||      |
+3-----------------------------------------------------------------3
+|      ||      ||      ||      ||      ||      ||      ||      |
+4-----------------------------------------------------------------4
+|      ||      ||  R1  ||      ||  B2  ||      ||      ||      |
+5-----------------------------------------------------------------5
+|      ||      ||      ||      ||      ||      ||      ||      |
+6-----------------------------------------------------------------6
+|      ||      ||      ||      ||  K1  ||      ||      ||      |
+7-----------------------------------------------------------------7
+|      ||      ||      ||      ||      ||      ||      ||      |
+8-----------------------------------------------------------------8
+   A       B       C       D       E       F       G       H    
+-------------------------------------------------------------------------
+List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
+-------------------------------------------------------------------------
+It's Green's turn
+
+CLEAR()
+
+Legend: Use capital letters if you're green, lowercase if you're blue
+R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
+
+|      ||      ||      ||      ||      ||      ||      ||      |
+1-----------------------------------------------------------------1
+|      ||      ||      ||      ||      ||      ||      ||      |
+2-----------------------------------------------------------------2
+|      ||      ||  k1  ||      ||      ||      ||      ||      |
+3-----------------------------------------------------------------3
+|      ||      ||      ||      ||      ||      ||      ||      |
+4-----------------------------------------------------------------4
+|      ||      ||  R1  ||      ||  B2  ||      ||      ||      |
+5-----------------------------------------------------------------5
+|      ||      ||      ||      ||      ||      ||      ||      |
+6-----------------------------------------------------------------6
+|      ||      ||      ||      ||  K1  ||      ||      ||      |
+7-----------------------------------------------------------------7
+|      ||      ||      ||      ||      ||      ||      ||      |
+8-----------------------------------------------------------------8
+   A       B       C       D       E       F       G       H    
+-------------------------------------------------------------------------
+List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
+-------------------------------------------------------------------------
+It's Green's turn
+Selected Piece: R1 
+Pick a tile to move to or type 'BACK' to pick another piece
+Invalid Move
+
+CLEAR()
+
+Legend: Use capital letters if you're green, lowercase if you're blue
+R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
+
+|      ||      ||      ||      ||      ||      ||      ||      |
+1-----------------------------------------------------------------1
+|      ||      ||      ||      ||      ||      ||      ||      |
+2-----------------------------------------------------------------2
+|      ||      ||  k1  ||      ||      ||      ||      ||      |
+3-----------------------------------------------------------------3
+|      ||      ||      ||      ||      ||      ||      ||      |
+4-----------------------------------------------------------------4
+|      ||      ||  R1  ||      ||  B2  ||      ||      ||      |
+5-----------------------------------------------------------------5
+|      ||      ||      ||      ||      ||      ||      ||      |
+6-----------------------------------------------------------------6
+|      ||      ||      ||      ||  K1  ||      ||      ||      |
+7-----------------------------------------------------------------7
+|      ||      ||      ||      ||      ||      ||      ||      |
+8-----------------------------------------------------------------8
+   A       B       C       D       E       F       G       H    
+-------------------------------------------------------------------------
+List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
+-------------------------------------------------------------------------
+It's Green's turn
 
 CLEAR()
 
@@ -14259,33 +13585,6 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 It's Green's turn
 Selected Piece: R1 
 Pick a tile to move to or type 'BACK' to pick another piece
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
-|      ||      ||      ||      ||      ||      ||      ||      |
-1-----------------------------------------------------------------1
-|      ||      ||      ||      ||      ||      ||      ||      |
-2-----------------------------------------------------------------2
-|      ||      ||  k1  ||      ||      ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||      ||      ||      ||      ||      ||      ||      |
-4-----------------------------------------------------------------4
-|      ||      ||  R1  ||      ||  B2  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|      ||      ||      ||      ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||      ||      ||      ||  K1  ||      ||      ||      |
-7-----------------------------------------------------------------7
-|      ||      ||      ||      ||      ||      ||      ||      |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
--------------------------------------------------------------------------
-It's Green's turn
 Invalid Move
 
 CLEAR()
@@ -14297,33 +13596,6 @@ R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
 1-----------------------------------------------------------------1
 |      ||      ||      ||      ||      ||      ||      ||      |
 2-----------------------------------------------------------------2
-|      ||      ||  XX  ||      ||      ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||      ||  XX  ||      ||      ||      ||      ||      |
-4-----------------------------------------------------------------4
-|  XX  ||  XX  ||  R1  ||  XX  ||  B2  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|      ||      ||  XX  ||      ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||      ||  XX  ||      ||  K1  ||      ||      ||      |
-7-----------------------------------------------------------------7
-|      ||      ||  XX  ||      ||      ||      ||      ||      |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: 
--------------------------------------------------------------------------
-It's Blue's turn
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
-|      ||      ||      ||      ||      ||      ||      ||      |
-1-----------------------------------------------------------------1
-|      ||      ||      ||      ||      ||      ||      ||      |
-2-----------------------------------------------------------------2
 |      ||      ||  k1  ||      ||      ||      ||      ||      |
 3-----------------------------------------------------------------3
 |      ||      ||      ||      ||      ||      ||      ||      |
@@ -14341,63 +13613,6 @@ R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
 List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
 -------------------------------------------------------------------------
 It's Green's turn
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
-|      ||      ||      ||      ||      ||      ||      ||      |
-1-----------------------------------------------------------------1
-|      ||      ||      ||      ||      ||      ||      ||      |
-2-----------------------------------------------------------------2
-|      ||      ||  k1  ||      ||      ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||      ||      ||      ||      ||      ||      ||      |
-4-----------------------------------------------------------------4
-|      ||      ||  R1  ||      ||  B2  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|      ||      ||      ||      ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||      ||      ||      ||  K1  ||      ||      ||      |
-7-----------------------------------------------------------------7
-|      ||      ||      ||      ||      ||      ||      ||      |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
--------------------------------------------------------------------------
-It's Green's turn
-Selected Piece: R1 
-Pick a tile to move to or type 'BACK' to pick another piece
-
-CLEAR()
-
-Legend: Use capital letters if you're green, lowercase if you're blue
-R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen
-
-|      ||      ||      ||      ||      ||      ||      ||      |
-1-----------------------------------------------------------------1
-|      ||      ||      ||      ||      ||      ||      ||      |
-2-----------------------------------------------------------------2
-|      ||      ||  k1  ||      ||      ||      ||      ||      |
-3-----------------------------------------------------------------3
-|      ||      ||      ||      ||      ||      ||      ||      |
-4-----------------------------------------------------------------4
-|      ||      ||  R1  ||      ||  B2  ||      ||      ||      |
-5-----------------------------------------------------------------5
-|      ||      ||      ||      ||      ||      ||      ||      |
-6-----------------------------------------------------------------6
-|      ||      ||      ||      ||  K1  ||      ||      ||      |
-7-----------------------------------------------------------------7
-|      ||      ||      ||      ||      ||      ||      ||      |
-8-----------------------------------------------------------------8
-   A       B       C       D       E       F       G       H    
--------------------------------------------------------------------------
-List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2, P6, R2, b2, p5, Q1, P7, n1, p1, N2, r1, B1, n2, P1, p2
--------------------------------------------------------------------------
-It's Green's turn
-Invalid Move
 
 CLEAR()
 
@@ -14564,16 +13779,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -14739,16 +13945,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -14914,16 +14111,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -15089,16 +14277,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-It's Green's turn, Select piece again. Green uses capital letters
+                                           It's Green's turn, Select piece again. Green uses capital letters
 
 CLEAR()
 
@@ -15127,16 +14306,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-Piece does not exist
+                                           Piece does not exist
 
 CLEAR()
 
@@ -15165,16 +14335,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -15340,16 +14501,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Blue's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue
@@ -15515,16 +14667,7 @@ List of Pieces Captured: p3, p4, N1, P2, b1, P3, P5, q1, p6, p7, P4, p8, P8, r2,
 -------------------------------------------------------------------------
 It's Green's turn
 select piece to move
-
-SetCursorPosition(0,43)
-
-
-SetCursorPosition(0,44)
-
-                                                            
-SetCursorPosition(0,44)
-
-
+                                           
 CLEAR()
 
 Legend: Use capital letters if you're green, lowercase if you're blue

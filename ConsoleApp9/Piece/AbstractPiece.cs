@@ -2,6 +2,8 @@ namespace Chess;
 
 public abstract class AbstractPiece : IPiece
 {
+
+    public bool IsCaptured { get; set; } = false;
     private readonly string _symbol;
     public string Symbol => _symbol;
 
@@ -9,13 +11,37 @@ public abstract class AbstractPiece : IPiece
     public PieceColor Color => _color;
 
     private (int, int) _position;
-    public (int, int) Position => _position;
+    public (int row, int col) Position => _position;
 
-    public AbstractPiece(string symbol, PieceColor color, (int, int) position)
+    protected readonly GameState _gameState;
+
+    public AbstractPiece(string symbol, PieceColor color, (int, int) position, GameState gameState)
     {
         this._symbol = symbol;
         this._color = color;
         this._position = position;
+        this._gameState = gameState;
+        this._gameState.SetPiece(position, this);
+    }
+
+    public bool Move((int row, int col) target)
+    {
+        if (this.Logic(this.Position, target, this._gameState))
+        {
+            IPiece? other = this._gameState.GetPiece(target);
+            if (other != null)
+            {
+                other.IsCaptured = true;
+                Program.changes.deadpieces.Add(other.Symbol);
+            }
+            Program.changes.BoardLayout[this.Position.row, this.Position.col] = "  ";
+            this._gameState.ClearPiece(this.Position);
+            this._gameState.SetPiece(target, this);
+            this._position = target;
+            Program.changes.BoardLayout[target.row, target.col] = this.Symbol;
+            return true;
+        }
+        return false;
     }
 
     public List<(int, int)> GetMoves((int row, int col) pos, GameState gameState)
