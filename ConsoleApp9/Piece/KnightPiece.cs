@@ -6,24 +6,9 @@ public class KnightPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) start, (int row, int col) target)
     {
-        char player = Program.changes.BoardLayout[start.row, start.col][0];
-
-
-
-        if (Math.Abs(start.row - target.row) == Math.Abs(start.col - target.col))
-        {
-            return false;
-        }
-
-        if (Math.Abs(start.row - target.row) != 1 && Math.Abs(start.col - target.col) != 1)
-        {
-            return false;
-        }
-        if (Math.Abs(start.col - target.col) != 2 && Math.Abs(start.row - target.row) != 2)
-        {
-            return false;
-        }
-
-        return true;
+        int rowDist = Math.Abs(start.row - target.row);
+        int colDist = Math.Abs(start.col - target.col);
+        return (rowDist == 1 || colDist == 1) &&
+               rowDist + colDist == 3;
     }
 }
