@@ -73,7 +73,7 @@ public class Program
         if (changes.deadpieces.Contains("K1") || changes.deadpieces.Contains("k1"))
         {
             Utils.TryClear();
-            changes.Print();
+            gameState.PrintBoard();
             return true;
         }
         return false;
@@ -90,7 +90,7 @@ public class Program
         {
 
             Utils.TryClear();
-            changes.Print();
+            gameState.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
             int[] address = indexselect(select);
@@ -147,7 +147,7 @@ public class Program
             IPiece piece = gameState.GetPiece(select);
             piece.GetMoves((address[0], address[1]));
             Utils.TryClear();
-            changes.Print();
+            gameState.PrintBoard();
 
             Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
@@ -155,7 +155,7 @@ public class Program
             if (tile == "BACK")
             {
                 Utils.TryClear();
-                changes.Print();
+                gameState.PrintBoard();
                 (select, address) = PieceSelect();
             }
             int[] refadd = indextile(tile);
@@ -166,7 +166,7 @@ public class Program
                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                 Console.ResetColor();
                 Utils.TryClear();
-                changes.Print();
+                gameState.PrintBoard();
                 continue;
             }
 
@@ -185,7 +185,7 @@ public class Program
     {
         movecheck.initialize();
         changes.initialize();
-        changes.Print();
+        gameState.PrintBoard();
         fillboardaddresses();
         while (!IsGameOver())
         {
@@ -199,7 +199,7 @@ public class Program
             
 
             Utils.TryClear();
-            changes.Print();
+            gameState.PrintBoard();
             (int, int) startPos = (address[0], address[1]);
             (int, int) targetPos = BoardPosToIndex(tile);
             gameState.MovePiece(startPos, targetPos);
@@ -215,7 +215,7 @@ public class Program
 
             changes.turn++;
             Utils.TryClear();
-            changes.Print();
+            gameState.PrintBoard();
         }
     }
 }

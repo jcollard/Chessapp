@@ -40,6 +40,7 @@ public abstract class AbstractPiece : IPiece
             this._position = target;
             Program.changes.BoardLayout[target.row, target.col] = this.Symbol;
             _hasMoved = true;
+            this._gameState.AddMove(this, target);
             return true;
         }
         return false;
@@ -67,7 +68,7 @@ public abstract class AbstractPiece : IPiece
         Program.movecheck.Print();
         Thread.Sleep(Program.DELAY);
         Utils.TryClear();
-        Program.changes.Print();
+        this._gameState.PrintBoard();
         return moves;
     }
 

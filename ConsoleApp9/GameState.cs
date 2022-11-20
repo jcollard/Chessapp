@@ -3,9 +3,16 @@ namespace Chess;
 public class GameState
 {
 
+    public readonly static string BOARD_TEMPLATE;
+
+    static GameState()
+    {
+        BOARD_TEMPLATE = File.ReadAllText("board_template.txt");
+    }
+
     private readonly Dictionary<string, IPiece> pieces = new();
     private readonly IPiece?[,] board = new IPiece?[8, 8];
-
+    private readonly List<(IPiece, (int, int))> moves = new();
 
     public GameState()
     {
@@ -81,6 +88,8 @@ public class GameState
         return result;
     }
 
+    internal void AddMove(IPiece piece, (int, int) target) => this.moves.Add((piece, target));
+
     /// <summary>
     /// Returns the piece at the specified position or null if no piece is at that
     /// position.
@@ -121,4 +130,81 @@ public class GameState
         }
         throw new ArgumentException($"The symbol {symbol} is not a valid piece on this board.");
     }
+
+    /// <summary>
+    /// Prints the underlying board to the screen.
+    /// </summary>
+    public void PrintBoard()
+    {
+        Console.Clear();
+        DisplayLegend();
+        Console.WriteLine();
+
+        for (int row = 0; row < 8; row++)
+        {
+            DisplayRow(row);
+        }
+        Console.WriteLine();
+
+        DisplayCapturedPieces();
+        DisplayPlayerTurn();
+    }
+
+    private void DisplayLegend()
+    {
+        Console.WriteLine("Legend: Use capital letters if you're green, lowercase if you're blue");
+        Console.WriteLine("R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen");
+    }
+
+    private void DisplayCapturedPieces()
+    {
+        Console.WriteLine("-------------------------------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", pieces.Values.Where(p => p.IsCaptured).Select(p => p.Symbol))}");
+        Console.ResetColor();
+        Console.WriteLine("-------------------------------------------------------------------------");
+    }
+
+    private PieceColor GetActivePlayer()
+    {
+        return moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
+    }
+
+    private void DisplayPlayerTurn()
+    {
+        PieceColor player = GetActivePlayer();
+        Console.ForegroundColor = player == PieceColor.Blue ? ConsoleColor.Cyan : ConsoleColor.Green;
+        Console.WriteLine($"It's {player}'s turn");
+        Console.ResetColor();
+    }
+
+    private void DisplayCell(int row, int col)
+    {
+        string symbol = "  ";
+        if (board[row, col] != null)
+        {
+            IPiece piece = board[row, col]!;
+            symbol = piece.Symbol;
+            Console.ForegroundColor = piece.Color == PieceColor.Blue ? ConsoleColor.Cyan : ConsoleColor.Green;
+        }
+        Console.Write($"|  {symbol}  |");
+        Console.ResetColor();
+    }
+
+    private void DisplayRow(int row)
+    {
+        for (int col = 0; col < 8; col++)
+        {
+            DisplayCell(row, col);
+        }
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write(row + 1);
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        Console.Write("-----------------------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(row + 1);
+        Console.ResetColor();
+    }
+
 }
