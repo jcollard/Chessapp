@@ -4,21 +4,17 @@ public abstract class AbstractPiece : IPiece
 {
 
     public bool IsCaptured { get; set; } = false;
-    private bool _hasMoved = false;
-    public bool HasMoved => _hasMoved;
-    private readonly string _symbol;
-    public string Symbol => _symbol;
-    private readonly PieceColor _color;
-    public PieceColor Color => _color;
-    private (int, int) _position;
-    public (int row, int col) Position => _position;
+    public bool HasMoved { get; private set; }
+    public string Symbol { get; private set; }
+    public PieceColor Color { get; private set; }
+    public (int row, int col) Position { get; private set; }
     protected readonly GameState _gameState;
 
     public AbstractPiece(string symbol, PieceColor color, (int, int) position, GameState gameState)
     {
-        this._symbol = symbol;
-        this._color = color;
-        this._position = position;
+        this.Symbol = symbol;
+        this.Color = color;
+        this.Position = position;
         this._gameState = gameState;
         this._gameState.SetPiece(position, this);
     }
@@ -35,8 +31,8 @@ public abstract class AbstractPiece : IPiece
             }
             this._gameState.ClearPiece(this.Position);
             this._gameState.SetPiece(target, this);
-            this._position = target;
-            _hasMoved = true;
+            this.Position = target;
+            HasMoved = true;
             this._gameState.AddMove(this, target);
             return true;
         }
