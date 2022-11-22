@@ -1,3 +1,5 @@
+namespace Chessapp;
+
 public static class Utils
 {
     public static void TryClear()
@@ -12,23 +14,10 @@ public static class Utils
         }
     }
 
-    public static void SetCursorPosition(int left, int top)
-    {
-        try
-        {
-            Console.SetCursorPosition(left, top);
-        }
-        catch
-        {
-            // Console.WriteLine($"\nSetCursorPosition({left},{top})\n");
-        }
-    }
-
     public static string ReadLine()
     {
         string input = Console.ReadLine()!;
         StreamWriter outputFile = File.AppendText("temp_inputs.txt");
-        // Console.WriteLine(input);
         outputFile.WriteLine(input);
         outputFile.Close();
         return input;
@@ -44,14 +33,13 @@ public static class Utils
         {
             return 0;
         }
-        else if (start > target)
+
+        if (start > target)
         {
             return -1;
         }
-        else
-        {
-            return 1;
-        }
+
+        return 1;
     }
 
     public static bool IsOrthogonal((int row, int col) start, (int row , int col) target)
