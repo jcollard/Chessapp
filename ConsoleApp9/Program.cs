@@ -1,30 +1,30 @@
-﻿namespace Chess;
-public class Program
+﻿using Chessapp.Piece;
+
+namespace Chessapp;
+public static class Program
 {
     public const int DELAY = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-    private readonly static GameState gameState = new GameState();
+    private static readonly GameState _gameState = new();
 
     static void Main(string[] args)
     {
-        while (!gameState.IsGameOver())
+        while (!_gameState.IsGameOver())
         {
             Utils.TryClear();
-            gameState.PrintBoard();
+            _gameState.PrintBoard();
 
             IPiece piece = PieceSelect();
-            if (!TryTileSelect(piece, out (int, int) targetPos))
+            if (TryTileSelect(piece, out (int, int) targetPos))
             {
-                continue;
+                piece.Move(targetPos);
             }
-
-            piece.Move(targetPos);
         }
 
         Utils.TryClear();
-        gameState.PrintBoard();
-        PieceColor winner = gameState.GetActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
+        _gameState.PrintBoard();
+        PieceColor winner = _gameState.GetActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
         Console.WriteLine($"{winner} is the winner!");
     }
 
@@ -44,12 +44,11 @@ public class Program
     {
         while (true)
         {
-
             Utils.TryClear();
-            gameState.PrintBoard();
+            _gameState.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            bool isValidPiece = gameState.TryGetPiece(select, out IPiece piece);
+            bool isValidPiece = _gameState.TryGetPiece(select, out IPiece piece);
 
             if (!isValidPiece)
             {
@@ -57,7 +56,7 @@ public class Program
                 continue;
             }
 
-            PieceColor player = gameState.GetActivePlayer();
+            PieceColor player = _gameState.GetActivePlayer();
             if (player != piece.Color)
             {
                 string casing = player == PieceColor.Blue ? "lowercase" : "capital";
@@ -74,32 +73,34 @@ public class Program
             return piece;
         }
     }
- 
+
     /// <summary>
     /// Prompts the user to enter a tile position. 
     /// Returns true
     /// </summary>
     private static bool TryGetTile(out (int row, int col) pos)
     {
-        pos = (-1, -1);
-        Console.WriteLine("Pick a tile to move to or type 'BACK' to pick another piece");
-        string tile = Utils.ReadLine();
-        tile = tile.ToUpper();
-
-        if (tile == "BACK")
+        while (true)
         {
-            return false;
-        }
+            pos = (-1, -1);
+            Console.WriteLine("Pick a tile to move to or type 'BACK' to pick another piece");
+            string tile = Utils.ReadLine();
+            tile = tile.ToUpper();
 
-        pos = BoardPosToIndex(tile);
-        // Check that the selected tile is valid
-        if (pos.row == -1 || pos.col == -1)
-        {
+            if (tile == "BACK")
+            {
+                return false;
+            }
+
+            pos = BoardPosToIndex(tile);
+            // Check that the selected tile is valid
+            if (pos.row != -1 && pos.col != -1)
+            {
+                return true;
+            }
+
             Console.WriteLine("Please input correct tile address (Example: A5)");
-            return TryGetTile(out pos);
         }
-
-        return true;
     }
 
     /// <summary>
@@ -111,26 +112,24 @@ public class Program
     {
         while (true)
         {
-            List<(int, int)> moves = piece.GetMoves();
-            gameState.DisplayPossibleMoves(moves);
+            IList<(int, int)> moves = piece.GetMoves();
+            _gameState.DisplayPossibleMoves(moves);
             Thread.Sleep(Program.DELAY);
             Utils.TryClear();
-            gameState.PrintBoard();
+            _gameState.PrintBoard();
 
             Console.WriteLine($"Selected Piece: {piece.Symbol}");
             if (!TryGetTile(out target))
             {
                 return false;
             }
-            // TODO(jcollard): I think this is not necessary 
-            // if (target.row == -1 || target.col == -1 || !piece.Logic(target))
-            if (!piece.Logic(target))
+
+            if (piece.CheckMove(target))
             {
-                DisplayError("Invalid Move");
-                continue;
+                return true;
             }
 
-            return true;
+            DisplayError("Invalid Move");
         }
     }
 
@@ -142,10 +141,6 @@ public class Program
     /// <returns></returns>
     private static (int, int) BoardPosToIndex(string tile)
     {
-        if (tile.Length != 2)
-        {
-            return (-1, -1);
-        }
-        return (Rows.IndexOf(tile[1]), Columns.IndexOf(tile[0]));
+        return tile.Length != 2 ? (-1, -1) : (Rows.IndexOf(tile[1]), Columns.IndexOf(tile[0]));
     }
 }

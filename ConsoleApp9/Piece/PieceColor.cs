@@ -1,4 +1,4 @@
-namespace Chess;
+namespace Chessapp.Piece;
 
 public enum PieceColor
 {
