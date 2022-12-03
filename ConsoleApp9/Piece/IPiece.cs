@@ -24,11 +24,6 @@ public interface IPiece : ICaptured
     public PieceColor Color { get; }
 
     /// <summary>
-    /// true if this piece has been captured and false otherwise
-    /// </summary>
-    public bool IsCaptured { get; set; }
-
-    /// <summary>
     /// true if this piece has moved and false otherwise
     /// </summary>
     /// <value></value>

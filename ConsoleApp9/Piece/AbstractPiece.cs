@@ -3,7 +3,7 @@ namespace Chess;
 public abstract class AbstractPiece : IPiece, ICaptured
 {
 
-    public bool IsCaptured { get; set; } = false;
+    private bool IsCaptured = false;
     public bool HasMoved { get; private set; }
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
@@ -27,7 +27,7 @@ public abstract class AbstractPiece : IPiece, ICaptured
             IPiece? other = this.ChessBoard.GetPiece(target);
             if (other != null)
             {
-                other.IsCaptured = true;
+                other.IsPieceCaptured(true);
             }
             this.ChessBoard.ClearPiece(this.Position);
             this.ChessBoard.SetPiece(target, this);

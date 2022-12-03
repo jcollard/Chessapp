@@ -2,7 +2,7 @@ namespace Chess;
 
 public class BishopPiece : IPiece
 {
-    public bool IsCaptured { get; set; } = false;
+    private bool IsCaptured { get; set; } = false;
     public bool HasMoved { get; private set; }
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
@@ -45,7 +45,7 @@ public class BishopPiece : IPiece
             IPiece? other = this.ChessBoard.GetPiece(target);
             if (other != null)
             {
-                other.IsCaptured = true;
+                other.IsPieceCaptured(true);
             }
             this.ChessBoard.ClearPiece(this.Position);
             this.ChessBoard.SetPiece(target, this);

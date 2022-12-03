@@ -65,7 +65,7 @@ public class Program
                 continue;
             }
 
-            if (piece.IsCaptured)
+            if (piece.IsPieceCaptured())
             {
                 DisplayError("That piece has already been captured.");
                 continue;

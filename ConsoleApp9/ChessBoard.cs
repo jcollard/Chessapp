@@ -120,7 +120,7 @@ public class ChessBoard
     /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
-    public bool IsGameOver() => blueKing.IsCaptured || greenKing.IsCaptured;
+    public bool IsGameOver() => blueKing.IsPieceCaptured() || greenKing.IsPieceCaptured();
 
     
 
@@ -196,7 +196,7 @@ public class ChessBoard
     {
         Console.WriteLine("-------------------------------------------------------------------------");
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", pieces.Values.Where(p => p.IsCaptured).Select(p => p.Symbol))}");
+        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", pieces.Values.Where(p => p.IsPieceCaptured()).Select(p => p.Symbol))}");
         Console.ResetColor();
         Console.WriteLine("-------------------------------------------------------------------------");
     }

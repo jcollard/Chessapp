@@ -1,8 +1,7 @@
 namespace Chess;
 public class PawnPiece : IPiece
 {
-
-    public bool IsCaptured { get; set; }
+    private bool IsCaptured { get; set; }
     public bool HasMoved { get; private set; }
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
