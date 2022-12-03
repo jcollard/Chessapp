@@ -45,7 +45,7 @@ public class BishopPiece : IPiece
             IPiece? other = _chessBoard.GetPiece(target);
             if (other != null)
             {
-                other.CapturePiece(true);
+                other.CapturePiece();
             }
             _chessBoard.ClearPiece(Position);
             _chessBoard.SetPiece(target, this);
@@ -98,8 +98,8 @@ public class BishopPiece : IPiece
         return _isCaptured;
     }
 
-    public void CapturePiece(bool isOnBoard)
+    public void CapturePiece()
     {
-        _isCaptured = isOnBoard;
+        _isCaptured = true;
     }
 }

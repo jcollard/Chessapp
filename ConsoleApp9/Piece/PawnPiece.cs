@@ -60,7 +60,7 @@ public class PawnPiece : IPiece
             return false;
         }
         var other = _chessBoard.GetPiece(target);
-        other?.CapturePiece(true);
+        other?.CapturePiece();
         _chessBoard.ClearPiece(Position);
         _chessBoard.SetPiece(target, this);
         Position = target;
@@ -107,8 +107,8 @@ public class PawnPiece : IPiece
         return IsCaptured;
     }
 
-    public void CapturePiece(bool isOnBoard)
+    public void CapturePiece()
     {
-        IsCaptured = isOnBoard;
+        IsCaptured = true;
     }
 }

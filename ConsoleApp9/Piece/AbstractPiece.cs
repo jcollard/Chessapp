@@ -78,8 +78,8 @@ public abstract class AbstractPiece : IPiece
         return _isCaptured;
     }
 
-    public void CapturePiece(bool isOnBoard)
+    public void CapturePiece()
     {
-        _isCaptured = isOnBoard;
+        _isCaptured = true;
     }
 }

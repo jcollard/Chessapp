@@ -116,7 +116,7 @@ public class ChessBoard
     {
         if (enemyPiece != null)
         {
-            enemyPiece.CapturePiece(true);
+            enemyPiece.CapturePiece();
             ClearPiece(enemyPiece.Position);
         }
         SetPiece(target, heroPiece);
