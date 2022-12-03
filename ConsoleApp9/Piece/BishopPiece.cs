@@ -16,7 +16,7 @@ public class BishopPiece : AbstractPiece
     /// piece to that position on the board. If the piece can move there,
     /// returns true and otherwise returns false.
     /// </summary>
-    protected bool SubLogic((int row, int col) target)
+    protected override bool SubLogic((int row, int col) target)
     {
         if (!Utils.IsDiagonal(Position, target))
         {
