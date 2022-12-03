@@ -1,5 +1,5 @@
 namespace Chess;
-public class PawnPiece : IPiece, ICaptured
+public class PawnPiece : IPiece
 {
 
     public bool IsCaptured { get; set; }
