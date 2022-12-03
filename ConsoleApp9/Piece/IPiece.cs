@@ -44,4 +44,5 @@ public interface IPiece
     /// The position of this IPiece on the board.
     /// </summary>
     public (int row, int col) Position { get; }
+
 }

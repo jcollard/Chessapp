@@ -1,6 +1,6 @@
 namespace Chess;
 
-public abstract class AbstractPiece : IPiece
+public abstract class AbstractPiece : IPiece, ICaptured
 {
 
     public bool IsCaptured { get; set; } = false;
@@ -81,4 +81,14 @@ public abstract class AbstractPiece : IPiece
     /// returns true and otherwise returns false.
     /// </summary>
     protected abstract bool SubLogic((int row, int col) targetPos);
+
+    public bool IsPieceCaptured()
+    {
+        return IsCaptured;
+    }
+
+    public void IsPieceCaptured(bool isOnBoard)
+    {
+        IsCaptured = isOnBoard;
+    }
 }

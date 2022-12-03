@@ -1,23 +1,26 @@
 namespace Chess;
-public class PawnPiece : IPiece
+public class PawnPiece : IPiece, ICaptured
 {
 
-    public bool IsCaptured { get; set; } = false;
+    public bool IsCaptured { get; set; }
     public bool HasMoved { get; private set; }
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
+    private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
     public (int row, int col) Position { get; private set; }
-    protected readonly ChessBoard ChessBoard;
+    private readonly ChessBoard ChessBoard;
+
     public PawnPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard)
     {
         this.Symbol = symbol;
+        IsCaptured = false;
         this.Color = color;
         this.Position = position;
         this.ChessBoard = chessBoard;
         this.ChessBoard.SetPiece(position, this);
     }
 
-    protected bool SubLogic((int row, int col) target)
+    private bool SubLogic((int row, int col) target)
     {
         int rowInc = this.Color == PieceColor.Blue ? 1 : -1;
         int targetRow = this.Position.row + rowInc;
@@ -50,6 +53,7 @@ public class PawnPiece : IPiece
 
         return false;
     }
+
     /// <inheritdoc/>
     public bool Move((int row, int col) target)
     {
@@ -102,7 +106,14 @@ public class PawnPiece : IPiece
         }
         return SubLogic(target);
     }
-    
-    /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
+
+    public bool IsPieceCaptured()
+    {
+        return IsCaptured;
+    }
+
+    public void IsPieceCaptured(bool isOnBoard)
+    {
+        IsCaptured = isOnBoard;
+    }
 }
