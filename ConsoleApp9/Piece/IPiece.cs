@@ -11,7 +11,7 @@ public interface IPiece : ICaptured
     /// Given a starting position and a target position, returns true if the
     /// piece selected can perform such a move and false otherwise.
     /// </summary>
-    public bool Logic((int row, int col) targetPos);
+    public bool AllowableMove((int row, int col) targetPos);
 
     /// <summary>
     /// The 2 character string representing this IPiece on the board

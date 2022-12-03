@@ -56,12 +56,12 @@ public class PawnPiece : IPiece
     /// <inheritdoc/>
     public bool Move((int row, int col) target)
     {
-        if (!this.Logic(target))
+        if (!this.AllowableMove(target))
         {
             return false;
         }
         var other = this.ChessBoard.GetPiece(target);
-        other?.IsPieceCaptured(true);
+        other?.CapturePiece(true);
         this.ChessBoard.ClearPiece(this.Position);
         this.ChessBoard.SetPiece(target, this);
         this.Position = target;
@@ -78,7 +78,7 @@ public class PawnPiece : IPiece
         {
             for (int col = 0; col < 8; col++)
             {
-                if (this.Logic((row, col)))
+                if (this.AllowableMove((row, col)))
                 {
                     moves.Add((row, col));
                 }
@@ -88,7 +88,7 @@ public class PawnPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool Logic((int row, int col) target)
+    public bool AllowableMove((int row, int col) target)
     {
         // Pieces cannot move onto themselves
         if (this.Position == target)
@@ -108,7 +108,7 @@ public class PawnPiece : IPiece
         return IsCaptured;
     }
 
-    public void IsPieceCaptured(bool isOnBoard)
+    public void CapturePiece(bool isOnBoard)
     {
         IsCaptured = isOnBoard;
     }

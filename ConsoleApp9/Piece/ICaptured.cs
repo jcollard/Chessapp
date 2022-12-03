@@ -5,5 +5,5 @@ public interface ICaptured
 
     public bool IsPieceCaptured();
 
-    public void IsPieceCaptured(bool isOnBoard);
+    public void CapturePiece(bool isOnBoard);
 }

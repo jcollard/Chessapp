@@ -124,7 +124,7 @@ public class Program
             }
             // TODO(jcollard): I think this is not necessary 
             // if (target.row == -1 || target.col == -1 || !piece.Logic(target))
-            if (!piece.Logic(target))
+            if (!piece.AllowableMove(target))
             {
                 DisplayError("Invalid Move");
                 continue;

@@ -3,7 +3,7 @@ namespace Chess;
 public abstract class AbstractPiece : IPiece, ICaptured
 {
 
-    private bool IsCaptured = false;
+    private bool _isCaptured = false;
     public bool HasMoved { get; private set; }
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
@@ -12,31 +12,25 @@ public abstract class AbstractPiece : IPiece, ICaptured
 
     public AbstractPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard)
     {
-        this.Symbol = symbol;
-        this.Color = color;
-        this.Position = position;
-        this.ChessBoard = chessBoard;
-        this.ChessBoard.SetPiece(position, this);
+        Symbol = symbol;
+        Color = color;
+        Position = position;
+        ChessBoard = chessBoard;
+        ChessBoard.SetPiece(position, this);
     }
 
     /// <inheritdoc/>
     public bool Move((int row, int col) target)
     {
-        if (this.Logic(target))
-        {
-            IPiece? other = this.ChessBoard.GetPiece(target);
-            if (other != null)
-            {
-                other.IsPieceCaptured(true);
-            }
-            this.ChessBoard.ClearPiece(this.Position);
-            this.ChessBoard.SetPiece(target, this);
-            this.Position = target;
-            HasMoved = true;
-            this.ChessBoard.AddMove(this, target);
-            return true;
-        }
-        return false;
+        if (!AllowableMove(target)) return false;
+        IPiece? enemyPiece = ChessBoard.GetPiece(target);
+        enemyPiece?.CapturePiece(true);
+        ChessBoard.ClearPiece(Position);
+        ChessBoard.SetPiece(target, this);
+        Position = target;
+        HasMoved = true;
+        ChessBoard.AddMove(this, target);
+        return true;
     }
 
     /// <inheritdoc/>
@@ -47,7 +41,7 @@ public abstract class AbstractPiece : IPiece, ICaptured
         {
             for (int col = 0; col < 8; col++)
             {
-                if (this.Logic((row, col)))
+                if (AllowableMove((row, col)))
                 {
                     moves.Add((row, col));
                 }
@@ -57,15 +51,15 @@ public abstract class AbstractPiece : IPiece, ICaptured
     }
 
     /// <inheritdoc/>
-    public bool Logic((int row, int col) target)
+    public bool AllowableMove((int row, int col) target)
     {
         // Pieces cannot move onto themselves
-        if (this.Position == target)
+        if (Position == target)
         {
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this.ChessBoard.IsEmpty(target) && !this.IsEnemyPiece(this.ChessBoard.GetPiece(target)!))
+        if(!ChessBoard.IsEmpty(target) && !IsEnemyPiece(ChessBoard.GetPiece(target)!))
         {
             return false;
         }
@@ -73,7 +67,7 @@ public abstract class AbstractPiece : IPiece, ICaptured
     }
     
     /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
+    private bool IsEnemyPiece(IPiece other) => other.Color != Color;
 
     /// <summary>
     /// Given a target position, checks the piece specific logic for moving this 
@@ -84,11 +78,11 @@ public abstract class AbstractPiece : IPiece, ICaptured
 
     public bool IsPieceCaptured()
     {
-        return IsCaptured;
+        return _isCaptured;
     }
 
-    public void IsPieceCaptured(bool isOnBoard)
+    public void CapturePiece(bool isOnBoard)
     {
-        IsCaptured = isOnBoard;
+        _isCaptured = isOnBoard;
     }
 }
