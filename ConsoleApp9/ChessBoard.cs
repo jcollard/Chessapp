@@ -94,13 +94,16 @@ public class ChessBoard
     /// exists in this GameState. If that piece exists, sets
     /// the value of piece and returns true. Otherwise, returns false.
     /// </summary>
-    public bool TryGetPiece(string symbol, out IPiece piece)
+    public IPiece? TryGetPiece(string symbol)
     {
-        if (pieces.TryGetValue(symbol, out piece!))
+        foreach (var boardPiece in board)
         {
-            return true;
+            if (boardPiece?.Symbol != symbol) continue;
+            
+            return boardPiece;
         }
-        return false;
+        //FIXME: would it ever reach this?
+        return null;
     }
 
     /// <summary>

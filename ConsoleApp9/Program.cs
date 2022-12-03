@@ -49,9 +49,9 @@ public class Program
             ChessBoard.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            bool isValidPiece = ChessBoard.TryGetPiece(select, out IPiece piece);
+            var piece = ChessBoard.TryGetPiece(select); 
 
-            if (!isValidPiece)
+            if (piece == null)
             {
                 DisplayError("Piece does not exist.");
                 continue;
