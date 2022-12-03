@@ -1,3 +1,4 @@
+using Chessapp;
 using Chessapp.Piece;
 
 namespace Chess;

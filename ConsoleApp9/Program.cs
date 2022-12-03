@@ -1,4 +1,6 @@
-﻿namespace Chess;
+﻿using Chessapp;
+
+namespace Chess;
 public class Program
 {
     private const int Delay = 0;

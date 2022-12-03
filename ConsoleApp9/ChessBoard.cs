@@ -1,4 +1,6 @@
-namespace Chess;
+using Chess;
+
+namespace Chessapp;
 
 public class ChessBoard
 {
@@ -84,7 +86,6 @@ public class ChessBoard
     /// <summary>
     /// Returns true if there is no piece at the specified position and false otherwise.
     /// </summary>
-    /// <param name="row"></param>
     /// <param name="pos"></param>
     /// <returns></returns>
     public bool IsEmpty((int row, int col) pos) => _board[pos.row, pos.col] == null;
@@ -167,9 +168,9 @@ public class ChessBoard
     /// </summary>
     private static void DisplayColumns()
     {
-        string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
+        string[] columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        foreach (string letter in Columns)
+        foreach (string letter in columns)
         {
             Console.Write("   {0}    ", letter);   
         }

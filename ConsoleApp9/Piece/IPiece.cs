@@ -1,3 +1,5 @@
+using Chessapp;
+
 namespace Chess;
 public interface IPiece : ICaptured
 {
