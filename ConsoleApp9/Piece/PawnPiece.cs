@@ -53,7 +53,7 @@ public class PawnPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool Move(IPiece heroPiece, (int row, int col) target)
+    public bool AssignPositionAndMoved(IPiece heroPiece, (int row, int col) target)
     {
         if (!AllowableMove(target))
         {

@@ -19,7 +19,10 @@ public class Program
                 continue;
             }
 
-            piece.Move(piece, targetPos);
+            if (!piece.AllowableMove(targetPos)) continue;
+            IPiece? enemyPiece = ChessBoard.GetPiece(targetPos);
+            ChessBoard.MovePieceOnBoard(piece, targetPos, enemyPiece);
+            piece.AssignPositionAndMoved(piece, targetPos);
         }
 
         Utils.TryClear();

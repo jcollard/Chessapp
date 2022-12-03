@@ -20,11 +20,8 @@ public abstract class AbstractPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool Move(IPiece heroPiece, (int row, int col) target)
+    public bool AssignPositionAndMoved(IPiece heroPiece, (int row, int col) target)
     {
-        if (!heroPiece.AllowableMove(target)) return false;
-        IPiece? enemyPiece = ChessBoard.GetPiece(target);
-        ChessBoard.MovePieceOnBoard(heroPiece, target, enemyPiece);
         Position = target;
         HasMoved = true;
         return true;
