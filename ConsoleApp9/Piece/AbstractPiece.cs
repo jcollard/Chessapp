@@ -1,6 +1,6 @@
 namespace Chess;
 
-public abstract class AbstractPiece : IPiece, ICaptured
+public abstract class AbstractPiece : IPiece
 {
 
     private bool _isCaptured = false;
