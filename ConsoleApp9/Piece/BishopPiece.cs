@@ -2,10 +2,10 @@ namespace Chess;
 
 public class BishopPiece : IPiece
 {
-    private bool IsCaptured { get; set; } = false;
+    private bool _isCaptured = false;
     public bool HasMoved { get; private set; }
-    public string Symbol { get; private set; }
-    public PieceColor Color { get; private set; }
+    public string Symbol { get; }
+    public PieceColor Color { get; }
     public (int row, int col) Position { get; private set; }
     private readonly ChessBoard _chessBoard;
 
@@ -95,11 +95,11 @@ public class BishopPiece : IPiece
 
     public bool IsPieceCaptured()
     {
-        return IsCaptured;
+        return _isCaptured;
     }
 
     public void CapturePiece(bool isOnBoard)
     {
-        IsCaptured = isOnBoard;
+        _isCaptured = isOnBoard;
     }
 }
