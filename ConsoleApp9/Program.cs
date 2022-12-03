@@ -4,7 +4,7 @@ public class Program
     public const int DELAY = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-    private readonly static ChessBoard ChessBoard = new ChessBoard();
+    private static readonly ChessBoard ChessBoard = new ChessBoard();
 
     static void Main(string[] args)
     {
