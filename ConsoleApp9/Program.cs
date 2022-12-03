@@ -22,7 +22,7 @@ public class Program
             if (!piece.AllowableMove(targetPos, ChessBoard)) continue;
             IPiece? enemyPiece = ChessBoard.GetPiece(targetPos);
             ChessBoard.MovePieceOnBoard(piece, targetPos, enemyPiece);
-            piece.AssignPositionAndMoved(piece, targetPos);
+            piece.AssignPositionAndMoved(targetPos);
         }
 
         Utils.TryClear();

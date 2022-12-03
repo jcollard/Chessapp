@@ -20,7 +20,7 @@ public abstract class AbstractPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool AssignPositionAndMoved(IPiece heroPiece, (int row, int col) target)
+    public bool AssignPositionAndMoved((int row, int col) target)
     {
         Position = target;
         HasMoved = true;

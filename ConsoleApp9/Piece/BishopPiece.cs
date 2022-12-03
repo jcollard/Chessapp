@@ -5,7 +5,7 @@ namespace Chess;
 public class BishopPiece : AbstractPiece
 {
 
-    public BishopPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position) { }
+    public BishopPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
     
     /// <summary>
     /// Given a target position, checks the piece specific logic for moving this 
