@@ -4,7 +4,7 @@ public class KnightPiece : AbstractPiece
 {
     public KnightPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position, chessBoard) { }
 
-    protected override bool SubLogic((int row, int col) target)
+    protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
         int rowDist = Math.Abs(this.Position.row - target.row);
         int colDist = Math.Abs(this.Position.col - target.col);

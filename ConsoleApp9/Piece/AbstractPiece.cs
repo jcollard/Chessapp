@@ -27,15 +27,16 @@ public abstract class AbstractPiece : IPiece
         return true;
     }
 
+    /// <param name="chessBoard"></param>
     /// <inheritdoc/>
-    public List<(int, int)> GetMoves()
+    public List<(int, int)> GetMoves(ChessBoard chessBoard)
     {
         List<(int, int)> moves = new ();
         for (int row = 0; row < 8; row++)
         {
             for (int col = 0; col < 8; col++)
             {
-                if (AllowableMove((row, col)))
+                if (AllowableMove((row, col), chessBoard))
                 {
                     moves.Add((row, col));
                 }
@@ -45,7 +46,7 @@ public abstract class AbstractPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool AllowableMove((int row, int col) target)
+    public bool AllowableMove((int row, int col) target, ChessBoard chessBoard)
     {
         // Pieces cannot move onto themselves
         if (Position == target)
@@ -53,11 +54,11 @@ public abstract class AbstractPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!ChessBoard.IsEmpty(target) && !IsEnemyPiece(ChessBoard.GetPiece(target)!))
+        if(!chessBoard.IsEmpty(target) && !IsEnemyPiece(chessBoard.GetPiece(target)!))
         {
             return false;
         }
-        return SubLogic(target);
+        return SubLogic(target, chessBoard);
     }
     
     /// <inheritdoc/>
@@ -68,7 +69,7 @@ public abstract class AbstractPiece : IPiece
     /// piece to that position on the board. If the piece can move there,
     /// returns true and otherwise returns false.
     /// </summary>
-    protected abstract bool SubLogic((int row, int col) targetPos);
+    protected abstract bool SubLogic((int row, int col) targetPos, ChessBoard chessBoard);
 
     public bool IsPieceCaptured()
     {

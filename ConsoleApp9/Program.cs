@@ -19,7 +19,7 @@ public class Program
                 continue;
             }
 
-            if (!piece.AllowableMove(targetPos)) continue;
+            if (!piece.AllowableMove(targetPos, ChessBoard)) continue;
             IPiece? enemyPiece = ChessBoard.GetPiece(targetPos);
             ChessBoard.MovePieceOnBoard(piece, targetPos, enemyPiece);
             piece.AssignPositionAndMoved(piece, targetPos);
@@ -114,7 +114,7 @@ public class Program
     {
         while (true)
         {
-            List<(int, int)> moves = piece.GetMoves();
+            List<(int, int)> moves = piece.GetMoves(ChessBoard);
             ChessBoard.DisplayPossibleMoves(moves);
             Thread.Sleep(Program.DELAY);
             Utils.TryClear();
@@ -127,7 +127,7 @@ public class Program
             }
             // TODO(jcollard): I think this is not necessary 
             // if (target.row == -1 || target.col == -1 || !piece.Logic(target))
-            if (!piece.AllowableMove(target))
+            if (!piece.AllowableMove(target, ChessBoard))
             {
                 DisplayError("Invalid Move");
                 continue;

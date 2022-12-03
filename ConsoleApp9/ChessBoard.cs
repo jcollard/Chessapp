@@ -121,6 +121,7 @@ public class ChessBoard
         }
         SetPiece(target, heroPiece);
         AddMove(heroPiece, target);
+        ClearPiece(heroPiece.Position);
     }
 
     /// <summary>
