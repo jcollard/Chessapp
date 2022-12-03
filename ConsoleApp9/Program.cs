@@ -1,10 +1,10 @@
 ﻿namespace Chess;
 public class Program
 {
-    public const int DELAY = 0;
+    private const int Delay = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-    private static readonly ChessBoard ChessBoard = new ChessBoard();
+    private static readonly ChessBoard ChessBoard = new();
 
     static void Main(string[] args)
     {
@@ -20,8 +20,7 @@ public class Program
             }
 
             if (!piece.AllowableMove(targetPos, ChessBoard)) continue;
-            IPiece? enemyPiece = ChessBoard.GetPiece(targetPos);
-            ChessBoard.MovePieceOnBoard(piece, targetPos, enemyPiece);
+            ChessBoard.MovePieceOnBoard(piece, targetPos);
             piece.AssignPositionAndMoved(targetPos);
         }
 
@@ -37,7 +36,7 @@ public class Program
     private static void DisplayError(string message)
     {
         Console.WriteLine(message);
-        Thread.Sleep(DELAY);
+        Thread.Sleep(Delay);
     }
 
     /// <summary>
@@ -116,7 +115,7 @@ public class Program
         {
             List<(int, int)> moves = piece.GetMoves(ChessBoard);
             ChessBoard.DisplayPossibleMoves(moves);
-            Thread.Sleep(Program.DELAY);
+            Thread.Sleep(Program.Delay);
             Utils.TryClear();
             ChessBoard.PrintBoard();
 

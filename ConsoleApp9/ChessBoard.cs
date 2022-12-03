@@ -42,8 +42,8 @@ public class ChessBoard
         _pieces["R2"] = _board[7, 7] = new RookPiece("R2", PieceColor.Green, (7, 7));
     }
 
-    internal void SetPiece((int row, int col) pos, IPiece piece) => _board[pos.row, pos.col] = piece;
-    internal void ClearPiece((int row, int col) pos) => _board[pos.row, pos.col] = null;
+    private void SetPiece((int row, int col) pos, IPiece piece) => _board[pos.row, pos.col] = piece;
+    private void ClearPiece((int row, int col) pos) => _board[pos.row, pos.col] = null;
 
     /// <summary>
     /// Given a starting and target position that are orthogonal or diagonal to each
@@ -73,7 +73,7 @@ public class ChessBoard
         return true;
     }
 
-    internal void AddMove(IPiece piece, (int, int) target) => this._moves.Add((piece, target));
+    private void AddMove(IPiece piece, (int, int) target) => this._moves.Add((piece, target));
 
     /// <summary>
     /// Returns the piece at the specified position or null if no piece is at that
@@ -112,8 +112,9 @@ public class ChessBoard
     /// </summary>
     public PieceColor GetActivePlayer() => _moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
 
-    public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target, IPiece? enemyPiece)
+    public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target)
     {
+        IPiece? enemyPiece = GetPiece(target);
         if (enemyPiece != null)
         {
             enemyPiece.CapturePiece();
