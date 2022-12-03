@@ -2,10 +2,10 @@ namespace Chess;
 
 public class ChessBoard
 {
-    private readonly Dictionary<string, IPiece> pieces = new();
-    private readonly IPiece?[,] board = new IPiece?[8, 8];
-    private readonly List<(IPiece, (int, int))> moves = new();
-    private readonly IPiece blueKing, greenKing;
+    private readonly Dictionary<string, IPiece> _pieces = new();
+    private readonly IPiece?[,] _board = new IPiece?[8, 8];
+    private readonly List<(IPiece, (int, int))> _moves = new();
+    private readonly IPiece _blueKing, _greenKing;
 
     /// <summary>
     /// Constructs a GameState in a traditional chess layout.
@@ -15,35 +15,35 @@ public class ChessBoard
         for (int i = 1; i <= 8; i++)
         {
             var pawnPiece = new PawnPiece("p" + i, PieceColor.Blue, (1, i - 1));
-            pieces["p" + i] = pawnPiece;
-            board[1, i - 1] = pawnPiece;
+            _pieces["p" + i] = pawnPiece;
+            _board[1, i - 1] = pawnPiece;
             var piece = new PawnPiece("P" + i, PieceColor.Green, (6, i - 1));
-            pieces["P" + i] = piece;
-            board[6, i - 1] = piece;
+            _pieces["P" + i] = piece;
+            _board[6, i - 1] = piece;
         }
-        blueKing = pieces["k1"] = board[0, 3] = new KingPiece("k1", PieceColor.Blue, (0, 3));
-        greenKing = pieces["K1"] = board[7, 4] =  new KingPiece("K1", PieceColor.Green, (7, 4));
-        pieces["q1"] = board[0, 4] = new QueenPiece("q1", PieceColor.Blue, (0, 4));
-        pieces["Q1"] = board[7, 3] = new QueenPiece("Q1", PieceColor.Green, (7, 3));
+        _blueKing = _pieces["k1"] = _board[0, 3] = new KingPiece("k1", PieceColor.Blue, (0, 3));
+        _greenKing = _pieces["K1"] = _board[7, 4] =  new KingPiece("K1", PieceColor.Green, (7, 4));
+        _pieces["q1"] = _board[0, 4] = new QueenPiece("q1", PieceColor.Blue, (0, 4));
+        _pieces["Q1"] = _board[7, 3] = new QueenPiece("Q1", PieceColor.Green, (7, 3));
 
-        pieces["n1"] = board[0, 1] = new KnightPiece("n1", PieceColor.Blue, (0, 1));
-        pieces["N1"] = board[7, 1] = new KnightPiece("N1", PieceColor.Green, (7, 1));
-        pieces["n2"] = board[0, 6] = new KnightPiece("n2", PieceColor.Blue, (0, 6));
-        pieces["N2"] = board[7, 6] =  new KnightPiece("N2", PieceColor.Green, (7, 6));
+        _pieces["n1"] = _board[0, 1] = new KnightPiece("n1", PieceColor.Blue, (0, 1));
+        _pieces["N1"] = _board[7, 1] = new KnightPiece("N1", PieceColor.Green, (7, 1));
+        _pieces["n2"] = _board[0, 6] = new KnightPiece("n2", PieceColor.Blue, (0, 6));
+        _pieces["N2"] = _board[7, 6] =  new KnightPiece("N2", PieceColor.Green, (7, 6));
 
-        pieces["b1"] = board[0, 2] =  new BishopPiece("b1", PieceColor.Blue, (0, 2));
-        pieces["B1"] = board[7, 2] = new BishopPiece("B1", PieceColor.Green, (7, 2));
-        pieces["b2"] = board[0, 5] = new BishopPiece("b2", PieceColor.Blue, (0, 5));
-        pieces["B2"] = board[7, 5] = new BishopPiece("B2", PieceColor.Green, (7, 5));
+        _pieces["b1"] = _board[0, 2] =  new BishopPiece("b1", PieceColor.Blue, (0, 2));
+        _pieces["B1"] = _board[7, 2] = new BishopPiece("B1", PieceColor.Green, (7, 2));
+        _pieces["b2"] = _board[0, 5] = new BishopPiece("b2", PieceColor.Blue, (0, 5));
+        _pieces["B2"] = _board[7, 5] = new BishopPiece("B2", PieceColor.Green, (7, 5));
 
-        pieces["r1"] = board[0, 0] = new RookPiece("r1", PieceColor.Blue, (0, 0));
-        pieces["R1"] = board[7, 0] = new RookPiece("R1", PieceColor.Green, (7, 0));
-        pieces["r2"] = board[0, 7] = new RookPiece("r2", PieceColor.Blue, (0, 7));
-        pieces["R2"] = board[7, 7] = new RookPiece("R2", PieceColor.Green, (7, 7));
+        _pieces["r1"] = _board[0, 0] = new RookPiece("r1", PieceColor.Blue, (0, 0));
+        _pieces["R1"] = _board[7, 0] = new RookPiece("R1", PieceColor.Green, (7, 0));
+        _pieces["r2"] = _board[0, 7] = new RookPiece("r2", PieceColor.Blue, (0, 7));
+        _pieces["R2"] = _board[7, 7] = new RookPiece("R2", PieceColor.Green, (7, 7));
     }
 
-    internal void SetPiece((int row, int col) pos, IPiece piece) => board[pos.row, pos.col] = piece;
-    internal void ClearPiece((int row, int col) pos) => board[pos.row, pos.col] = null;
+    internal void SetPiece((int row, int col) pos, IPiece piece) => _board[pos.row, pos.col] = piece;
+    internal void ClearPiece((int row, int col) pos) => _board[pos.row, pos.col] = null;
 
     /// <summary>
     /// Given a starting and target position that are orthogonal or diagonal to each
@@ -73,13 +73,13 @@ public class ChessBoard
         return true;
     }
 
-    internal void AddMove(IPiece piece, (int, int) target) => this.moves.Add((piece, target));
+    internal void AddMove(IPiece piece, (int, int) target) => this._moves.Add((piece, target));
 
     /// <summary>
     /// Returns the piece at the specified position or null if no piece is at that
     /// position.
     /// </summary>
-    public IPiece? GetPiece((int row, int col) pos) => board[pos.row, pos.col];
+    public IPiece? GetPiece((int row, int col) pos) => _board[pos.row, pos.col];
 
     /// <summary>
     /// Returns true if there is no piece at the specified position and false otherwise.
@@ -87,7 +87,7 @@ public class ChessBoard
     /// <param name="row"></param>
     /// <param name="pos"></param>
     /// <returns></returns>
-    public bool IsEmpty((int row, int col) pos) => board[pos.row, pos.col] == null;
+    public bool IsEmpty((int row, int col) pos) => _board[pos.row, pos.col] == null;
 
     /// <summary>
     /// Given a symbol name for a piece, checks if that piece
@@ -96,21 +96,21 @@ public class ChessBoard
     /// </summary>
     public IPiece? TryGetPiece(string symbol)
     {
-        return board.Cast<IPiece?>().FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
+        return _board.Cast<IPiece?>().FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
         //FIXME: would it ever reach this?
     }
 
     /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
-    public bool IsGameOver() => blueKing.IsPieceCaptured() || greenKing.IsPieceCaptured();
+    public bool IsGameOver() => _blueKing.IsPieceCaptured() || _greenKing.IsPieceCaptured();
 
     
 
     /// <summary>
     /// Returns the color of the active player
     /// </summary>
-    public PieceColor GetActivePlayer() => moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
+    public PieceColor GetActivePlayer() => _moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
 
     public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target, IPiece? enemyPiece)
     {
@@ -191,7 +191,7 @@ public class ChessBoard
     {
         Console.WriteLine("-------------------------------------------------------------------------");
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", pieces.Values.Where(p => p.IsPieceCaptured()).Select(p => p.Symbol))}");
+        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", _pieces.Values.Where(p => p.IsPieceCaptured()).Select(p => p.Symbol))}");
         Console.ResetColor();
         Console.WriteLine("-------------------------------------------------------------------------");
     }
@@ -213,9 +213,9 @@ public class ChessBoard
     private void DisplayCell(int row, int col)
     {
         string symbol = "  ";
-        if (board[row, col] != null)
+        if (_board[row, col] != null)
         {
-            IPiece piece = board[row, col]!;
+            IPiece piece = _board[row, col]!;
             symbol = piece.Symbol;
             Console.ForegroundColor = piece.Color == PieceColor.Blue ? ConsoleColor.Cyan : ConsoleColor.Green;
         }
