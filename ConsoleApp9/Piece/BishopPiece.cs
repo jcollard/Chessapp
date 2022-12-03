@@ -16,11 +16,11 @@ public class BishopPiece : IPiece
         ChessBoard chessBoard)
     {
         
-        this.Symbol = symbol;
-        this.Color = color;
-        this.Position = position;
-        this._chessBoard = chessBoard;
-        this._chessBoard.SetPiece(position, this);
+        Symbol = symbol;
+        Color = color;
+        Position = position;
+        _chessBoard = chessBoard;
+        _chessBoard.SetPiece(position, this);
     }
 
     /// <summary>
@@ -30,28 +30,28 @@ public class BishopPiece : IPiece
     /// </summary>
     protected bool SubLogic((int row, int col) target)
     {
-        if (!Utils.IsDiagonal(this.Position, target))
+        if (!Utils.IsDiagonal(Position, target))
         {
             return false;
         }
-        return this._chessBoard.IsPathClear(this.Position, target);
+        return _chessBoard.IsPathClear(Position, target);
     }
     
     /// <inheritdoc/>
     public bool Move(IPiece heroPiece, (int row, int col) target)
     {
-        if (this.AllowableMove(target))
+        if (AllowableMove(target))
         {
-            IPiece? other = this._chessBoard.GetPiece(target);
+            IPiece? other = _chessBoard.GetPiece(target);
             if (other != null)
             {
                 other.CapturePiece(true);
             }
-            this._chessBoard.ClearPiece(this.Position);
-            this._chessBoard.SetPiece(target, this);
-            this.Position = target;
+            _chessBoard.ClearPiece(Position);
+            _chessBoard.SetPiece(target, this);
+            Position = target;
             HasMoved = true;
-            this._chessBoard.AddMove(this, target);
+            _chessBoard.AddMove(this, target);
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public class BishopPiece : IPiece
         {
             for (int col = 0; col < 8; col++)
             {
-                if (this.AllowableMove((row, col)))
+                if (AllowableMove((row, col)))
                 {
                     moves.Add((row, col));
                 }
@@ -78,12 +78,12 @@ public class BishopPiece : IPiece
     public bool AllowableMove((int row, int col) target)
     {
         // Pieces cannot move onto themselves
-        if (this.Position == target)
+        if (Position == target)
         {
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this._chessBoard.IsEmpty(target) && !this.IsEnemyPiece(this._chessBoard.GetPiece(target)!))
+        if(!_chessBoard.IsEmpty(target) && !IsEnemyPiece(_chessBoard.GetPiece(target)!))
         {
             return false;
         }
@@ -91,7 +91,7 @@ public class BishopPiece : IPiece
     }
     
     /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
+    private bool IsEnemyPiece(IPiece other) => other.Color != Color;
 
     public bool IsPieceCaptured()
     {
