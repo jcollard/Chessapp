@@ -54,7 +54,7 @@ public class PawnPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool Move((int row, int col) target)
+    public bool Move(AbstractPiece heroPiece, (int row, int col) target, ChessBoard chessBoard)
     {
         if (!this.AllowableMove(target))
         {
