@@ -7,7 +7,7 @@ public class PawnPiece : IPiece
     public PieceColor Color { get; private set; }
     private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
     public (int row, int col) Position { get; private set; }
-    private readonly ChessBoard ChessBoard;
+    private readonly ChessBoard _chessBoard;
 
     public PawnPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard)
     {
@@ -15,8 +15,7 @@ public class PawnPiece : IPiece
         IsCaptured = false;
         this.Color = color;
         this.Position = position;
-        this.ChessBoard = chessBoard;
-        this.ChessBoard.SetPiece(position, this);
+        this._chessBoard = chessBoard;
     }
 
     private bool SubLogic((int row, int col) target)
@@ -28,7 +27,7 @@ public class PawnPiece : IPiece
         bool isAttack = this.Position.col - target.col != 0;
 
         // Always, pawn may move forward 1 if space is empty
-        if (target.row == targetRow && !isAttack && this.ChessBoard.IsEmpty(target))
+        if (target.row == targetRow && !isAttack && this._chessBoard.IsEmpty(target))
         {
             return true;
         }
@@ -36,14 +35,14 @@ public class PawnPiece : IPiece
         // On first turn, pawn may move forward 2 spaces if empty
         if (!this.HasMoved && 
             target.row == firstTurnTargetRow && 
-            !isAttack && this.ChessBoard.IsEmpty(target) && 
-            this.ChessBoard.IsPathClear(this.Position, target))
+            !isAttack && this._chessBoard.IsEmpty(target) && 
+            this._chessBoard.IsPathClear(this.Position, target))
         {
             return true;
         }
 
         // Can move diagonal 1 if an enemy is in that space
-        if (target.row == targetRow && targetCols.Contains(target.col) && !this.ChessBoard.IsEmpty(target))
+        if (target.row == targetRow && targetCols.Contains(target.col) && !this._chessBoard.IsEmpty(target))
         {
             return true;
         }
@@ -60,13 +59,13 @@ public class PawnPiece : IPiece
         {
             return false;
         }
-        var other = this.ChessBoard.GetPiece(target);
+        var other = this._chessBoard.GetPiece(target);
         other?.CapturePiece(true);
-        this.ChessBoard.ClearPiece(this.Position);
-        this.ChessBoard.SetPiece(target, this);
+        this._chessBoard.ClearPiece(this.Position);
+        this._chessBoard.SetPiece(target, this);
         this.Position = target;
         HasMoved = true;
-        this.ChessBoard.AddMove(this, target);
+        this._chessBoard.AddMove(this, target);
         return true;
     }
 
@@ -96,7 +95,7 @@ public class PawnPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this.ChessBoard.IsEmpty(target) && !this.IsEnemyPiece(this.ChessBoard.GetPiece(target)!))
+        if(!this._chessBoard.IsEmpty(target) && !this.IsEnemyPiece(this._chessBoard.GetPiece(target)!))
         {
             return false;
         }

@@ -14,8 +14,12 @@ public class ChessBoard
     {
         for (int i = 1; i <= 8; i++)
         {
-            pieces["p" + i] = new PawnPiece("p" + i, PieceColor.Blue, (1, i - 1), this);
-            pieces["P" + i] = new PawnPiece("P" + i, PieceColor.Green, (6, i - 1), this);
+            var pawnPiece = new PawnPiece("p" + i, PieceColor.Blue, (1, i - 1), this);
+            pieces["p" + i] = pawnPiece;
+            board[1, i - 1] = pawnPiece;
+            var piece = new PawnPiece("P" + i, PieceColor.Green, (6, i - 1), this);
+            pieces["P" + i] = piece;
+            board[6, i - 1] = piece;
         }
         blueKing = pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3), this);
         greenKing = pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4), this);
