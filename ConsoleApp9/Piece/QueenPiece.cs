@@ -9,6 +9,6 @@ public class QueenPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
-        return chessBoard.IsPathClear(_pieceAttributes.Position, target);
+        return chessBoard.IsPathClear(PieceAttributes.Position, target);
     }
 }

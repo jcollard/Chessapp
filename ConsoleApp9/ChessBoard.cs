@@ -44,7 +44,7 @@ public class ChessBoard
         _pieces["R2"] = _board[7, 7] = new RookPiece("R2", PieceColor.Green, (7, 7));
     }
 
-    private void SetPiece((int row, int col) pos, IPiece piece) => _board[pos.row, pos.col] = piece;
+    private void SetPiece((int row, int col) pos, IPiece? piece) => _board[pos.row, pos.col] = piece;
     private void ClearPiece((int row, int col) pos) => _board[pos.row, pos.col] = null;
 
     /// <summary>
@@ -75,7 +75,7 @@ public class ChessBoard
         return true;
     }
 
-    private void AddMove(IPiece piece, (int, int) target) => this._moves.Add((piece, target));
+    private void AddMove(IPiece? piece, (int, int) target) => this._moves.Add((piece, target)!);
 
     /// <summary>
     /// Returns the piece at the specified position or null if no piece is at that
@@ -104,7 +104,7 @@ public class ChessBoard
     /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
-    public bool IsGameOver() => _blueKing.IsPieceCaptured() || _greenKing.IsPieceCaptured();
+    public bool IsGameOver() => _blueKing.IsPieceCaptured || _greenKing.IsPieceCaptured;
 
     
 
@@ -113,7 +113,7 @@ public class ChessBoard
     /// </summary>
     public PieceColor GetActivePlayer() => _moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
 
-    public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target)
+    public void MovePieceOnBoard(IPiece? heroPiece, (int row, int col) target)
     {
         IPiece? enemyPiece = GetPiece(target);
         if (enemyPiece != null)
@@ -123,7 +123,7 @@ public class ChessBoard
         }
         SetPiece(target, heroPiece);
         AddMove(heroPiece, target);
-        ClearPiece(heroPiece.Position);
+        if (heroPiece != null) ClearPiece(heroPiece.Position);
     }
 
     /// <summary>
@@ -150,15 +150,17 @@ public class ChessBoard
     /// Given a list of positions, displays them as possible moves
     /// on the screen.
     /// </summary>
-    internal void DisplayPossibleMoves(List<(int, int)> moves)
+    internal void DisplayPossibleMoves(List<(int, int)>? moves)
     {
         (int left, int top) = Console.GetCursorPosition();
         Console.ForegroundColor = ConsoleColor.Red;
-        foreach ((int row, int col) in moves)
-        {
-            Console.SetCursorPosition(col*8, (row*2)+3);
-            Console.Write("|  XX  |");
-        }
+        if (moves != null)
+            foreach ((int row, int col) in moves)
+            {
+                Console.SetCursorPosition(col * 8, (row * 2) + 3);
+                Console.Write("|  XX  |");
+            }
+
         Console.ResetColor();
         Console.SetCursorPosition(left, top);
     }
@@ -193,7 +195,7 @@ public class ChessBoard
     {
         Console.WriteLine("-------------------------------------------------------------------------");
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", _pieces.Values.Where(p => p.IsPieceCaptured()).Select(p => p.Symbol))}");
+        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", _pieces.Values.Where(p => p.IsPieceCaptured).Select(p => p.Symbol))}");
         Console.ResetColor();
         Console.WriteLine("-------------------------------------------------------------------------");
     }

@@ -9,10 +9,10 @@ public class RookPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
-        if (!Utils.IsOrthogonal(_pieceAttributes.Position, target))
+        if (!Utils.IsOrthogonal(PieceAttributes.Position, target))
         {
             return false;
         }
-        return chessBoard.IsPathClear(_pieceAttributes.Position, target);
+        return chessBoard.IsPathClear(PieceAttributes.Position, target);
     }
 }

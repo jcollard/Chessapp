@@ -4,14 +4,15 @@ namespace Chessapp.Piece;
 
 public abstract class AbstractPiece : IPiece
 {
-
     // I suspect the below should be a value object
-    private bool _isCaptured; // this is actually public
-    protected PieceAttributes _pieceAttributes;
 
-    public AbstractPiece(string symbol, PieceColor color, (int, int) position)
+
+    protected readonly PieceAttributes PieceAttributes;
+    public bool IsPieceCaptured => PieceAttributes.IsCaptured; // this is actually public
+
+    protected AbstractPiece(string symbol, PieceColor color, (int, int) position)
     {
-        _pieceAttributes = new PieceAttributes(
+        PieceAttributes = new PieceAttributes(
             false, 
             false, 
             symbol, 
@@ -19,23 +20,30 @@ public abstract class AbstractPiece : IPiece
             position);
     }
 
-    public PieceColor Color => _pieceAttributes.Color;
+    protected abstract bool SubLogic((int row, int col) targetPos, ChessBoard chessBoard);
+
+    public PieceColor Color => PieceAttributes.Color;
+
+    public (int row, int col) Position => PieceAttributes.Position;
+
+    public string Symbol => PieceAttributes.Symbol;
+
+    /// <inheritdoc/>
+    private bool IsEnemyPiece(IPiece other) => other.Color != PieceAttributes.Color;
 
     /// <inheritdoc/>
     public bool AssignPositionAndMoved((int row, int col) target)
     {
-        _pieceAttributes.Position = target;
-        _pieceAttributes.HasMoved = true;
+        PieceAttributes.Position = target;
+        PieceAttributes.HasMoved = true;
         return true;
     }
 
-    public (int row, int col) Position => _pieceAttributes.Position;
-
     /// <param name="chessBoard"></param>
     /// <inheritdoc/>
-    public List<(int, int)> GetMoves(ChessBoard chessBoard)
+    public List<(int, int)>? GetMoves(ChessBoard chessBoard)
     {
-        List<(int, int)> moves = new ();
+        List<(int, int)>? moves = new ();
         for (int row = 0; row < 8; row++)
         {
             for (int col = 0; col < 8; col++)
@@ -53,7 +61,7 @@ public abstract class AbstractPiece : IPiece
     public bool AllowableMove((int row, int col) target, ChessBoard chessBoard)
     {
         // Pieces cannot move onto themselves
-        if (_pieceAttributes.Position == target)
+        if (PieceAttributes.Position == target)
         {
             return false;
         }
@@ -65,25 +73,8 @@ public abstract class AbstractPiece : IPiece
         return SubLogic(target, chessBoard);
     }
 
-    public string Symbol => _pieceAttributes.Symbol;
-
-    /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != _pieceAttributes.Color;
-
-    /// <summary>
-    /// Given a target position, checks the piece specific logic for moving this 
-    /// piece to that position on the board. If the piece can move there,
-    /// returns true and otherwise returns false.
-    /// </summary>
-    protected abstract bool SubLogic((int row, int col) targetPos, ChessBoard chessBoard);
-
-    public bool IsPieceCaptured()
-    {
-        return _isCaptured;
-    }
-
     public void CapturePiece()
     {
-        _isCaptured = true;
+        PieceAttributes.IsCaptured = true;
     }
 }

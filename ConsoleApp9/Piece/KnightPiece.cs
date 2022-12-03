@@ -9,8 +9,8 @@ public class KnightPiece : AbstractPiece
 
     protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
-        int rowDist = Math.Abs(_pieceAttributes.Position.row - target.row);
-        int colDist = Math.Abs(_pieceAttributes.Position.col - target.col);
+        int rowDist = Math.Abs(PieceAttributes.Position.row - target.row);
+        int colDist = Math.Abs(PieceAttributes.Position.col - target.col);
         return (rowDist == 1 || colDist == 1) &&
                rowDist + colDist == 3;
     }

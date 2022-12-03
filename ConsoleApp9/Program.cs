@@ -15,15 +15,15 @@ public class Program
             Utils.TryClear();
             ChessBoard.PrintBoard();
 
-            IPiece piece = PieceSelect();
+            IPiece? piece = PieceSelect();
             if (!TryTileSelect(piece, out (int, int) targetPos))
             {
                 continue;
             }
 
-            if (!piece.AllowableMove(targetPos, ChessBoard)) continue;
+            if (piece != null && !piece.AllowableMove(targetPos, ChessBoard)) continue;
             ChessBoard.MovePieceOnBoard(piece, targetPos);
-            piece.AssignPositionAndMoved(targetPos);
+            piece?.AssignPositionAndMoved(targetPos);
         }
 
         Utils.TryClear();
@@ -44,7 +44,7 @@ public class Program
     /// <summary>
     /// Prompts the user to select a piece to move. Returns the selected piece and the row / col of that piece.
     /// </summary>
-    private static IPiece PieceSelect()
+    private static IPiece? PieceSelect()
     {
         while (true)
         {
@@ -53,7 +53,7 @@ public class Program
             ChessBoard.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            var piece = ChessBoard.TryGetPiece(select); 
+            IPiece? piece = ChessBoard.TryGetPiece(select); 
 
             if (piece == null)
             {
@@ -69,7 +69,7 @@ public class Program
                 continue;
             }
 
-            if (piece.IsPieceCaptured())
+            if (piece.IsPieceCaptured)
             {
                 DisplayError("That piece has already been captured.");
                 continue;
@@ -111,17 +111,17 @@ public class Program
     /// "BACK". If the user types back, this method return false. Otherwise,
     /// it returns true and the target parameter is set to the users choice.
     /// </summary>
-    private static bool TryTileSelect(IPiece piece, out (int row, int col) target)
+    private static bool TryTileSelect(IPiece? piece, out (int row, int col) target)
     {
         while (true)
         {
-            List<(int, int)> moves = piece.GetMoves(ChessBoard);
+            List<(int, int)>? moves = piece?.GetMoves(ChessBoard);
             ChessBoard.DisplayPossibleMoves(moves);
             Thread.Sleep(Program.Delay);
             Utils.TryClear();
             ChessBoard.PrintBoard();
 
-            Console.WriteLine($"Selected Piece: {piece.Symbol}");
+            Console.WriteLine($"Selected Piece: {piece?.Symbol}");
             if (!TryGetTile(out target))
             {
                 return false;

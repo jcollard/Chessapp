@@ -15,11 +15,11 @@ public class BishopPiece : AbstractPiece
     /// </summary>
     protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
-        if (!Utils.IsDiagonal(_pieceAttributes.Position, target))
+        if (!Utils.IsDiagonal(PieceAttributes.Position, target))
         {
             return false;
         }
-        return chessBoard.IsPathClear(_pieceAttributes.Position, target);
+        return chessBoard.IsPathClear(PieceAttributes.Position, target);
     }
 
 }

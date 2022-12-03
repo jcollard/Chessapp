@@ -1,14 +1,14 @@
 using Chessapp;
 
 namespace Chess;
-public interface IPiece : ICaptured
+public interface IPiece
 {
     /// <summary>
     /// Given a position on the board, returns a list of possible moves
     /// that can be made by this IPiece.
     /// </summary>
     /// <param name="chessBoard"></param>
-    public List<(int, int)> GetMoves(ChessBoard chessBoard);
+    public List<(int, int)>? GetMoves(ChessBoard chessBoard);
 
     /// <summary>
     /// Given a starting position and a target position, returns true if the
@@ -37,4 +37,6 @@ public interface IPiece : ICaptured
     /// </summary>
     public (int row, int col) Position { get; }
 
+    bool IsPieceCaptured { get; }
+    void CapturePiece();
 }
