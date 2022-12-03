@@ -8,15 +8,15 @@ public abstract class AbstractPiece : IPiece
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
     public (int row, int col) Position { get; private set; }
-    protected readonly GameState _gameState;
+    protected readonly ChessBoard ChessBoard;
 
-    public AbstractPiece(string symbol, PieceColor color, (int, int) position, GameState gameState)
+    public AbstractPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard)
     {
         this.Symbol = symbol;
         this.Color = color;
         this.Position = position;
-        this._gameState = gameState;
-        this._gameState.SetPiece(position, this);
+        this.ChessBoard = chessBoard;
+        this.ChessBoard.SetPiece(position, this);
     }
 
     /// <inheritdoc/>
@@ -24,16 +24,16 @@ public abstract class AbstractPiece : IPiece
     {
         if (this.Logic(target))
         {
-            IPiece? other = this._gameState.GetPiece(target);
+            IPiece? other = this.ChessBoard.GetPiece(target);
             if (other != null)
             {
                 other.IsCaptured = true;
             }
-            this._gameState.ClearPiece(this.Position);
-            this._gameState.SetPiece(target, this);
+            this.ChessBoard.ClearPiece(this.Position);
+            this.ChessBoard.SetPiece(target, this);
             this.Position = target;
             HasMoved = true;
-            this._gameState.AddMove(this, target);
+            this.ChessBoard.AddMove(this, target);
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public abstract class AbstractPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this._gameState.IsEmpty(target) && !this.IsEnemyPiece(this._gameState.GetPiece(target)!))
+        if(!this.ChessBoard.IsEmpty(target) && !this.IsEnemyPiece(this.ChessBoard.GetPiece(target)!))
         {
             return false;
         }

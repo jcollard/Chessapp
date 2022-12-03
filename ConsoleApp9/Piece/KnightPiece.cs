@@ -2,7 +2,7 @@ namespace Chess;
 
 public class KnightPiece : AbstractPiece
 {
-    public KnightPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
+    public KnightPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position, chessBoard) { }
 
     protected override bool SubLogic((int row, int col) target)
     {

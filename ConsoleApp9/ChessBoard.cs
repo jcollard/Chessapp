@@ -1,6 +1,6 @@
 namespace Chess;
 
-public class GameState
+public class ChessBoard
 {
     private readonly Dictionary<string, IPiece> pieces = new();
     private readonly IPiece?[,] board = new IPiece?[8, 8];
@@ -10,7 +10,7 @@ public class GameState
     /// <summary>
     /// Constructs a GameState in a traditional chess layout.
     /// </summary>
-    public GameState()
+    public ChessBoard()
     {
         for (int i = 1; i <= 8; i++)
         {

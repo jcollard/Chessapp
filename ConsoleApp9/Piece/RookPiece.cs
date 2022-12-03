@@ -2,7 +2,7 @@ namespace Chess;
 
 public class RookPiece : AbstractPiece
 {
-    public RookPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
+    public RookPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position, chessBoard) { }
 
     protected override bool SubLogic((int row, int col) target)
     {
@@ -10,6 +10,6 @@ public class RookPiece : AbstractPiece
         {
             return false;
         }
-        return this._gameState.IsPathClear(this.Position, target);
+        return this.ChessBoard.IsPathClear(this.Position, target);
     }
 }

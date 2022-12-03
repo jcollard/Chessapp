@@ -4,14 +4,14 @@ public class Program
     public const int DELAY = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-    private readonly static GameState gameState = new GameState();
+    private readonly static ChessBoard ChessBoard = new ChessBoard();
 
     static void Main(string[] args)
     {
-        while (!gameState.IsGameOver())
+        while (!ChessBoard.IsGameOver())
         {
             Utils.TryClear();
-            gameState.PrintBoard();
+            ChessBoard.PrintBoard();
 
             IPiece piece = PieceSelect();
             if (!TryTileSelect(piece, out (int, int) targetPos))
@@ -23,8 +23,8 @@ public class Program
         }
 
         Utils.TryClear();
-        gameState.PrintBoard();
-        PieceColor winner = gameState.GetActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
+        ChessBoard.PrintBoard();
+        PieceColor winner = ChessBoard.GetActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
         Console.WriteLine($"{winner} is the winner!");
     }
 
@@ -46,10 +46,10 @@ public class Program
         {
 
             Utils.TryClear();
-            gameState.PrintBoard();
+            ChessBoard.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            bool isValidPiece = gameState.TryGetPiece(select, out IPiece piece);
+            bool isValidPiece = ChessBoard.TryGetPiece(select, out IPiece piece);
 
             if (!isValidPiece)
             {
@@ -57,7 +57,7 @@ public class Program
                 continue;
             }
 
-            PieceColor player = gameState.GetActivePlayer();
+            PieceColor player = ChessBoard.GetActivePlayer();
             if (player != piece.Color)
             {
                 string casing = player == PieceColor.Blue ? "lowercase" : "capital";
@@ -112,10 +112,10 @@ public class Program
         while (true)
         {
             List<(int, int)> moves = piece.GetMoves();
-            gameState.DisplayPossibleMoves(moves);
+            ChessBoard.DisplayPossibleMoves(moves);
             Thread.Sleep(Program.DELAY);
             Utils.TryClear();
-            gameState.PrintBoard();
+            ChessBoard.PrintBoard();
 
             Console.WriteLine($"Selected Piece: {piece.Symbol}");
             if (!TryGetTile(out target))
