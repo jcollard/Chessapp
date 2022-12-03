@@ -5,27 +5,31 @@ namespace Chessapp.Piece;
 public abstract class AbstractPiece : IPiece
 {
 
-    private bool _isCaptured;
-    public bool HasMoved { get; private set; }
-    public string Symbol { get; }
-    public PieceColor Color { get; }
-    public (int row, int col) Position { get; private set; }
+    // I suspect the below should be a value object
+    private bool _isCaptured; // this is actually public
+    protected PieceAttributes _pieceAttributes;
 
     public AbstractPiece(string symbol, PieceColor color, (int, int) position)
     {
-        Symbol = symbol;
-        Color = color;
-        Position = position;
-        // ChessBoard.SetPiece(position, this);
+        _pieceAttributes = new PieceAttributes(
+            false, 
+            false, 
+            symbol, 
+            color, 
+            position);
     }
+
+    public PieceColor Color => _pieceAttributes.Color;
 
     /// <inheritdoc/>
     public bool AssignPositionAndMoved((int row, int col) target)
     {
-        Position = target;
-        HasMoved = true;
+        _pieceAttributes.Position = target;
+        _pieceAttributes.HasMoved = true;
         return true;
     }
+
+    public (int row, int col) Position => _pieceAttributes.Position;
 
     /// <param name="chessBoard"></param>
     /// <inheritdoc/>
@@ -49,7 +53,7 @@ public abstract class AbstractPiece : IPiece
     public bool AllowableMove((int row, int col) target, ChessBoard chessBoard)
     {
         // Pieces cannot move onto themselves
-        if (Position == target)
+        if (_pieceAttributes.Position == target)
         {
             return false;
         }
@@ -60,9 +64,11 @@ public abstract class AbstractPiece : IPiece
         }
         return SubLogic(target, chessBoard);
     }
-    
+
+    public string Symbol => _pieceAttributes.Symbol;
+
     /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != Color;
+    private bool IsEnemyPiece(IPiece other) => other.Color != _pieceAttributes.Color;
 
     /// <summary>
     /// Given a target position, checks the piece specific logic for moving this 

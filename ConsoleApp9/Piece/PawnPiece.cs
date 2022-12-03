@@ -8,11 +8,11 @@ public class PawnPiece : AbstractPiece
     public PawnPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
     protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
-        int rowInc = Color == PieceColor.Blue ? 1 : -1;
-        int targetRow = Position.row + rowInc;
-        int firstTurnTargetRow = Position.row + 2*rowInc;
-        int[] targetCols = {Position.col - 1, Position.col + 1};
-        bool isAttack = Position.col - target.col != 0;
+        int rowInc = _pieceAttributes.Color == PieceColor.Blue ? 1 : -1;
+        int targetRow = _pieceAttributes.Position.row + rowInc;
+        int firstTurnTargetRow = _pieceAttributes.Position.row + 2*rowInc;
+        int[] targetCols = {_pieceAttributes.Position.col - 1, Position.col + 1};
+        bool isAttack = _pieceAttributes.Position.col - target.col != 0;
 
         // Always, pawn may move forward 1 if space is empty
         if (target.row == targetRow && !isAttack && chessBoard.IsEmpty(target))
@@ -21,10 +21,10 @@ public class PawnPiece : AbstractPiece
         }
 
         // On first turn, pawn may move forward 2 spaces if empty
-        if (!HasMoved && 
+        if (!_pieceAttributes.HasMoved && 
             target.row == firstTurnTargetRow && 
             !isAttack && chessBoard.IsEmpty(target) && 
-            chessBoard.IsPathClear(Position, target))
+            chessBoard.IsPathClear(_pieceAttributes.Position, target))
         {
             return true;
         }
