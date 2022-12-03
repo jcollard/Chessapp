@@ -1,3 +1,10 @@
+CodeItQuick:
+
+Refactored it until I got tired. Might do a couple more days, not sure, learning some as I go and have to
+identify the "smell" that exists and how to "fix" it. Mostly trying to get things encapsulated/private on the
+classes, and assigning responsibilities to the objects they belong too.
+
+
 # Chessapp
 - My attempt at writing a console chess app on my own. The code is really messy and no one should look at it but if you want to try playing it and see where it breaks that'd help me :) I cant find where it would break yet
 
