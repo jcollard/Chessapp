@@ -105,19 +105,6 @@ public class ChessBoard
     }
 
     /// <summary>
-    /// Given a symbol name for a piece, returns the associated IPiece.
-    /// If no such piece is on the board, throw an ArgumentException.
-    /// </summary>
-    public IPiece GetPiece(string symbol)
-    {
-        if (pieces.TryGetValue(symbol, out IPiece? value))
-        {
-            return value;
-        }
-        throw new ArgumentException($"The symbol {symbol} is not a valid piece on this board.");
-    }
-
-    /// <summary>
     /// Checks if the game has ended and returns true if it has.
     /// </summary>
     public bool IsGameOver() => blueKing.IsPieceCaptured() || greenKing.IsPieceCaptured();
