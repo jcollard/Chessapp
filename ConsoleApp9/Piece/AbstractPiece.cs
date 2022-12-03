@@ -1,9 +1,11 @@
-namespace Chess;
+using Chess;
+
+namespace Chessapp.Piece;
 
 public abstract class AbstractPiece : IPiece
 {
 
-    private bool _isCaptured = false;
+    private bool _isCaptured;
     public bool HasMoved { get; private set; }
     public string Symbol { get; }
     public PieceColor Color { get; }

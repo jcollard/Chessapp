@@ -1,3 +1,5 @@
+using Chessapp.Piece;
+
 namespace Chess;
 
 public class KnightPiece : AbstractPiece
