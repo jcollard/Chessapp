@@ -16,7 +16,7 @@ public abstract class AbstractPiece : IPiece
         Color = color;
         Position = position;
         ChessBoard = chessBoard;
-        ChessBoard.SetPiece(position, this);
+        // ChessBoard.SetPiece(position, this);
     }
 
     /// <inheritdoc/>

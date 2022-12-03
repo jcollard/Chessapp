@@ -21,25 +21,25 @@ public class ChessBoard
             pieces["P" + i] = piece;
             board[6, i - 1] = piece;
         }
-        blueKing = pieces["k1"] = new KingPiece("k1", PieceColor.Blue, (0, 3), this);
-        greenKing = pieces["K1"] = new KingPiece("K1", PieceColor.Green, (7, 4), this);
-        pieces["q1"] = new QueenPiece("q1", PieceColor.Blue, (0, 4), this);
-        pieces["Q1"] = new QueenPiece("Q1", PieceColor.Green, (7, 3), this);
+        blueKing = pieces["k1"] = board[0, 3] = new KingPiece("k1", PieceColor.Blue, (0, 3), this);
+        greenKing = pieces["K1"] = board[7, 4] =  new KingPiece("K1", PieceColor.Green, (7, 4), this);
+        pieces["q1"] = board[0, 4] = new QueenPiece("q1", PieceColor.Blue, (0, 4), this);
+        pieces["Q1"] = board[7, 3] = new QueenPiece("Q1", PieceColor.Green, (7, 3), this);
 
-        pieces["n1"] = new KnightPiece("n1", PieceColor.Blue, (0, 1), this);
-        pieces["N1"] = new KnightPiece("N1", PieceColor.Green, (7, 1), this);
-        pieces["n2"] = new KnightPiece("n2", PieceColor.Blue, (0, 6), this);
-        pieces["N2"] = new KnightPiece("N2", PieceColor.Green, (7, 6), this);
+        pieces["n1"] = board[0, 1] = new KnightPiece("n1", PieceColor.Blue, (0, 1), this);
+        pieces["N1"] = board[7, 1] = new KnightPiece("N1", PieceColor.Green, (7, 1), this);
+        pieces["n2"] = board[0, 6] = new KnightPiece("n2", PieceColor.Blue, (0, 6), this);
+        pieces["N2"] = board[7, 6] =  new KnightPiece("N2", PieceColor.Green, (7, 6), this);
 
-        pieces["b1"] = new BishopPiece("b1", PieceColor.Blue, (0, 2), this);
-        pieces["B1"] = new BishopPiece("B1", PieceColor.Green, (7, 2), this);
-        pieces["b2"] = new BishopPiece("b2", PieceColor.Blue, (0, 5), this);
-        pieces["B2"] = new BishopPiece("B2", PieceColor.Green, (7, 5), this);
+        pieces["b1"] = board[0, 2] =  new BishopPiece("b1", PieceColor.Blue, (0, 2), this);
+        pieces["B1"] = board[7, 2] = new BishopPiece("B1", PieceColor.Green, (7, 2), this);
+        pieces["b2"] = board[0, 5] = new BishopPiece("b2", PieceColor.Blue, (0, 5), this);
+        pieces["B2"] = board[7, 5] = new BishopPiece("B2", PieceColor.Green, (7, 5), this);
 
-        pieces["r1"] = new RookPiece("r1", PieceColor.Blue, (0, 0), this);
-        pieces["R1"] = new RookPiece("R1", PieceColor.Green, (7, 0), this);
-        pieces["r2"] = new RookPiece("r2", PieceColor.Blue, (0, 7), this);
-        pieces["R2"] = new RookPiece("R2", PieceColor.Green, (7, 7), this);
+        pieces["r1"] = board[0, 0] = new RookPiece("r1", PieceColor.Blue, (0, 0), this);
+        pieces["R1"] = board[7, 0] = new RookPiece("R1", PieceColor.Green, (7, 0), this);
+        pieces["r2"] = board[0, 7] = new RookPiece("r2", PieceColor.Blue, (0, 7), this);
+        pieces["R2"] = board[7, 7] = new RookPiece("R2", PieceColor.Green, (7, 7), this);
     }
 
     internal void SetPiece((int row, int col) pos, IPiece piece) => board[pos.row, pos.col] = piece;
