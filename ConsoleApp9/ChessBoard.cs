@@ -76,11 +76,6 @@ public class ChessBoard
     /// position.
     /// </summary>
     public IPiece? GetPiece((int row, int col) pos) => board[pos.row, pos.col];
-    /// <summary>
-    /// Returns the piece at the specified position or null if no piece is at that
-    /// position.
-    /// </summary>
-    public ICaptured? RetrievePiece((int row, int col) pos) => board[pos.row, pos.col];
 
     /// <summary>
     /// Returns true if there is no piece at the specified position and false otherwise.
@@ -115,6 +110,17 @@ public class ChessBoard
     /// Returns the color of the active player
     /// </summary>
     public PieceColor GetActivePlayer() => moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
+
+    public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target, IPiece? enemyPiece)
+    {
+        if (enemyPiece != null)
+        {
+            enemyPiece.CapturePiece(true);
+            ClearPiece(enemyPiece.Position);
+        }
+        SetPiece(target, heroPiece);
+        AddMove(heroPiece, target);
+    }
 
     /// <summary>
     /// Prints the underlying board to the screen.
@@ -232,16 +238,5 @@ public class ChessBoard
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(row + 1);
         Console.ResetColor();
-    }
-
-    public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target, IPiece? enemyPiece)
-    {
-        if (enemyPiece != null)
-        {
-            enemyPiece.CapturePiece(true);
-            ClearPiece(enemyPiece.Position);
-        }
-        SetPiece(target, heroPiece);
-        AddMove(heroPiece, target);
     }
 }
