@@ -1,6 +1,6 @@
 namespace Chess;
 
-public class BishopPiece : IPiece
+public class BishopPiece : AbstractPiece
 {
     private bool _isCaptured = false;
     public bool HasMoved { get; private set; }
@@ -9,20 +9,8 @@ public class BishopPiece : IPiece
     public (int row, int col) Position { get; private set; }
     private readonly ChessBoard _chessBoard;
 
-    public BishopPiece(
-        string symbol, 
-        PieceColor color, 
-        (int, int) position, 
-        ChessBoard chessBoard)
-    {
-        
-        Symbol = symbol;
-        Color = color;
-        Position = position;
-        _chessBoard = chessBoard;
-        _chessBoard.SetPiece(position, this);
-    }
-
+    public BishopPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position, chessBoard) { }
+    
     /// <summary>
     /// Given a target position, checks the piece specific logic for moving this 
     /// piece to that position on the board. If the piece can move there,
