@@ -2,7 +2,7 @@ namespace Chess;
 public class PawnPiece : AbstractPiece
 {
 
-    public PawnPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position, chessBoard) { }
+    public PawnPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard) : base(symbol, color, position) { }
     protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
     {
         int rowInc = Color == PieceColor.Blue ? 1 : -1;

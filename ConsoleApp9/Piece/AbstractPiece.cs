@@ -5,17 +5,15 @@ public abstract class AbstractPiece : IPiece
 
     private bool _isCaptured = false;
     public bool HasMoved { get; private set; }
-    public string Symbol { get; private set; }
-    public PieceColor Color { get; private set; }
+    public string Symbol { get; }
+    public PieceColor Color { get; }
     public (int row, int col) Position { get; private set; }
-    protected readonly ChessBoard ChessBoard;
 
-    public AbstractPiece(string symbol, PieceColor color, (int, int) position, ChessBoard chessBoard)
+    public AbstractPiece(string symbol, PieceColor color, (int, int) position)
     {
         Symbol = symbol;
         Color = color;
         Position = position;
-        ChessBoard = chessBoard;
         // ChessBoard.SetPiece(position, this);
     }
 
