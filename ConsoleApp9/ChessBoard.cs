@@ -96,14 +96,8 @@ public class ChessBoard
     /// </summary>
     public IPiece? TryGetPiece(string symbol)
     {
-        foreach (var boardPiece in board)
-        {
-            if (boardPiece?.Symbol != symbol) continue;
-            
-            return boardPiece;
-        }
+        return board.Cast<IPiece?>().FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
         //FIXME: would it ever reach this?
-        return null;
     }
 
     /// <summary>
