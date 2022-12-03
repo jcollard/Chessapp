@@ -76,6 +76,11 @@ public class ChessBoard
     /// position.
     /// </summary>
     public IPiece? GetPiece((int row, int col) pos) => board[pos.row, pos.col];
+    /// <summary>
+    /// Returns the piece at the specified position or null if no piece is at that
+    /// position.
+    /// </summary>
+    public ICaptured? RetrievePiece((int row, int col) pos) => board[pos.row, pos.col];
 
     /// <summary>
     /// Returns true if there is no piece at the specified position and false otherwise.

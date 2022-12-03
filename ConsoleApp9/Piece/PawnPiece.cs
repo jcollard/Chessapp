@@ -57,21 +57,18 @@ public class PawnPiece : IPiece, ICaptured
     /// <inheritdoc/>
     public bool Move((int row, int col) target)
     {
-        if (this.Logic(target))
+        if (!this.Logic(target))
         {
-            IPiece? other = this.ChessBoard.GetPiece(target);
-            if (other != null)
-            {
-                other.IsCaptured = true;
-            }
-            this.ChessBoard.ClearPiece(this.Position);
-            this.ChessBoard.SetPiece(target, this);
-            this.Position = target;
-            HasMoved = true;
-            this.ChessBoard.AddMove(this, target);
-            return true;
+            return false;
         }
-        return false;
+        var other = this.ChessBoard.GetPiece(target);
+        other?.IsPieceCaptured(true);
+        this.ChessBoard.ClearPiece(this.Position);
+        this.ChessBoard.SetPiece(target, this);
+        this.Position = target;
+        HasMoved = true;
+        this.ChessBoard.AddMove(this, target);
+        return true;
     }
 
     /// <inheritdoc/>

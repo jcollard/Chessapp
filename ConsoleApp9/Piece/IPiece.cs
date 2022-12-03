@@ -1,5 +1,5 @@
 namespace Chess;
-public interface IPiece 
+public interface IPiece : ICaptured
 {
     /// <summary>
     /// Given a position on the board, returns a list of possible moves

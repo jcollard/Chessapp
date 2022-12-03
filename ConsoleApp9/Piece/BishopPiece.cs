@@ -93,4 +93,13 @@ public class BishopPiece : IPiece
     /// <inheritdoc/>
     private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
 
+    public bool IsPieceCaptured()
+    {
+        return IsCaptured;
+    }
+
+    public void IsPieceCaptured(bool isOnBoard)
+    {
+        IsCaptured = isOnBoard;
+    }
 }
