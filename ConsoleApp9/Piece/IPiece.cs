@@ -33,7 +33,7 @@ public interface IPiece : ICaptured
     /// Given a target position, attempts to move this piece
     /// on the board. If successful, returns true and false otherwise.
     /// </summary>
-    public bool Move(IPiece heroPiece, (int row, int col) target, ChessBoard chessBoard);
+    public bool Move(IPiece heroPiece, (int row, int col) target);
 
     /// <summary>
     /// The position of this IPiece on the board.

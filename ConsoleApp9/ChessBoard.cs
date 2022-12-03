@@ -247,4 +247,14 @@ public class ChessBoard
         Console.ResetColor();
     }
 
+    public void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target, IPiece? enemyPiece)
+    {
+        if (enemyPiece != null)
+        {
+            enemyPiece.CapturePiece(true);
+            ClearPiece(enemyPiece.Position);
+        }
+        SetPiece(target, heroPiece);
+        AddMove(heroPiece, target);
+    }
 }

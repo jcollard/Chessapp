@@ -20,25 +20,14 @@ public abstract class AbstractPiece : IPiece, ICaptured
     }
 
     /// <inheritdoc/>
-    public bool Move(IPiece heroPiece, (int row, int col) target, ChessBoard chessBoard)
+    public bool Move(IPiece heroPiece, (int row, int col) target)
     {
         if (!heroPiece.AllowableMove(target)) return false;
-        IPiece? enemyPiece = chessBoard.GetPiece(target);
-        MovePieceOnBoard(heroPiece, target, chessBoard, enemyPiece);
+        IPiece? enemyPiece = ChessBoard.GetPiece(target);
+        ChessBoard.MovePieceOnBoard(heroPiece, target, enemyPiece);
         Position = target;
         HasMoved = true;
         return true;
-    }
-
-    private static void MovePieceOnBoard(IPiece heroPiece, (int row, int col) target, ChessBoard chessBoard, IPiece? enemyPiece)
-    {
-        if (enemyPiece != null)
-        {
-            enemyPiece.CapturePiece(true);
-            chessBoard.ClearPiece(enemyPiece.Position);
-        }
-        chessBoard.SetPiece(target, heroPiece);
-        chessBoard.AddMove(heroPiece, target);
     }
 
     /// <inheritdoc/>

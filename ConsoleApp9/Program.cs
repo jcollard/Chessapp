@@ -19,7 +19,7 @@ public class Program
                 continue;
             }
 
-            piece.Move(piece, targetPos, ChessBoard);
+            piece.Move(piece, targetPos);
         }
 
         Utils.TryClear();

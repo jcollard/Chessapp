@@ -7,7 +7,7 @@ public class BishopPiece : IPiece
     public string Symbol { get; private set; }
     public PieceColor Color { get; private set; }
     public (int row, int col) Position { get; private set; }
-    protected readonly ChessBoard ChessBoard;
+    private readonly ChessBoard _chessBoard;
 
     public BishopPiece(
         string symbol, 
@@ -19,8 +19,8 @@ public class BishopPiece : IPiece
         this.Symbol = symbol;
         this.Color = color;
         this.Position = position;
-        this.ChessBoard = chessBoard;
-        this.ChessBoard.SetPiece(position, this);
+        this._chessBoard = chessBoard;
+        this._chessBoard.SetPiece(position, this);
     }
 
     /// <summary>
@@ -34,24 +34,24 @@ public class BishopPiece : IPiece
         {
             return false;
         }
-        return this.ChessBoard.IsPathClear(this.Position, target);
+        return this._chessBoard.IsPathClear(this.Position, target);
     }
     
     /// <inheritdoc/>
-    public bool Move(IPiece heroPiece, (int row, int col) target, ChessBoard chessBoard)
+    public bool Move(IPiece heroPiece, (int row, int col) target)
     {
         if (this.AllowableMove(target))
         {
-            IPiece? other = this.ChessBoard.GetPiece(target);
+            IPiece? other = this._chessBoard.GetPiece(target);
             if (other != null)
             {
                 other.CapturePiece(true);
             }
-            this.ChessBoard.ClearPiece(this.Position);
-            this.ChessBoard.SetPiece(target, this);
+            this._chessBoard.ClearPiece(this.Position);
+            this._chessBoard.SetPiece(target, this);
             this.Position = target;
             HasMoved = true;
-            this.ChessBoard.AddMove(this, target);
+            this._chessBoard.AddMove(this, target);
             return true;
         }
         return false;
@@ -83,7 +83,7 @@ public class BishopPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this.ChessBoard.IsEmpty(target) && !this.IsEnemyPiece(this.ChessBoard.GetPiece(target)!))
+        if(!this._chessBoard.IsEmpty(target) && !this.IsEnemyPiece(this._chessBoard.GetPiece(target)!))
         {
             return false;
         }
