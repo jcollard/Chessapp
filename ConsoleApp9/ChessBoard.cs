@@ -131,6 +131,11 @@ public class ChessBoard
     public void MovePieceOnBoard(IPiece? heroPiece, (int row, int col) target)
     {
         IPiece? enemyPiece = GetPiece(target);
+        
+        if (heroPiece != null && !heroPiece.AllowableMove(target, this))
+        {
+            return;
+        }
         if (enemyPiece != null)
         {
             enemyPiece.CapturePiece();
