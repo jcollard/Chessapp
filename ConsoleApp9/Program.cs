@@ -21,7 +21,7 @@ public class Program
                 continue;
             }
 
-            if (piece != null && !piece.AllowableMove(targetPos, ChessBoard)) continue;
+            if (piece == null && !piece.AllowableMove(targetPos, ChessBoard)) continue;
             ChessBoard.MovePieceOnBoard(piece, targetPos);
             piece?.AssignPositionAndMoved(targetPos);
         }
@@ -38,7 +38,6 @@ public class Program
     private static void DisplayError(string message)
     {
         Console.WriteLine(message);
-        Thread.Sleep(Delay);
     }
 
     /// <summary>
@@ -61,22 +60,19 @@ public class Program
             }
             catch (Exception ex)
             {
-                if (ex.Message.Equals("Wrong players piece"))
-                {
-                    DisplayError($"It's {ChessBoard.ActivePlayer()}'s turn, Select piece again. {ChessBoard.ActivePlayer()} uses {(ChessBoard.ActivePlayer() == PieceColor.Blue ? "lowercase" : "capital")} letters.");
-                    return null;
-                }
                 if (ex.Message.Equals("Not a valid piece"))
                 {
                     DisplayError("Piece does not exist.");
                     return null;
                 }
+
                 if (ex.Message.Equals("Piece is captured"))
                 {
                     DisplayError("That piece has already been captured.");
                     return null;
                 }
 
+                DisplayError(ex.Message);
                 return null;
             }
 

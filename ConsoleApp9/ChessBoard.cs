@@ -116,7 +116,7 @@ public class ChessBoard
         var selectedPiece = _pieces.Values.FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
         if (selectedPiece == null)
         {
-            throw new Exception("Not a valid piece");
+            throw new Exception($"It's {activePlayerColor}'s turn, Select piece again. {activePlayerColor} uses {(activePlayerColor == PieceColor.Blue ? "lowercase" : "capital")} letters.");
         }
         if (activePlayerColor != selectedPiece.Color)
         {
