@@ -116,15 +116,15 @@ public class ChessBoard
         var selectedPiece = _pieces.Values.FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
         if (selectedPiece == null)
         {
-            throw new Exception($"It's {activePlayerColor}'s turn, Select piece again. {activePlayerColor} uses {(activePlayerColor == PieceColor.Blue ? "lowercase" : "capital")} letters.");
+            throw new Exception("Not a valid piece.");
         }
         if (activePlayerColor != selectedPiece.Color)
         {
-            throw new Exception("Wrong players piece");
+            throw new Exception($"It's {activePlayerColor}'s turn, Select piece again. {activePlayerColor} uses {(activePlayerColor == PieceColor.Blue ? "lowercase" : "capital")} letters.");
         }
         if (selectedPiece.IsPieceCaptured)
         {
-            throw new Exception("Piece is captured");
+            throw new Exception("That piece has already been captured.");
         }
 
         return selectedPiece;

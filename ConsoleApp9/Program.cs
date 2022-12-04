@@ -52,31 +52,16 @@ public class Program
             ChessBoard.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            IPiece? piece = null;
             try
             {
-                piece = ChessBoard.TryGetPiece(select);
+                return ChessBoard.TryGetPiece(select);
 
             }
             catch (Exception ex)
             {
-                if (ex.Message.Equals("Not a valid piece"))
-                {
-                    DisplayError("Piece does not exist.");
-                    return null;
-                }
-
-                if (ex.Message.Equals("Piece is captured"))
-                {
-                    DisplayError("That piece has already been captured.");
-                    return null;
-                }
-
                 DisplayError(ex.Message);
                 return null;
             }
-
-            return piece;
         }
     }
  
