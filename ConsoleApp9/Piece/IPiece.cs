@@ -35,8 +35,8 @@ public interface IPiece
     /// <summary>
     /// The position of this IPiece on the board.
     /// </summary>
-    public (int row, int col) Position { get; }
+    public (int row, int col) Position { get; set; }
 
-    bool IsPieceCaptured { get; }
+    bool IsPieceCaptured { get; set; }
     void CapturePiece();
 }

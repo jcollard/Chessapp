@@ -4,11 +4,24 @@ namespace Chessapp.Piece;
 
 public abstract class AbstractPiece : IPiece
 {
-    // I suspect the below should be a value object
-
 
     protected readonly PieceAttributes PieceAttributes;
-    public bool IsPieceCaptured => PieceAttributes.IsCaptured; // this is actually public
+
+    public bool IsPieceCaptured
+    {
+        get => PieceAttributes.IsCaptured;
+        set => PieceAttributes.IsCaptured = value;
+    }
+
+    public (int row, int col) Position
+    {
+        get => PieceAttributes.Position;
+        set => PieceAttributes.Position = value;
+    }
+
+    public PieceColor Color => PieceAttributes.Color;
+    public string Symbol => PieceAttributes.Symbol;
+
 
     protected AbstractPiece(string symbol, PieceColor color, (int, int) position)
     {
@@ -21,12 +34,6 @@ public abstract class AbstractPiece : IPiece
     }
 
     protected abstract bool SubLogic((int row, int col) targetPos, ChessBoard chessBoard);
-
-    public PieceColor Color => PieceAttributes.Color;
-
-    public (int row, int col) Position => PieceAttributes.Position;
-
-    public string Symbol => PieceAttributes.Symbol;
 
     /// <inheritdoc/>
     private bool IsEnemyPiece(IPiece other) => other.Color != PieceAttributes.Color;
@@ -66,7 +73,9 @@ public abstract class AbstractPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!chessBoard.IsEmpty(target) && !IsEnemyPiece(chessBoard.GetPiece(target)!))
+        if(!chessBoard.IsEmpty(target) && 
+           chessBoard.GetPiece(target) != null && 
+           !IsEnemyPiece(chessBoard.GetPiece(target)))
         {
             return false;
         }

@@ -6,7 +6,7 @@ public class Program
     private const int Delay = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-    private static readonly ChessBoard ChessBoard = new();
+    private static ChessBoard ChessBoard = new();
 
     static void Main(string[] args)
     {
@@ -128,7 +128,7 @@ public class Program
             }
             // TODO(jcollard): I think this is not necessary 
             // if (target.row == -1 || target.col == -1 || !piece.Logic(target))
-            if (!piece.AllowableMove(target, ChessBoard))
+            if (piece != null && !piece.AllowableMove(target, ChessBoard))
             {
                 DisplayError("Invalid Move");
                 continue;
