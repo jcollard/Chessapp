@@ -112,8 +112,22 @@ public class ChessBoard
     /// </summary>
     public IPiece? TryGetPiece(string symbol)
     {
-        return _pieces.Values.FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
-        //FIXME: would it ever reach this?
+        var activePlayerColor = ActivePlayer();
+        var selectedPiece = _pieces.Values.FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);
+        if (selectedPiece == null)
+        {
+            throw new Exception("Not a valid piece");
+        }
+        if (activePlayerColor != selectedPiece.Color)
+        {
+            throw new Exception("Wrong players piece");
+        }
+        if (selectedPiece.IsPieceCaptured)
+        {
+            throw new Exception("Piece is captured");
+        }
+
+        return selectedPiece;
     }
 
     /// <summary>
@@ -161,5 +175,15 @@ public class ChessBoard
     internal void DisplayPossibleMoves(List<(int, int)>? moves)
     {
         _displayChessBoard.DisplayPossibleMoves(moves);
+    }
+
+    public string ActivePlayerCasing()
+    {
+        return ActivePlayer() == PieceColor.Blue ? "lowercase" : "capital";
+    }
+
+    public string TurnPhase()
+    {
+        return "piece select";
     }
 }

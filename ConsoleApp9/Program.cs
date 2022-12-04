@@ -53,26 +53,31 @@ public class Program
             ChessBoard.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
-            IPiece? piece = ChessBoard.TryGetPiece(select); 
-
-            if (piece == null)
+            IPiece? piece = null;
+            try
             {
-                DisplayError("Piece does not exist.");
-                continue;
+                piece = ChessBoard.TryGetPiece(select);
+
             }
-
-            PieceColor player = ChessBoard.ActivePlayer();
-            if (player != piece.Color)
+            catch (Exception ex)
             {
-                string casing = player == PieceColor.Blue ? "lowercase" : "capital";
-                DisplayError($"It's {player}'s turn, Select piece again. {player} uses {casing} letters.");
-                continue;
-            }
+                if (ex.Message.Equals("Wrong players piece"))
+                {
+                    DisplayError($"It's {ChessBoard.ActivePlayer()}'s turn, Select piece again. {ChessBoard.ActivePlayer()} uses {(ChessBoard.ActivePlayer() == PieceColor.Blue ? "lowercase" : "capital")} letters.");
+                    return null;
+                }
+                if (ex.Message.Equals("Not a valid piece"))
+                {
+                    DisplayError("Piece does not exist.");
+                    return null;
+                }
+                if (ex.Message.Equals("Piece is captured"))
+                {
+                    DisplayError("That piece has already been captured.");
+                    return null;
+                }
 
-            if (piece.IsPieceCaptured)
-            {
-                DisplayError("That piece has already been captured.");
-                continue;
+                return null;
             }
 
             return piece;
