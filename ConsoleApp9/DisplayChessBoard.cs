@@ -28,7 +28,7 @@ public class DisplayChessBoard
         Console.WriteLine();
 
         DisplayCapturedPieces();
-        DisplayPlayerTurn(_chessboard.GetActivePlayer());
+        DisplayPlayerTurn(_chessboard.ActivePlayer());
     }
 
     /// <summary>

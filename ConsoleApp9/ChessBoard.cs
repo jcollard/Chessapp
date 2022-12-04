@@ -126,7 +126,7 @@ public class ChessBoard
     /// <summary>
     /// Returns the color of the active player
     /// </summary>
-    public PieceColor GetActivePlayer() => _moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
+    public PieceColor ActivePlayer() => _moves.Count % 2 == 0 ? PieceColor.Blue : PieceColor.Green;
 
     public void MovePieceOnBoard(IPiece? heroPiece, (int row, int col) target)
     {

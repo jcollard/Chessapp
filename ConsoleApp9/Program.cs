@@ -28,7 +28,7 @@ public class Program
 
         Utils.TryClear();
         ChessBoard.PrintBoard();
-        PieceColor winner = ChessBoard.GetActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
+        PieceColor winner = ChessBoard.ActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
         Console.WriteLine($"{winner} is the winner!");
     }
 
@@ -61,7 +61,7 @@ public class Program
                 continue;
             }
 
-            PieceColor player = ChessBoard.GetActivePlayer();
+            PieceColor player = ChessBoard.ActivePlayer();
             if (player != piece.Color)
             {
                 string casing = player == PieceColor.Blue ? "lowercase" : "capital";
