@@ -15,7 +15,7 @@ public class PawnPiece : AbstractPiece
         bool isAttack = PieceAttributes.Position.col - target.col != 0;
 
         // Always, pawn may move forward 1 if space is empty
-        if (target.row == targetRow && !isAttack && chessBoard.IsEmpty(target))
+        if (target.row == targetRow && !isAttack && IsEmpty(chessBoardPieces, target))
         {
             return true;
         }
@@ -23,14 +23,14 @@ public class PawnPiece : AbstractPiece
         // On first turn, pawn may move forward 2 spaces if empty
         if (!PieceAttributes.HasMoved && 
             target.row == firstTurnTargetRow && 
-            !isAttack && chessBoard.IsEmpty(target) && 
-            Rules.IsPathClear(PieceAttributes.Position, target, chessBoard._pieces))
+            !isAttack && IsEmpty(chessBoardPieces, target) && 
+            Rules.IsPathClear(PieceAttributes.Position, target, chessBoardPieces))
         {
             return true;
         }
 
         // Can move diagonal 1 if an enemy is in that space
-        if (target.row == targetRow && targetCols.Contains(target.col) && !chessBoard.IsEmpty(target))
+        if (target.row == targetRow && targetCols.Contains(target.col) && !IsEmpty(chessBoardPieces, target))
         {
             return true;
         }
@@ -40,4 +40,13 @@ public class PawnPiece : AbstractPiece
         return false;
     }
 
+    /// <summary>
+    /// Returns true if there is no piece at the specified position and false otherwise.
+    /// </summary>
+    /// <param name="pieces"></param>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public bool IsEmpty(Dictionary<string, IPiece?> pieces, (int row, int col) pos) => pieces
+        .FirstOrDefault(x => 
+            x.Value != null && x.Value.Position.col == pos.col && x.Value.Position.row == pos.row).Value == null;
 }
