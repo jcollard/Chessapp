@@ -6,7 +6,7 @@ public class PawnPiece : AbstractPiece
 {
 
     public PawnPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
-    protected override bool SubLogic((int row, int col) target, Dictionary<string, IPiece?> chessBoardPieces)
+    protected override bool SubLogic((int row, int col) target, List<IPiece?> chessBoardPieces)
     {
         int rowInc = PieceAttributes.Color == PieceColor.Blue ? 1 : -1;
         int targetRow = PieceAttributes.Position.row + rowInc;
@@ -46,7 +46,7 @@ public class PawnPiece : AbstractPiece
     /// <param name="pieces"></param>
     /// <param name="pos"></param>
     /// <returns></returns>
-    public bool IsEmpty(Dictionary<string, IPiece?> pieces, (int row, int col) pos) => pieces
+    public bool IsEmpty(List<IPiece?> pieces, (int row, int col) pos) => pieces
         .FirstOrDefault(x => 
-            x.Value != null && x.Value.Position.col == pos.col && x.Value.Position.row == pos.row).Value == null;
+            x != null && x.Position.col == pos.col && x.Position.row == pos.row) == null;
 }

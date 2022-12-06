@@ -11,7 +11,7 @@ public class Rules
     public static bool IsPathClear(
         (int row, int col) start, 
         (int row, int col) target, 
-        Dictionary<string, IPiece?> pieces)
+        List<IPiece?> pieces)
     {
         if (!Rules.IsDiagonal(start, target) && !Rules.IsOrthogonal(start, target))
         {
@@ -28,9 +28,9 @@ public class Rules
             (int row, int col) pos = (row, col);
             var isEmpty = pieces
                 .FirstOrDefault(x => 
-                    x.Value != null && 
-                    x.Value.Position.col == pos.col && 
-                    x.Value.Position.row == pos.row).Value == null;
+                    x != null && 
+                    x.Position.col == pos.col && 
+                    x.Position.row == pos.row) == null;
             if (!isEmpty)
             {
                 return false;

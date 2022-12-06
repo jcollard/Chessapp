@@ -79,8 +79,8 @@ public class ChessBoardTests
     public void WhenAChessBoardIsCreatedThereAreThirtyTwoPiecesPlaced()
     {
         var chessboard = new ChessBoardController();
-        var piecesOnBoard = chessboard._pieces
-            .Where(x => x.Value != null);
+        var piecesOnBoard = chessboard.RetrieveAllPieces()
+            .Where(x => x != null);
         Assert.Equal(32, piecesOnBoard.Count());
     }
 

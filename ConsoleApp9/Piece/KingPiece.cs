@@ -8,7 +8,7 @@ public class KingPiece : AbstractPiece
 
     public KingPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    protected override bool SubLogic((int row, int col) target, Dictionary<string, IPiece?> chessBoardPieces)
+    protected override bool SubLogic((int row, int col) target, List<IPiece?> chessBoardPieces)
     {
         // TODO: Kings can castle if they have not moved yet
         int rowDist = Math.Abs(PieceAttributes.Position.row - target.row);

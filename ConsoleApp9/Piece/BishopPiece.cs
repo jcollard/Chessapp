@@ -13,9 +13,8 @@ public class BishopPiece : AbstractPiece
     /// piece to that position on the board. If the piece can move there,
     /// returns true and otherwise returns false.
     /// </summary>
-    protected override bool SubLogic(
-        (int row, int col) target,
-        Dictionary<string, IPiece?> chessBoardPieces)
+    protected override bool SubLogic((int row, int col) target,
+        List<IPiece?> chessBoardPieces)
     {
         if (!Rules.IsDiagonal(PieceAttributes.Position, target))
         {

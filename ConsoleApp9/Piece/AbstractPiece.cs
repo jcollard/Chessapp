@@ -33,7 +33,7 @@ public abstract class AbstractPiece : IPiece
             position);
     }
 
-    protected abstract bool SubLogic((int row, int col) targetPos, Dictionary<string, IPiece?> chessBoardPieces);
+    protected abstract bool SubLogic((int row, int col) targetPos, List<IPiece?> chessBoardPieces);
 
     /// <inheritdoc/>
     private bool IsEnemyPiece(IPiece other) => other.Color != PieceAttributes.Color;
@@ -79,7 +79,7 @@ public abstract class AbstractPiece : IPiece
         {
             return false;
         }
-        return SubLogic(target, chessBoardController._pieces);
+        return SubLogic(target, chessBoardController.RetrieveAllPieces());
     }
 
     public void CapturePiece()

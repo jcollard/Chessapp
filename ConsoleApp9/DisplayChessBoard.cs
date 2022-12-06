@@ -4,9 +4,9 @@ namespace Chessapp;
 
 public class DisplayChessBoard
 {
-    private readonly ChessBoardController _chessboard;
+    private readonly ChessBoard _chessboard;
 
-    public DisplayChessBoard(ChessBoardController chessboard)
+    public DisplayChessBoard(ChessBoard chessboard)
     {
         _chessboard = chessboard;
     }
@@ -14,7 +14,7 @@ public class DisplayChessBoard
     /// <summary>
     /// Prints the underlying board to the screen.
     /// </summary>
-    public void PrintBoard()
+    public void PrintBoard(PieceColor activePlayerColor, List<IPiece?> pieces)
     {
         Console.Clear();
         DisplayLegend();
@@ -22,13 +22,13 @@ public class DisplayChessBoard
 
         for (int row = 0; row < 8; row++)
         {
-            DisplayRow(row);
+            DisplayRow(row, pieces);
         }
         DisplayColumns();
         Console.WriteLine();
 
-        DisplayCapturedPieces();
-        DisplayPlayerTurn(_chessboard.ActivePlayer());
+        DisplayCapturedPieces(pieces);
+        DisplayPlayerTurn(activePlayerColor);
     }
 
     /// <summary>
@@ -77,11 +77,11 @@ public class DisplayChessBoard
     /// <summary>
     /// Displays a list of captured pieces.
     /// </summary>
-    private void DisplayCapturedPieces()
+    private void DisplayCapturedPieces(List<IPiece?> pieces)
     {
         Console.WriteLine("-------------------------------------------------------------------------");
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", _chessboard._pieces.Values.Where(p => p is { IsPieceCaptured: true }).Select(p => p?.Symbol))}");
+        Console.WriteLine($"List of Pieces Captured: {string.Join(", ", pieces.Where(p => p is { IsPieceCaptured: true }).Select(p => p?.Symbol))}");
         Console.ResetColor();
         Console.WriteLine("-------------------------------------------------------------------------");
     }
@@ -99,10 +99,10 @@ public class DisplayChessBoard
     /// <summary>
     /// Given a row and column, displays that cell on the screen.
     /// </summary>
-    private void DisplayCell(int row, int col)
+    private void DisplayCell(int row, int col, List<IPiece?> pieces)
     {
         string symbol = "  ";
-        var isPiecePresent = _chessboard._pieces.Values
+        var isPiecePresent = pieces
             .FirstOrDefault(x => x != null && x.Position.col == col && x.Position.row == row);
         if (isPiecePresent != null)
         {
@@ -116,11 +116,11 @@ public class DisplayChessBoard
     /// <summary>
     /// Given a row, displays that row on the screen
     /// </summary>
-    private void DisplayRow(int row)
+    private void DisplayRow(int row, List<IPiece?> pieces)
     {
         for (int col = 0; col < 8; col++)
         {
-            DisplayCell(row, col);
+            DisplayCell(row, col, pieces);
         }
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Yellow;
