@@ -13,7 +13,7 @@ public class ChessBoardTests
     public void GivenAChessBoardICanSelectAPiece()
     {
         var chessboard = new ChessBoard();
-        var pawnOnePlayerOne = chessboard.TryGetPiece("b1");
+        var pawnOnePlayerOne = chessboard.SelectChessPiece("b1");
         
         Assert.NotNull(pawnOnePlayerOne);
     }
@@ -54,7 +54,7 @@ public class ChessBoardTests
     {
         var chessboard = new ChessBoard();
 
-        Assert.Throws<Exception>(() => chessboard.TryGetPiece("P1"));
+        Assert.Throws<Exception>(() => chessboard.SelectChessPiece("P1"));
     }
 
     
@@ -63,20 +63,16 @@ public class ChessBoardTests
     {
         var chessboard = new ChessBoard();
 
-        Assert.Throws<Exception>(() => chessboard.TryGetPiece("P12"));
+        Assert.Throws<Exception>(() => chessboard.SelectChessPiece("P12"));
     }
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGameICannotSelectSquareWithACapturedPiece()
     {
         var chessboard = new ChessBoard();
 
-        var heroPiece = chessboard._pieces.First(x => x.Key.Equals("p1")).Value;
-        if (heroPiece != null)
-        {
-            heroPiece.IsPieceCaptured = true;
-        }
+        chessboard.PieceIsCaptured("p1");
         
-        Assert.Throws<Exception>(() => chessboard.TryGetPiece("p1"));
+        Assert.Throws<Exception>(() => chessboard.SelectChessPiece("p1"));
     }
 
     [Fact]
@@ -92,7 +88,7 @@ public class ChessBoardTests
     public void GivenAChessBoardWeCanMakeTheFirstMoveWithPawnOne()
     {
         var chessboard = new ChessBoard();
-        var pawnOne = chessboard.TryGetPiece("p1");
+        var pawnOne = chessboard.SelectChessPiece("p1");
         
         chessboard.MovePieceOnBoard(pawnOne, (3, 0));
         Assert.Equal((3, 0), pawnOne.Position);
@@ -102,9 +98,9 @@ public class ChessBoardTests
     public void GivenAChessBoardWeCanMakeTheSecondMoveAsPlayerTwoWithPawnOne()
     {
         var chessboard = new ChessBoard();
-        var pawnOnePlayerOne = chessboard.TryGetPiece("p1");
+        var pawnOnePlayerOne = chessboard.SelectChessPiece("p1");
         chessboard.MovePieceOnBoard(pawnOnePlayerOne, (3, 0));
-        var pawnOnePlayerTwo = chessboard.TryGetPiece("P2");
+        var pawnOnePlayerTwo = chessboard.SelectChessPiece("P2");
         chessboard.MovePieceOnBoard(pawnOnePlayerTwo, (5, 1));
         
         Assert.Equal((5, 1), pawnOnePlayerTwo.Position);
@@ -114,7 +110,7 @@ public class ChessBoardTests
     public void GivenAChessBoardCannotMakeInvalidMove()
     {
         var chessboard = new ChessBoard();
-        var pawnOnePlayerOne = chessboard.TryGetPiece("b1");
+        var pawnOnePlayerOne = chessboard.SelectChessPiece("b1");
         chessboard.MovePieceOnBoard(pawnOnePlayerOne, (3, 3));
         
         Assert.Equal((0, 2), pawnOnePlayerOne.Position);

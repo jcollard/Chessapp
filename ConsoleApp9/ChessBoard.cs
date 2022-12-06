@@ -60,6 +60,16 @@ public class ChessBoard
         }
     }
 
+    public void PieceIsCaptured(string symbol)
+    {
+        var chessPiece = _pieces.First(x => x.Key.Equals(symbol)).Value;
+        
+        if (chessPiece != null)
+        {
+            chessPiece.IsPieceCaptured = true;
+        }
+    }
+    
     /// <summary>
     /// Given a starting and target position that are orthogonal or diagonal to each
     /// other, returns true if no pieces are found between them and false otherwise.
@@ -78,7 +88,7 @@ public class ChessBoard
 
         while (row != target.row || col != target.col)
         {
-            if (!this.IsEmpty((row, col)))
+            if (!IsEmpty((row, col)))
             {
                 return false;
             }
@@ -88,7 +98,7 @@ public class ChessBoard
         return true;
     }
 
-    private void AddMove(IPiece? piece, (int, int) target) => this._moves.Add((piece, target)!);
+    private void AddMove(IPiece? piece, (int, int) target) => _moves.Add((piece, target)!);
 
     /// <summary>
     /// Returns the piece at the specified position or null if no piece is at that
@@ -110,7 +120,7 @@ public class ChessBoard
     /// exists in this GameState. If that piece exists, sets
     /// the value of piece and returns true. Otherwise, returns false.
     /// </summary>
-    public IPiece? TryGetPiece(string symbol)
+    public IPiece? SelectChessPiece(string symbol)
     {
         var activePlayerColor = ActivePlayer();
         var selectedPiece = _pieces.Values.FirstOrDefault(boardPiece => boardPiece?.Symbol == symbol);

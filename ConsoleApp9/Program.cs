@@ -33,14 +33,6 @@ public class Program
     }
 
     /// <summary>
-    /// Displays an error message to the user.
-    /// </summary>
-    private static void DisplayError(string message)
-    {
-        Console.WriteLine(message);
-    }
-
-    /// <summary>
     /// Prompts the user to select a piece to move. Returns the selected piece and the row / col of that piece.
     /// </summary>
     private static IPiece? PieceSelect()
@@ -54,12 +46,12 @@ public class Program
             string select = Utils.ReadLine();
             try
             {
-                return ChessBoard.TryGetPiece(select);
+                return ChessBoard.SelectChessPiece(select);
 
             }
             catch (Exception ex)
             {
-                DisplayError(ex.Message);
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -116,7 +108,7 @@ public class Program
             // if (target.row == -1 || target.col == -1 || !piece.Logic(target))
             if (piece != null && !piece.AllowableMove(target, ChessBoard))
             {
-                DisplayError("Invalid Move");
+                Console.WriteLine("Invalid Move");
                 continue;
             }
 
