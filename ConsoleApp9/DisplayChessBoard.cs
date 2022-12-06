@@ -4,9 +4,9 @@ namespace Chessapp;
 
 public class DisplayChessBoard
 {
-    private readonly ChessBoard _chessboard;
+    private readonly ChessBoardController _chessboard;
 
-    public DisplayChessBoard(ChessBoard chessboard)
+    public DisplayChessBoard(ChessBoardController chessboard)
     {
         _chessboard = chessboard;
     }

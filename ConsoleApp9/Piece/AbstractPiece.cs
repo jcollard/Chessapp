@@ -46,16 +46,16 @@ public abstract class AbstractPiece : IPiece
         return true;
     }
 
-    /// <param name="chessBoard"></param>
+    /// <param name="chessBoardController"></param>
     /// <inheritdoc/>
-    public List<(int, int)>? GetMoves(ChessBoard chessBoard)
+    public List<(int, int)>? GetMoves(ChessBoardController chessBoardController)
     {
         List<(int, int)>? moves = new ();
         for (int row = 0; row < 8; row++)
         {
             for (int col = 0; col < 8; col++)
             {
-                if (AllowableMove((row, col), chessBoard))
+                if (AllowableMove((row, col), chessBoardController))
                 {
                     moves.Add((row, col));
                 }
@@ -65,7 +65,7 @@ public abstract class AbstractPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool AllowableMove((int row, int col) target, ChessBoard chessBoard)
+    public bool AllowableMove((int row, int col) target, ChessBoardController chessBoardController)
     {
         // Pieces cannot move onto themselves
         if (PieceAttributes.Position == target)
@@ -73,13 +73,13 @@ public abstract class AbstractPiece : IPiece
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!chessBoard.IsEmpty(target) && 
-           chessBoard.RetrievePieceFrom(target) != null && 
-           !IsEnemyPiece(chessBoard.RetrievePieceFrom(target)))
+        if(!chessBoardController.IsEmpty(target) && 
+           chessBoardController.RetrievePieceFrom(target) != null && 
+           !IsEnemyPiece(chessBoardController.RetrievePieceFrom(target)))
         {
             return false;
         }
-        return SubLogic(target, chessBoard._pieces);
+        return SubLogic(target, chessBoardController._pieces);
     }
 
     public void CapturePiece()

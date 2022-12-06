@@ -6,14 +6,14 @@ public class Program
     private const int Delay = 0;
     private const string Rows = "12345678";
     private const string Columns = "ABCDEFGH";
-    private static readonly ChessBoard ChessBoard = new();
+    private static readonly ChessBoardController ChessBoardController = new();
 
     static void Main(string[] args)
     {
-        while (!ChessBoard.IsGameOver())
+        while (!ChessBoardController.IsGameOver())
         {
             Utils.TryClear();
-            ChessBoard.PrintBoard();
+            ChessBoardController.PrintBoard();
 
             IPiece? piece = PieceSelect();
             if (!TryTileSelect(piece, out (int, int) targetPos))
@@ -21,14 +21,14 @@ public class Program
                 continue;
             }
 
-            if (piece == null || !piece.AllowableMove(targetPos, ChessBoard)) continue;
-            ChessBoard.MovePieceOnBoard(piece, targetPos);
+            if (piece == null || !piece.AllowableMove(targetPos, ChessBoardController)) continue;
+            ChessBoardController.MovePieceOnBoard(piece, targetPos);
             piece?.AssignPositionAndMoved(targetPos);
         }
 
         Utils.TryClear();
-        ChessBoard.PrintBoard();
-        PieceColor winner = ChessBoard.ActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
+        ChessBoardController.PrintBoard();
+        PieceColor winner = ChessBoardController.ActivePlayer() == PieceColor.Blue ? PieceColor.Green : PieceColor.Blue;
         Console.WriteLine($"{winner} is the winner!");
     }
 
@@ -41,12 +41,12 @@ public class Program
         {
 
             Utils.TryClear();
-            ChessBoard.PrintBoard();
+            ChessBoardController.PrintBoard();
             Console.WriteLine("select piece to move");
             string select = Utils.ReadLine();
             try
             {
-                return ChessBoard.SelectChessPiece(select);
+                return ChessBoardController.SelectChessPiece(select);
 
             }
             catch (Exception ex)
@@ -93,11 +93,11 @@ public class Program
     {
         while (true)
         {
-            List<(int, int)>? moves = piece?.GetMoves(ChessBoard);
-            ChessBoard.DisplayPossibleMoves(moves);
+            List<(int, int)>? moves = piece?.GetMoves(ChessBoardController);
+            ChessBoardController.DisplayPossibleMoves(moves);
             Thread.Sleep(Program.Delay);
             Utils.TryClear();
-            ChessBoard.PrintBoard();
+            ChessBoardController.PrintBoard();
 
             Console.WriteLine($"Selected Piece: {piece?.Symbol}");
             if (!TryGetTile(out target))
@@ -106,7 +106,7 @@ public class Program
             }
             // TODO(jcollard): I think this is not necessary 
             // if (target.row == -1 || target.col == -1 || !piece.Logic(target))
-            if (piece != null && !piece.AllowableMove(target, ChessBoard))
+            if (piece != null && !piece.AllowableMove(target, ChessBoardController))
             {
                 Console.WriteLine("Invalid Move");
                 continue;

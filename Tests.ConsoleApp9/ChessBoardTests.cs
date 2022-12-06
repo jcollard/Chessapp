@@ -12,7 +12,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardICanSelectAPiece()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         var pawnOnePlayerOne = chessboard.SelectChessPiece("b1");
         
         Assert.NotNull(pawnOnePlayerOne);
@@ -20,7 +20,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGamePlayerBlueIsSelected()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         var pawnOnePlayerOne = chessboard.ActivePlayer();
         
         Assert.Equal(PieceColor.Blue, pawnOnePlayerOne);
@@ -28,7 +28,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGameOnTurnTwoPlayerGreenIsSelected()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
 
         IPiece? heroPiece = chessboard.RetrievePieceFrom((2, 0));
         chessboard.MovePieceOnBoard(heroPiece, (3, 0));
@@ -41,7 +41,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGameIKnowTheCasingOfSelectedPlayersPieces()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         
         var pawnOnePlayerOne = chessboard.ActivePlayerCasing();
         
@@ -52,7 +52,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGameICannotSelectTheWrongPiece()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
 
         Assert.Throws<Exception>(() => chessboard.SelectChessPiece("P1"));
     }
@@ -61,14 +61,14 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGameICannotSelectSquareWithNoPiece()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
 
         Assert.Throws<Exception>(() => chessboard.SelectChessPiece("P12"));
     }
     [Fact]
     public void GivenAChessBoardAtTheStartOfTheGameICannotSelectSquareWithACapturedPiece()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
 
         chessboard.PieceIsCaptured("p1");
         
@@ -78,7 +78,7 @@ public class ChessBoardTests
     [Fact]
     public void WhenAChessBoardIsCreatedThereAreThirtyTwoPiecesPlaced()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         var piecesOnBoard = chessboard._pieces
             .Where(x => x.Value != null);
         Assert.Equal(32, piecesOnBoard.Count());
@@ -87,7 +87,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardWeCanMakeTheFirstMoveWithPawnOne()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         var pawnOne = chessboard.SelectChessPiece("p1");
         
         chessboard.MovePieceOnBoard(pawnOne, (3, 0));
@@ -97,7 +97,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardWeCanMakeTheSecondMoveAsPlayerTwoWithPawnOne()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         var pawnOnePlayerOne = chessboard.SelectChessPiece("p1");
         chessboard.MovePieceOnBoard(pawnOnePlayerOne, (3, 0));
         var pawnOnePlayerTwo = chessboard.SelectChessPiece("P2");
@@ -109,7 +109,7 @@ public class ChessBoardTests
     [Fact]
     public void GivenAChessBoardCannotMakeInvalidMove()
     {
-        var chessboard = new ChessBoard();
+        var chessboard = new ChessBoardController();
         var pawnOnePlayerOne = chessboard.SelectChessPiece("b1");
         chessboard.MovePieceOnBoard(pawnOnePlayerOne, (3, 3));
         

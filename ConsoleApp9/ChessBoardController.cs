@@ -2,7 +2,7 @@ using Chess;
 
 namespace Chessapp;
 
-public class ChessBoard
+public class ChessBoardController
 {
     public readonly Dictionary<string, IPiece?> _pieces = new();
     public readonly List<(IPiece, (int, int))> _moves = new();
@@ -12,7 +12,7 @@ public class ChessBoard
     /// <summary>
     /// Constructs a GameState in a traditional chess layout.
     /// </summary>
-    public ChessBoard()
+    public ChessBoardController()
     {
         _displayChessBoard = new DisplayChessBoard(this);
         for (int i = 1; i <= 8; i++)
@@ -158,10 +158,5 @@ public class ChessBoard
     public string ActivePlayerCasing()
     {
         return ActivePlayer() == PieceColor.Blue ? "lowercase" : "capital";
-    }
-
-    public string TurnPhase()
-    {
-        return "piece select";
     }
 }
