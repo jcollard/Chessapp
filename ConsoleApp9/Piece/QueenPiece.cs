@@ -7,8 +7,8 @@ public class QueenPiece : AbstractPiece
 {
     public QueenPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    protected override bool SubLogic((int row, int col) target, ChessBoard chessBoard)
+    protected override bool SubLogic((int row, int col) target, Dictionary<string, IPiece?> chessBoardPieces)
     {
-        return chessBoard.IsPathClear(PieceAttributes.Position, target);
+        return Rules.IsPathClear(PieceAttributes.Position, target, chessBoard._pieces);
     }
 }

@@ -44,14 +44,13 @@ public static class Utils
         {
             return 0;
         }
-        else if (start > target)
+
+        if (start > target)
         {
             return -1;
         }
-        else
-        {
-            return 1;
-        }
+    
+        return 1;
     }
 
     public static bool IsOrthogonal((int row, int col) start, (int row , int col) target)

@@ -46,14 +46,9 @@ public class ChessBoard
         
     }
 
-    private void SetPiece((int row, int col) pos, IPiece? piece)
-    {
-        if (piece != null) piece.Position = pos;
-    }
-
     private void ClearPiece((int row, int col) pos)
     {
-        var piece = GetPiece(pos);
+        var piece = RetrievePieceFrom(pos);
         if (piece != null)
         {
             _pieces["ABCDEFGH".Substring(pos.col, 1) + pos.row] = null;
@@ -69,34 +64,6 @@ public class ChessBoard
             chessPiece.IsPieceCaptured = true;
         }
     }
-    
-    /// <summary>
-    /// Given a starting and target position that are orthogonal or diagonal to each
-    /// other, returns true if no pieces are found between them and false otherwise.
-    /// </summary>
-    public bool IsPathClear((int row, int col) start, (int row, int col) target)
-    {
-        if (!Utils.IsDiagonal(start, target) && !Utils.IsOrthogonal(start, target))
-        {
-            return false;
-        }
-        int rowInc = Utils.GetIncrement(start.row, target.row);
-        int colInc = Utils.GetIncrement(start.col, target.col);
-
-        int row = start.row + rowInc;
-        int col = start.col + colInc;
-
-        while (row != target.row || col != target.col)
-        {
-            if (!IsEmpty((row, col)))
-            {
-                return false;
-            }
-            row += rowInc;
-            col += colInc;
-        }
-        return true;
-    }
 
     private void AddMove(IPiece? piece, (int, int) target) => _moves.Add((piece, target)!);
 
@@ -104,7 +71,7 @@ public class ChessBoard
     /// Returns the piece at the specified position or null if no piece is at that
     /// position.
     /// </summary>
-    public IPiece? GetPiece((int row, int col) pos) => _pieces.Values.FirstOrDefault(x => x != null && x.Position.row == pos.row && x.Position.col == pos.col);
+    public IPiece? RetrievePieceFrom((int row, int col) pos) => _pieces.Values.FirstOrDefault(x => x != null && x.Position.row == pos.row && x.Position.col == pos.col);
 
     /// <summary>
     /// Returns true if there is no piece at the specified position and false otherwise.
@@ -154,7 +121,7 @@ public class ChessBoard
 
     public void MovePieceOnBoard(IPiece? heroPiece, (int row, int col) target)
     {
-        IPiece? enemyPiece = GetPiece(target);
+        IPiece? enemyPiece = RetrievePieceFrom(target);
         
         if (heroPiece != null && !heroPiece.AllowableMove(target, this))
         {
@@ -165,7 +132,8 @@ public class ChessBoard
             enemyPiece.CapturePiece();
             ClearPiece(enemyPiece.Position);
         }
-        SetPiece(target, heroPiece);
+
+        if (heroPiece != null) heroPiece.Position = target;
         AddMove(heroPiece, target);
         if (heroPiece != null) ClearPiece(heroPiece.Position);
     }

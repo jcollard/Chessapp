@@ -33,7 +33,7 @@ public abstract class AbstractPiece : IPiece
             position);
     }
 
-    protected abstract bool SubLogic((int row, int col) targetPos, ChessBoard chessBoard);
+    protected abstract bool SubLogic((int row, int col) targetPos, Dictionary<string, IPiece?> chessBoardPieces);
 
     /// <inheritdoc/>
     private bool IsEnemyPiece(IPiece other) => other.Color != PieceAttributes.Color;
@@ -74,12 +74,12 @@ public abstract class AbstractPiece : IPiece
         }
         // Cannot capture pieces of the same color
         if(!chessBoard.IsEmpty(target) && 
-           chessBoard.GetPiece(target) != null && 
-           !IsEnemyPiece(chessBoard.GetPiece(target)))
+           chessBoard.RetrievePieceFrom(target) != null && 
+           !IsEnemyPiece(chessBoard.RetrievePieceFrom(target)))
         {
             return false;
         }
-        return SubLogic(target, chessBoard);
+        return SubLogic(target, chessBoard._pieces);
     }
 
     public void CapturePiece()

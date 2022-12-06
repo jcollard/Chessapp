@@ -30,7 +30,7 @@ public class ChessBoardTests
     {
         var chessboard = new ChessBoard();
 
-        IPiece? heroPiece = chessboard.GetPiece((2, 0));
+        IPiece? heroPiece = chessboard.RetrievePieceFrom((2, 0));
         chessboard.MovePieceOnBoard(heroPiece, (3, 0));
         
         var pawnOnePlayerOne = chessboard.ActivePlayer();
