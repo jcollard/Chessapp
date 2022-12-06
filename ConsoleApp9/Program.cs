@@ -21,7 +21,7 @@ public class Program
                 continue;
             }
 
-            if (piece == null && !piece.AllowableMove(targetPos, ChessBoard)) continue;
+            if (piece == null || !piece.AllowableMove(targetPos, ChessBoard)) continue;
             ChessBoard.MovePieceOnBoard(piece, targetPos);
             piece?.AssignPositionAndMoved(targetPos);
         }
