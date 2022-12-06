@@ -103,7 +103,7 @@ public class ChessBoardController
         return _chessboard.IsEmpty(target);
     }
 
-    public IPiece RetrievePieceFrom((int row, int col) target)
+    public IPiece? RetrievePieceFrom((int row, int col) target)
     {
         return _chessboard.RetrievePieceFrom(target);
     }

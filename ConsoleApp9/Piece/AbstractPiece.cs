@@ -36,7 +36,7 @@ public abstract class AbstractPiece : IPiece
     protected abstract bool SubLogic((int row, int col) targetPos, List<IPiece?> chessBoardPieces);
 
     /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != PieceAttributes.Color;
+    private bool IsEnemyPiece(IPiece? other) => other != null && other.Color != PieceAttributes.Color;
 
     /// <inheritdoc/>
     public bool AssignPositionAndMoved((int row, int col) target)
