@@ -1,15 +1,26 @@
+using Chessapp;
+using Chessapp.Piece;
+
 namespace Chess;
 
 public class BishopPiece : AbstractPiece
 {
-    public BishopPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
 
-    protected override bool SubLogic((int row, int col) target)
+    public BishopPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
+    
+    /// <summary>
+    /// Given a target position, checks the piece specific logic for moving this 
+    /// piece to that position on the board. If the piece can move there,
+    /// returns true and otherwise returns false.
+    /// </summary>
+    protected override bool SubLogic((int row, int col) target,
+        List<IPiece?> chessBoardPieces)
     {
-        if (!Utils.IsDiagonal(this.Position, target))
+        if (!Rules.IsDiagonal(PieceAttributes.Position, target))
         {
             return false;
         }
-        return this._gameState.IsPathClear(this.Position, target);
+        return Rules.IsPathClear(PieceAttributes.Position, target, chessBoardPieces);
     }
+
 }

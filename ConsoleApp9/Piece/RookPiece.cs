@@ -1,15 +1,19 @@
+using Chessapp;
+using Chessapp.Piece;
+
 namespace Chess;
 
 public class RookPiece : AbstractPiece
 {
-    public RookPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
+    public RookPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    protected override bool SubLogic((int row, int col) target)
+    protected override bool SubLogic((int row, int col) target,
+        List<IPiece?> chessBoardPieces)
     {
-        if (!Utils.IsOrthogonal(this.Position, target))
+        if (!Utils.IsOrthogonal(PieceAttributes.Position, target))
         {
             return false;
         }
-        return this._gameState.IsPathClear(this.Position, target);
+        return Rules.IsPathClear(PieceAttributes.Position, target, chessBoardPieces);
     }
 }

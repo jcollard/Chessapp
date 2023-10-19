@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessapp", "ConsoleApp9\Chessapp.csproj", "{40FB90AE-07E2-49FA-AF1D-2A063FA27BFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.ConsoleApp9", "Tests.ConsoleApp9\Tests.ConsoleApp9.csproj", "{FC99239F-BFA8-4F6C-B421-E81D08286CB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{40FB90AE-07E2-49FA-AF1D-2A063FA27BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40FB90AE-07E2-49FA-AF1D-2A063FA27BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40FB90AE-07E2-49FA-AF1D-2A063FA27BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC99239F-BFA8-4F6C-B421-E81D08286CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC99239F-BFA8-4F6C-B421-E81D08286CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC99239F-BFA8-4F6C-B421-E81D08286CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC99239F-BFA8-4F6C-B421-E81D08286CB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

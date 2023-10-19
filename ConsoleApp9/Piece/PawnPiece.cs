@@ -1,34 +1,36 @@
+using Chessapp;
+using Chessapp.Piece;
+
 namespace Chess;
 public class PawnPiece : AbstractPiece
 {
 
-    public PawnPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
-
-    protected override bool SubLogic((int row, int col) target)
+    public PawnPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
+    protected override bool SubLogic((int row, int col) target, List<IPiece?> chessBoardPieces)
     {
-        int rowInc = this.Color == PieceColor.Blue ? 1 : -1;
-        int targetRow = this.Position.row + rowInc;
-        int firstTurnTargetRow = this.Position.row + 2*rowInc;
-        int[] targetCols = {this.Position.col - 1, this.Position.col + 1};
-        bool isAttack = this.Position.col - target.col != 0;
+        int rowInc = PieceAttributes.Color == PieceColor.Blue ? 1 : -1;
+        int targetRow = PieceAttributes.Position.row + rowInc;
+        int firstTurnTargetRow = PieceAttributes.Position.row + 2*rowInc;
+        int[] targetCols = {PieceAttributes.Position.col - 1, Position.col + 1};
+        bool isAttack = PieceAttributes.Position.col - target.col != 0;
 
         // Always, pawn may move forward 1 if space is empty
-        if (target.row == targetRow && !isAttack && this._gameState.IsEmpty(target))
+        if (target.row == targetRow && !isAttack && IsEmpty(chessBoardPieces, target))
         {
             return true;
         }
 
         // On first turn, pawn may move forward 2 spaces if empty
-        if (!this.HasMoved && 
+        if (!PieceAttributes.HasMoved && 
             target.row == firstTurnTargetRow && 
-            !isAttack && this._gameState.IsEmpty(target) && 
-            this._gameState.IsPathClear(this.Position, target))
+            !isAttack && IsEmpty(chessBoardPieces, target) && 
+            Rules.IsPathClear(PieceAttributes.Position, target, chessBoardPieces))
         {
             return true;
         }
 
         // Can move diagonal 1 if an enemy is in that space
-        if (target.row == targetRow && targetCols.Contains(target.col) && !this._gameState.IsEmpty(target))
+        if (target.row == targetRow && targetCols.Contains(target.col) && !IsEmpty(chessBoardPieces, target))
         {
             return true;
         }
@@ -37,4 +39,14 @@ public class PawnPiece : AbstractPiece
 
         return false;
     }
+
+    /// <summary>
+    /// Returns true if there is no piece at the specified position and false otherwise.
+    /// </summary>
+    /// <param name="pieces"></param>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public bool IsEmpty(List<IPiece?> pieces, (int row, int col) pos) => pieces
+        .FirstOrDefault(x => 
+            x != null && x.Position.col == pos.col && x.Position.row == pos.row) == null;
 }

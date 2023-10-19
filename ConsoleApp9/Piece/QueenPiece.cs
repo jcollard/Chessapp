@@ -1,11 +1,15 @@
+using Chessapp;
+using Chessapp.Piece;
+
 namespace Chess;
 
 public class QueenPiece : AbstractPiece
 {
-    public QueenPiece(string symbol, PieceColor color, (int, int) position, GameState gameState) : base(symbol, color, position, gameState) { }
+    public QueenPiece(string symbol, PieceColor color, (int, int) position) : base(symbol, color, position) { }
 
-    protected override bool SubLogic((int row, int col) target)
+    protected override bool SubLogic((int row, int col) target,
+        List<IPiece?> chessBoardPieces)
     {
-        return this._gameState.IsPathClear(this.Position, target);
+        return Rules.IsPathClear(PieceAttributes.Position, target, chessBoardPieces);
     }
 }

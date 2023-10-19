@@ -1,53 +1,61 @@
-namespace Chess;
+using Chess;
+
+namespace Chessapp.Piece;
 
 public abstract class AbstractPiece : IPiece
 {
 
-    public bool IsCaptured { get; set; } = false;
-    public bool HasMoved { get; private set; }
-    public string Symbol { get; private set; }
-    public PieceColor Color { get; private set; }
-    public (int row, int col) Position { get; private set; }
-    protected readonly GameState _gameState;
+    protected readonly PieceAttributes PieceAttributes;
 
-    public AbstractPiece(string symbol, PieceColor color, (int, int) position, GameState gameState)
+    public bool IsPieceCaptured
     {
-        this.Symbol = symbol;
-        this.Color = color;
-        this.Position = position;
-        this._gameState = gameState;
-        this._gameState.SetPiece(position, this);
+        get => PieceAttributes.IsCaptured;
+        set => PieceAttributes.IsCaptured = value;
     }
 
-    /// <inheritdoc/>
-    public bool Move((int row, int col) target)
+    public (int row, int col) Position
     {
-        if (this.Logic(target))
-        {
-            IPiece? other = this._gameState.GetPiece(target);
-            if (other != null)
-            {
-                other.IsCaptured = true;
-            }
-            this._gameState.ClearPiece(this.Position);
-            this._gameState.SetPiece(target, this);
-            this.Position = target;
-            HasMoved = true;
-            this._gameState.AddMove(this, target);
-            return true;
-        }
-        return false;
+        get => PieceAttributes.Position;
+        set => PieceAttributes.Position = value;
     }
 
-    /// <inheritdoc/>
-    public List<(int, int)> GetMoves()
+    public PieceColor Color => PieceAttributes.Color;
+    public string Symbol => PieceAttributes.Symbol;
+
+
+    protected AbstractPiece(string symbol, PieceColor color, (int, int) position)
     {
-        List<(int, int)> moves = new ();
+        PieceAttributes = new PieceAttributes(
+            false, 
+            false, 
+            symbol, 
+            color, 
+            position);
+    }
+
+    protected abstract bool SubLogic((int row, int col) targetPos, List<IPiece?> chessBoardPieces);
+
+    /// <inheritdoc/>
+    private bool IsEnemyPiece(IPiece? other) => other != null && other.Color != PieceAttributes.Color;
+
+    /// <inheritdoc/>
+    public bool AssignPositionAndMoved((int row, int col) target)
+    {
+        PieceAttributes.Position = target;
+        PieceAttributes.HasMoved = true;
+        return true;
+    }
+
+    /// <param name="chessBoardController"></param>
+    /// <inheritdoc/>
+    public List<(int, int)>? GetMoves(ChessBoardController chessBoardController)
+    {
+        List<(int, int)>? moves = new ();
         for (int row = 0; row < 8; row++)
         {
             for (int col = 0; col < 8; col++)
             {
-                if (this.Logic((row, col)))
+                if (AllowableMove((row, col), chessBoardController))
                 {
                     moves.Add((row, col));
                 }
@@ -57,28 +65,25 @@ public abstract class AbstractPiece : IPiece
     }
 
     /// <inheritdoc/>
-    public bool Logic((int row, int col) target)
+    public bool AllowableMove((int row, int col) target, ChessBoardController chessBoardController)
     {
         // Pieces cannot move onto themselves
-        if (this.Position == target)
+        if (PieceAttributes.Position == target)
         {
             return false;
         }
         // Cannot capture pieces of the same color
-        if(!this._gameState.IsEmpty(target) && !this.IsEnemyPiece(this._gameState.GetPiece(target)!))
+        if(!chessBoardController.IsEmpty(target) && 
+           chessBoardController.RetrievePieceFrom(target) != null && 
+           !IsEnemyPiece(chessBoardController.RetrievePieceFrom(target)))
         {
             return false;
         }
-        return SubLogic(target);
+        return SubLogic(target, chessBoardController.RetrieveAllPieces());
     }
-    
-    /// <inheritdoc/>
-    private bool IsEnemyPiece(IPiece other) => other.Color != this.Color;
 
-    /// <summary>
-    /// Given a target position, checks the piece specific logic for moving this 
-    /// piece to that position on the board. If the piece can move there,
-    /// returns true and otherwise returns false.
-    /// </summary>
-    protected abstract bool SubLogic((int row, int col) targetPos);
+    public void CapturePiece()
+    {
+        PieceAttributes.IsCaptured = true;
+    }
 }
